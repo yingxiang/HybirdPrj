@@ -8,6 +8,7 @@
 
 #import "UIContainerLabel.h"
 #import "AlignmentLabel.h"
+#import "UILabel+sizefit.h"
 
 @interface UIContainerLabel()
 
@@ -29,7 +30,6 @@ nonatomic_strong(UILabel, *label);
 - (void)setView:(id )view{
     [super setView:view];
     _label = view;
-    [_label sizeToFit];
 }
 
 - (NSDictionary*)setUI:(NSDictionary *)data{
@@ -68,6 +68,12 @@ nonatomic_strong(UILabel, *label);
             ((AlignmentLabel*)self.label).verticalAlignment = (VerticalAlignment)[obj obj_integer:^(BOOL success) {
                 if (!success) {
                     showIntegerException(key, obj);
+                }
+            }];
+        }else if ([key isEqualToString:@"autoSizefit"]){
+            self.label.autoSizefit = [obj obj_bool:^(BOOL success) {
+                if (!success) {
+                    showBoolException(key, obj);
                 }
             }];
         }

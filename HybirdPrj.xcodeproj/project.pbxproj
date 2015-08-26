@@ -11,6 +11,7 @@
 		200DC6B21B8AFD2D00F0FA8A /* LocalNotificationEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 200DC6B11B8AFD2D00F0FA8A /* LocalNotificationEngine.m */; };
 		200DC6EA1B8B1CAC00F0FA8A /* NSDictionary+addEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 200DC6E91B8B1CAC00F0FA8A /* NSDictionary+addEntries.m */; };
 		2033A9461B79D81A007A6EC2 /* UIConatinerActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2033A9451B79D81A007A6EC2 /* UIConatinerActivityIndicatorView.m */; };
+		204ACA5B1B8DAA75002CEDD4 /* UILabel+sizefit.m in Sources */ = {isa = PBXBuildFile; fileRef = 204ACA5A1B8DAA75002CEDD4 /* UILabel+sizefit.m */; };
 		205AAF261B854E4500C06B16 /* FTPEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 205AAF191B854E4500C06B16 /* FTPEngine.m */; };
 		205AAF271B854E4500C06B16 /* PayEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 205AAF1C1B854E4500C06B16 /* PayEngine.m */; };
 		205AAF281B854E4500C06B16 /* RecorderEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 205AAF1F1B854E4500C06B16 /* RecorderEngine.m */; };
@@ -97,6 +98,8 @@
 		200DC6E91B8B1CAC00F0FA8A /* NSDictionary+addEntries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+addEntries.m"; sourceTree = "<group>"; };
 		2033A9441B79D81A007A6EC2 /* UIConatinerActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConatinerActivityIndicatorView.h; sourceTree = "<group>"; };
 		2033A9451B79D81A007A6EC2 /* UIConatinerActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIConatinerActivityIndicatorView.m; sourceTree = "<group>"; };
+		204ACA591B8DAA75002CEDD4 /* UILabel+sizefit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+sizefit.h"; sourceTree = "<group>"; };
+		204ACA5A1B8DAA75002CEDD4 /* UILabel+sizefit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+sizefit.m"; sourceTree = "<group>"; };
 		205AAF181B854E4500C06B16 /* FTPEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPEngine.h; sourceTree = "<group>"; };
 		205AAF191B854E4500C06B16 /* FTPEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPEngine.m; sourceTree = "<group>"; };
 		205AAF1B1B854E4500C06B16 /* PayEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayEngine.h; sourceTree = "<group>"; };
@@ -552,6 +555,8 @@
 				ACF04FB71B76D1A700F08869 /* CALayer+animation.m */,
 				ACA828451B8835A500375AC1 /* NSTimer+block.h */,
 				ACA828461B8835A500375AC1 /* NSTimer+block.m */,
+				204ACA591B8DAA75002CEDD4 /* UILabel+sizefit.h */,
+				204ACA5A1B8DAA75002CEDD4 /* UILabel+sizefit.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1003,6 +1008,7 @@
 				AC3DCA0D1B59E61B0060E193 /* UIContainerButton.m in Sources */,
 				AC3DCA141B59E61B0060E193 /* UIContainerProgress.m in Sources */,
 				AC0E2ACB1B55551D00D2E011 /* UIViewControllerHelper.m in Sources */,
+				204ACA5B1B8DAA75002CEDD4 /* UILabel+sizefit.m in Sources */,
 				AC3DCA111B59E61B0060E193 /* UIContainerLabel.m in Sources */,
 				205AAF2A1B854E4500C06B16 /* ShareEngine.m in Sources */,
 				AC3DCA611B5A1CD40060E193 /* BaseActionSheet.m in Sources */,

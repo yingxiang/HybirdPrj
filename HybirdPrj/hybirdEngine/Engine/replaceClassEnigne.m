@@ -43,6 +43,8 @@ void replaceClass(){
     
     replaceClassMethods([UIViewController class], NSSelectorFromString(@"commpontpreferredStatusBarStyle:"), NSSelectorFromString(@"preferredStatusBarStyle:"));
     
+    replaceClassMethods([UILabel class], NSSelectorFromString(@"setfitText:"), NSSelectorFromString(@"setText:"));
+    
 }
 
 
