@@ -21,10 +21,10 @@
           "numberOfLines": "0",
           "text": "状态栏message",
           "frame": {
-            "x": "0",
-            "y": "0",
-            "width": "160",
-            "height": "32"
+            "x": "5",
+            "y": "10",
+            "width": "180",
+            "height": "11"
           },
           "autoSizefit":true
         }
@@ -32,11 +32,11 @@
       "frame": {
                  "x":  "0"
                  ,
-                 "y":  "5"
+                 "y":  "0"
                  ,
-                 "width":  "160"
+                 "width":  "190"
                  ,
-                 "height": "+(self.container_toolbar.container_label.view.height)(10)"
+                 "height": "+(self.container_label.view.height)(20)"
                  
                  }
     }
@@ -103,9 +103,9 @@
                      }
                      ],
   "frame": {
-    "x": "/-(self.windowContainer.view.width)(160)(2)",
-    "y": "-(self.windowContainer.view.height)(self.view.height)",
-    "width": "160",
-    "height": "+(self.container_toolbar.container_label.view.height)(10)"
+    "x": "/-(self.windowContainer.view.width)(190)(2)",
+    "y": "--(self.windowContainer.view.height)(self.container_toolbar.container_label.view.height)(120)",
+    "width": "190",
+    "height": "+(self.container_toolbar.container_label.view.height)(20)"
   }
 }

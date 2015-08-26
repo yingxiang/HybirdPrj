@@ -48,6 +48,17 @@ static const void *sizefitKey = &sizefitKey;
             }else{
                 //frame 布局
                 self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ceilf(titleRect.size.height));
+                UIView *superView = self.superview;
+                while (superView) {
+                    NSDictionary *layout = superView.container.jsonData[@"layout"];
+                    if (layout) {
+                        [superView.container setUI:@{@"layout":layout}];
+                    }else{
+                        layout = superView.container.jsonData[@"frame"];
+                        [superView.container setUI:@{@"frame":layout}];
+                    }
+                    superView = superView.superview;
+                }
             }
         }
     }
