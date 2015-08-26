@@ -1,0 +1,64 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - iCarousel (1.8.1)
+  - Masonry (0.6.1)
+  - RegexKitLite-NoWarning (1.1.0)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
+  - TencentOpenApiSDK (2.9.0):
+    - TencentOpenApiSDK/Basic (= 2.9.0)
+  - TencentOpenApiSDK/Basic (2.9.0)
+  - UMengAnalytics-NO-IDFA (3.5.9)
+  - WebViewJavascriptBridge (4.1.4)
+  - WeChat (1.0.1)
+  - Weibo (2.4.2)
+  - ZipArchive (1.4.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5.4)
+  - iCarousel (~> 1.8.1)
+  - Masonry (~> 0.6.1)
+  - RegexKitLite-NoWarning (~> 1.1.0)
+  - SDWebImage (~> 3.7.2)
+  - TencentOpenApiSDK (~> 2.9.0)
+  - UMengAnalytics-NO-IDFA (~> 3.5.9)
+  - WebViewJavascriptBridge (~> 4.1.4)
+  - WeChat (~> 1.0.1)
+  - Weibo (~> 2.4.2)
+  - ZipArchive (~> 1.4.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  iCarousel: dace1cb858e3f4dc2614bee3201041247f82feda
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
+  RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+  TencentOpenApiSDK: 2c8be7f99581df17570d6d87adefbd5db4ce7721
+  UMengAnalytics-NO-IDFA: c5302a2246061c356641bb3056e89dfbdeb37424
+  WebViewJavascriptBridge: f10ac16f2cd3adf2b941bd79477c55a8f6e01044
+  WeChat: 93915b3be360b5bdfe48e8a9d64ff0315a28c240
+  Weibo: ed569ffed6eb043a159ac3b01dc5122b4e1fd77a
+  ZipArchive: e25a4373192673e3229ac8d6e9f64a3e5713c966
+
+COCOAPODS: 0.37.2

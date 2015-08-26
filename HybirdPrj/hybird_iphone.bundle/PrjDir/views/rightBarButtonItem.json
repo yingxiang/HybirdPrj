@@ -1,0 +1,676 @@
+{
+  "UIContainerType": "UIContainerButtonItem",
+  "identify": "rightBarButtonItem",
+  "image": "menu.png",
+  "tintColor": "#12c52b",
+  "functionList": [
+    {
+      "functionname": "UIControlEventTouchUpInside",
+      "type": "FT_SYSTERM",
+      "target": "self.superContainer.view",
+      "selector": "endEditing:",
+      "objectone": "1"
+    },
+    {
+      "functionname": "UIControlEventTouchUpInside_complete",
+      "type": "FT_ADDVIEW",
+      "superView": "windowContainer",
+      "subView": {
+        "UIContainerType": "UIContainerView",
+        "identify": "alphaview",
+        "backgroundColor": "#00000000",
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerToolbar",
+            "identify": "contentView",
+            "barStyle": "0",
+            "translucent": true,
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "160"
+              },
+              "right": {
+                "value": "0"
+              },
+              "height": {
+                "value": "160"
+              }
+            },
+            "subViews": [
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemone",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_settings.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "0"
+                  },
+                  "top": {
+                    "value": "0"
+                  },
+                  "width": {
+                    "dividedBy": "superContainer.view.mas_width/4"
+                  },
+                  "height": {
+                    "dividedBy": "superContainer.view.mas_height/2"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "设置",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width":  "self.view.width"
+                            ,
+                            "height":  "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "functionname": "UIControlEventTouchUpInside_complete",
+                    "type": "FT_VIEWSKIP",
+                    "identify": "settingViewController",
+                    "model": "0",
+                    "animated": true
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemtwo",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_refresh.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "superContainer.container_itemone.view.mas_right"
+                  },
+                  "top": {
+                    "value": "superContainer.container_itemone.view.mas_top"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "刷新",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width":"self.view.width"
+                            ,
+                            "height":  "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "functionname": "UIControlEventTouchUpInside_complete",
+                    "type": "FT_SYSTERM",
+                    "target": "self.view.viewController.container",
+                    "selector": "reload"
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemthree",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_gongzhong.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "superContainer.container_itemtwo.view.mas_right"
+                  },
+                  "top": {
+                    "value": "superContainer.container_itemone.view.mas_top"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "关注公众号",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y": "windowContainer.view.height"
+                            ,
+                            "width": "self.view.width"
+                            ,
+                            "height": "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "functionname": "UIControlEventTouchUpInside_complete",
+                    "type": "FT_VIEWSKIP",
+                    "identify": "webViewController",
+                    "parmers": {
+                      "container": {
+                        "url": "http://namibox.com/app/weixin"
+                      }
+                    },
+                    "model": "0",
+                     "animated":true
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemfour",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_download.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "superContainer.container_itemthree.view.mas_right"
+                  },
+                  "top": {
+                    "value": "superContainer.container_itemone.view.mas_top"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "下载App",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width":  "self.view.width"
+                            ,
+                            "height": "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "functionname": "UIControlEventTouchUpInside_complete",
+                    "type": "FT_VIEWSKIP",
+                    "identify": "webViewController",
+                    "parmers": {
+                      "container": {
+                        "url": "http://namibox.com/app/download"
+                      }
+                    },
+                    "model": "0",
+                    "animated":true
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemfive",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_namibox.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "0"
+                  },
+                  "bottom": {
+                    "value": "0"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "关于纳米盒",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width": "self.view.width"
+                            ,
+                            "height":  "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "functionname": "UIControlEventTouchUpInside_complete",
+                    "type": "FT_VIEWSKIP",
+                    "identify": "webViewController",
+                    "parmers": {
+                      "container": {
+                        "url": "http://namibox.com/app/about"
+                      }
+                    },
+                    "model": "0",
+                    "animated":true
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemsix",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_friends.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "superContainer.container_itemfive.view.mas_right"
+                  },
+                  "bottom": {
+                    "value": "superContainer.container_itemfive.view.mas_bottom"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "分享到朋友圈",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width":  "self.view.width"
+                            ,
+                            "height":  "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "FT_SHARE",
+                    "shareType": "1",
+                    "shareTitle": "测试分享朋友圈",
+                    "shareContent": "内容",
+                    "shareUrl": "http://www.baidu.com",
+                    "shareImage": "ic_action_friends.png",
+                    "functionname": "UIControlEventTouchUpInside_complete"
+                  }
+                ]
+              },
+              {
+                "UIContainerType": "UIContainerButton",
+                "identify": "itemseven",
+                "ImageEdgeInsets": "{-15,0,0,0}",
+                "UIControlStateNormal": {
+                  "image": "ic_action_weixin.png"
+                },
+                "layout": {
+                  "left": {
+                    "value": "superContainer.container_itemsix.view.mas_right"
+                  },
+                  "bottom": {
+                    "value": "superContainer.container_itemfive.view.mas_bottom"
+                  },
+                  "width": {
+                    "value": "superContainer.container_itemone.view.mas_width"
+                  },
+                  "height": {
+                    "value": "superContainer.container_itemone.view.mas_height"
+                  }
+                },
+                "subViews": [
+                  {
+                    "UIContainerType": "UIContainerLabel",
+                    "identify": "label",
+                    "text": "分享到好友",
+                    "textAlignment": "1",
+                    "font": "13",
+                    "layout": {
+                      "left": {
+                        "value": "0"
+                      },
+                      "right": {
+                        "value": "0"
+                      },
+                      "bottom": {
+                        "value": "0"
+                      },
+                      "height": {
+                        "value": "30"
+                      }
+                    }
+                  }
+                ],
+                "functionList": [
+                  {
+                    "functionname": "UIControlEventTouchUpInside",
+                    "type": "FT_REMOVEVIEW",
+                    "container": "superContainer.superContainer",
+                    "animation": {
+                      "duration": "0.4",
+                      "alpha": "0",
+                      "subViews": [
+                        {
+                          "identify": "contentView",
+                          "frame": {
+                            "x":  "0"
+                            ,
+                            "y":  "windowContainer.view.height"
+                            ,
+                            "width":  "self.view.width"
+                            ,
+                            "height": "self.view.height"
+                            
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "FT_SHARE",
+                    "shareType": "0",
+                    "shareTitle": "测试分享到好友",
+                    "shareContent": "内容",
+                    "shareUrl": "http://www.baidu.com",
+                    "shareImage": "ic_action_friends.png",
+                    "functionname": "UIControlEventTouchUpInside_complete"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "layout": {
+          "left": {
+            "value": "0"
+          },
+          "right": {
+            "value": "0"
+          },
+          "top": {
+            "value": "0"
+          },
+          "bottom": {
+            "value": "0"
+          }
+        },
+        "functionList": [
+          [{
+            "functionname": "UITapGesture",
+            "type": "FT_REMOVEVIEW",
+           "gesturetype":"UITapGesture",
+            "animation": {
+              "duration": "0.4",
+              "backgroundColor": "#00000000",
+              "subViews": [
+                {
+                  "identify": "contentView",
+                  "frame": {
+                    "x":  "0"
+                    ,
+                    "y":  "windowContainer.view.height"
+                    ,
+                    "width":  "self.view.width"
+                    ,
+                    "height":  "self.view.height"
+                    
+                  }
+                }
+              ]
+            }
+          }]
+        ]
+      },
+      "animation": {
+        "duration": "0.3",
+        "backgroundColor": "#00000050",
+        "subViews": [
+          {
+            "identify": "contentView",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "height": {
+                "value": "160"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

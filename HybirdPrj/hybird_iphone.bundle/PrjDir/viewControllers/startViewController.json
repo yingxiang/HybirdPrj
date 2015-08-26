@@ -1,0 +1,18 @@
+{
+  "class": "UITabBarController",
+  "identify": "startViewController",
+  "tabBar": {
+    "UIContainerType": "UIContainerTabBar",
+    "identify":"tabbar",
+    "tintColor": "#45c01a",
+    "barStyle": "0",
+    "translucent": true,
+    "backgroundImage": "tabbarBkg.png"
+  },
+  "viewControllers": [
+    "tabViewController_two",
+    "tabViewController_one",
+    "tabViewController_three",
+    "tabViewController_four"
+  ]
+}

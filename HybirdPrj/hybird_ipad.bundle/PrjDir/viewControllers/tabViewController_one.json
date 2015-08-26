@@ -1,0 +1,469 @@
+{
+    "class": "UINavigationController",
+    "identify": "tabViewController_one",
+    "navigationBar": {
+        "UIContainerType": "UIContainerNavgationbar",
+        "identify": "~/navigationBar"
+  },
+    "rootViewController": {
+        "class": "UIViewController",
+        "identify": "collectionViewController",
+        "title": "学习助手",
+    "navigationItem": {
+            "rightBarButtonItem": {
+                "UIContainerType": "UIContainerButtonItem",
+                "identify": "~/rightBarButtonItem"
+            }
+        },
+        "hidesBottomBarWhenPushed": false,
+        "supportedInterfaceOrientations": "0",
+        "container": {
+            "UIContainerType": "UIContainerCollectionView",
+            "identify": "containertableView",
+            "backgroundColor": "#ffffff",
+            "parseCell": {
+                "container_cellIdentify.container_icon.image": "image",
+                "container_cellIdentify.container_title.text": "title",
+                "container_cellIdentify.container_subtitle.text": "subtitle",
+                "container_headIdentify.container_title.text": "sectiontitle"
+            },
+            "collectionHeadView": {
+                "identify": "collectionHeadView",
+                "UIContainerType": "UIContainerReusableView",
+        "userInteractionEnabled": true,
+        "frame": {
+                    "x":  "0"
+                    ,
+                    "y":  "0"
+                    ,
+                    "width":  "superContainer.view.width"
+                    ,
+                    "height":  "/(superContainer.view.width)(2.4)"
+            
+                },
+        "subViews": [
+                             {
+            "UIContainerType": "UIContainerImageView",
+            "userInteractionEnabled": true,
+            "identify": "collecttionImage",
+            "image": "http://f.namibox.com/banner/u001776.jpg",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "top": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          },
+          {
+                             "UIContainerType": "UIContainerLabel",
+                             "identify": "tips",
+                             "font": 14,
+                             "text": "  错题本，提高孩子成绩的利器",
+                             "textColor": "#ffffff",
+                             "backgroundColor": "#00000080",
+                             "layout": {
+                             "left": {
+                             "value": "0"
+                             },
+                             "right": {
+                             "value": "0"
+                             },
+                             "height": {
+                             "value": "31"
+                             },
+                             "bottom": {
+                             "value": "0"
+                             }
+                             }
+                             }
+                             ],
+                "functionList": [
+                                 [{
+                                 "functionname": "UITapGesture",
+                                  "gesturetype":"UITapGesture",
+                                 "type": "FT_VIEWSKIP",
+                                 "identify": "webViewController",
+                                 "parmers": {
+                                 "title": "错题本",
+                                 "container": {
+                                 "url": "http://namibox.com/diary/wrong_list"
+                                 }
+                                 }
+                                 }
+                                  ]
+                                 ]
+            },
+            "heads": [
+                      {
+                      "UIContainerType": "UIContainerReusableView",
+                      "identify": "headIdentify",
+                      "size": "{1000,40}",
+                      "subViews": [
+                                   {
+                                   "UIContainerType": "UIContainerView",
+                                   "identify": "label",
+                                   "frame": {
+                                   "y":  "10"
+                                   ,
+                                   "height":  "20"
+                                   ,
+                                   "x":  "5"
+                                   ,
+                                   "width":  "4"
+                                   
+                                   },
+                                   "backgroundColor": "#333333"
+                                   },
+                                   {
+                                   "UIContainerType": "UIContainerLabel",
+                                   "identify": "title",
+                                   "frame": {
+                                   "x":  "14"
+                                   ,
+                                   "width": "-(superContainer.view.width)(24)"
+                                   ,
+                                   "y":  "0"
+                                   ,
+                                   "height":  "superContainer.view.height"
+                                   
+                                   },
+                                   "text": "学习工具",
+                                   "font": 15
+                                   }
+                                   ]
+                      }
+                      ],
+            "cells": [
+                      {
+                      "UIContainerType": "UIContainerCollectionCell",
+                      "identify": "cellIdentify",
+                      "selectionStyle": "0",
+                      "functionList": [
+                                       {
+                                       "type": "FT_VIEWSKIP",
+                                       "identify": "dianduViewController",
+                                       "model": "0",
+                                       "animation": true,
+                                       "functionname": "didSelectCell"
+                                       }
+                                       ],
+                      "subViews": [
+                                   {
+                                   "UIContainerType": "UIContainerImageView",
+                                   "identify": "icon",
+                                   "layout": {
+                                   "centerX": {
+                                   "value": "0"
+                                   },
+                                   "top": {
+                                   "value": "10"
+                                   },
+                                   "width": {
+                                   "value": "superContainer.view.mas_height",
+                                   "offset": "-50"
+                                   },
+                                   "height": {
+                                   "value": "superContainer.view.mas_height",
+                                   "offset": "-50"
+                                   }
+                                   },
+                                   "contentMode": "0"
+                                   },
+                                   {
+                                   "UIContainerType": "UIContainerLabel",
+                                   "identify": "title",
+                                   "text": "听磁带",
+                                   "textAlignment": "1",
+                                   "textColor": "#333333",
+                                   "layout": {
+                                   "left": {
+                                   "value": "0"
+                                   },
+                                   "top": {
+                                   "value": "superContainer.container_icon.view.mas_bottom",
+                                   "offset": "5"
+                                   },
+                                   "width": {
+                                   "value": "superContainer.view.mas_width"
+                                   },
+                                   "height": {
+                                   "value": "17"
+                                   }
+                                   },
+                                   "font": "14"
+                                   },
+                                   {
+                                   "UIContainerType": "UIContainerLabel",
+                                   "identify": "subtitle",
+                                   "text": "小学全科",
+                                   "textColor": "#808080",
+                                   "textAlignment": "1",
+                                   "layout": {
+                                   "left": {
+                                   "value": "0"
+                                   },
+                                   "top": {
+                                   "value": "superContainer.container_title.view.mas_bottom"
+                                   },
+                                   "width": {
+                                   "value": "superContainer.view.mas_width"
+                                   },
+                                   "height": {
+                                   "value": "13"
+                                   }
+                                   },
+                                   "font": "10"
+                                   }
+                                   ]
+                      }
+                      ],
+            "dataSource": [
+                           {
+                           "section": [
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/cidai.png",
+                                       "title": "听磁带",
+                                       "subtitle": "小学全科",
+                                       "changeFunction": {
+                                       "identify": "cidaiViewController"
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/clickread.png",
+                                       "title": "课本点读",
+                                       "subtitle": "英语点读",
+                                       "changeFunction": {
+                                       "identify": "dianduViewController"
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/handict.png",
+                                       "title": "汉语大辞典",
+                                       "subtitle": "特色成语",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "超级大辞典",
+                                       "container": {
+                                       "url": "http://namibox.com/dict/zidian"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/bihua.gif",
+                                       "title": "汉字笔画",
+                                       "subtitle": "动画展示",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "超级大辞典",
+                                       "container": {
+                                       "url": "http://namibox.com/dict/zidian?kw=%E7%81%AB"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/endict.png",
+                                       "title": "英汉字典",
+                                       "subtitle": "英汉互译",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "英汉字典",
+                                       "container": {
+                                       "url": "http://namibox.com/dict/yinghanhuyi"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/article.png",
+                                       "title": "作文库",
+                                       "subtitle": "30万+",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "纳米盒作文库",
+                                       "container": {
+                                       "url": "http://namibox.com/dict/article_search"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/bug.png",
+                                       "title": "错题本",
+                                       "subtitle": "3.05万题",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "错题本",
+                                       "container": {
+                                       "url": "http://namibox.com/diary/wrong_list"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/report.png",
+                                       "title": "成绩单",
+                                       "subtitle": "1.57万个",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "成绩单",
+                                       "container": {
+                                       "url": "http://namibox.com/diary/report_all"
+                                       }
+                                       }
+                                       }
+                                       }
+                                       ],
+                           "sectiontitle": "学习工具"
+                           },
+                           {
+                           "section": [
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/chinese.png",
+                                       "title": "语文",
+                                       "subtitle": "245.8万阅",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "container": {
+                                       "url": "http://namibox.com/v/sclib/chinese"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/math.png",
+                                       "title": "数学",
+                                       "subtitle": "151.9万阅",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "container": {
+                                       "url": "http://namibox.com/v/sclib/math"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/english.png",
+                                       "title": "英语",
+                                       "subtitle": "183.3万阅",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "container": {
+                                       "url": "http://namibox.com/v/sclib/english"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/stuvideo.png",
+                                       "title": "常用视频",
+                                       "subtitle": "广播体操",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "小学生常用视频",
+                                       "container": {
+                                       "url": "http://namibox.com/v/stuvideo"
+                                       }
+                                       }
+                                       }
+                                       },
+                                       {
+                                       "image": "http://r.namibox.com/tina/static/app/icon/v2/school/mathgame.png",
+                                       "title": "数学游戏",
+                                       "subtitle": "暂时保留",
+                                       "changeFunction": {
+                                       "identify": "webViewController",
+                                       "parmers": {
+                                       "title": "趣味学习游戏",
+                                       "container": {
+                                       "url": "http://namibox.com/game"
+                                       }
+                                       }
+                                       }
+                                       }
+                                       ],
+                           "sectiontitle": "参考资料"
+                           }
+                           ],
+            "item": {
+                "EdgeInsets": "{0,10,10,10}",
+                "height": "100",
+                "interspacing": "10",
+                "linespacing": "10",
+                "width": "80"
+      }
+        }
+    },
+    "tabBarItem": {
+        "UIContainerType": "UIContainerTabBarItem",
+    "identify": "tabbaritemone",
+    "title": "课内",
+        "image": "school.png",
+        "selectedImage": "school-focus.png",
+    "subViews": [
+      {
+        "UIContainerType": "UIContainerLabel",
+        "identify": "badgelabel",
+        "frame": "{{62,4},{30,14}}",
+        "text": "new",
+        "textAlignment": "1",
+        "font": "11",
+        "backgroundColor": "#000000",
+        "textColor": "#ffffff",
+        "cornerRadius": "7",
+        "functionList": [
+          {
+            "functionname": "setUI:",
+            "type": "FT_ANIMATION",
+            "animType": "7",
+            "duration": "1.0",
+            "repeats": "5",
+            "animationView": "self.view"
+          }
+        ]
+      }
+    ]
+  },
+  "container": {
+    "functionList": [
+      {
+        "functionname": "tabBarController:didSelectViewController:_complete",
+        "type": "FT_REMOVEVIEW",
+        "container": "self.container_tabbaritemone.container_badgelabel",
+        "animation": {
+          "duration": "2"
+        }
+      },
+      {
+        "functionname": "tabBarController:didSelectViewController:",
+        "type": "FT_ANIMATION",
+        "animationView": "windowContainer.view",
+        "animType": 0,
+        "animSubType": 3,
+        "duration": 0.6,
+        "repeats": 1
+      }
+    ],
+    "UIContainerType": "UIContainerView",
+    "identify": "navContainer"
+  }
+}

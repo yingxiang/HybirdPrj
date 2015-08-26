@@ -1,0 +1,391 @@
+{
+"class": "UINavigationController",
+  "identify": "tabViewController_two",
+    "navigationBar":{
+        "UIContainerType":"UIContainerNavgationbar",
+        "identify":"~/navigationBar"
+  },
+    "rootViewController": {
+"class": "UIViewController",
+    "identify": "schoolViewController",
+"title": "课外天地",
+    "supportedInterfaceOrientations": "0",
+    "navigationItem": {
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/rightBarButtonItem"
+      }
+    },
+    "container": {
+      "UIContainerType": "UIContainerCollectionView",
+      "identify": "containertableView",
+      "backgroundColor": "#ffffff",
+      "parseCell": {
+        "container_cellIdentify.container_icon.image": "image",
+        "container_cellIdentify.container_title.text": "title",
+        "container_cellIdentify.container_subtitle.text": "subtitle",
+        "container_headIdentify.container_title.text": "sectiontitle"
+      },
+      "collectionHeadView": {
+        "UIContainerType": "UIContainerReusableView",
+        "identify": "collectionHeadView",
+        "frame": {
+          "x":  "0"
+          ,
+          "y":  "0"
+          ,
+          "width":  "superContainer.view.width"
+          ,
+          "height": "/(superContainer.view.width)(2.4)"
+          
+        },
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerImageView",
+            "userInteractionEnabled": true,
+            "identify": "collecttionImage",
+            "image": "http://f.namibox.com/banner/u001775.jpg",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "top": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "tips",
+            "font": 14,
+            "text": "  《can you see me》（配音：繁星点点）",
+            "textColor": "#ffffff",
+            "backgroundColor": "#00000080",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "height": {
+                "value": "31"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          }
+        ],
+        "functionList": [
+          [{
+            "functionname": "UITapGesture",
+            "type": "FT_VIEWSKIP",
+           "gesturetype":"UITapGesture",
+            "identify": "webViewController",
+            "parmers": {
+              "title": "盒粉秀",
+              "container": {
+                "url": "http://namibox.com/fanshow/work"
+              }
+            }
+          }]
+        ]
+      },
+      "heads": [
+        {
+          "UIContainerType": "UIContainerReusableView",
+          "identify": "headIdentify",
+          "size": "{1000,40}",
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerView",
+              "identify": "label",
+              "frame": {
+                "y":  "10"
+                ,
+                "height":  "20"
+                ,
+                "x":  "5"
+                ,
+                "width": "4"
+                
+              },
+              "backgroundColor": "#333333"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "frame": {
+                "x":  "14"
+                ,
+                "width":  "-(superContainer.view.width)(24)"
+                ,
+                "y":  "0"
+                ,
+                "height":  "superContainer.view.height"
+                
+              },
+              "text": "学习工具",
+              "font": 15
+            }
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "UIContainerType": "UIContainerCollectionCell",
+          "identify": "cellIdentify",
+          "selectionStyle": "0",
+          "functionList": [
+            {
+              "type": "FT_VIEWSKIP",
+              "identify": "dianduViewController",
+              "model": "0",
+              "animation": true,
+              "functionname": "didSelectCell"
+            }
+          ],
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerImageView",
+              "identify": "icon",
+              "layout": {
+                "centerX": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "10"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                },
+                "height": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                }
+              },
+              "contentMode": "0"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "text": "听磁带",
+              "textAlignment": "1",
+              "textColor": "#333333",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_icon.view.mas_bottom",
+                  "offset": "5"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "17"
+                }
+              },
+              "font": "14"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "subtitle",
+              "text": "小学全科",
+              "textColor": "#808080",
+              "textAlignment": "1",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_title.view.mas_bottom"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "13"
+                }
+              },
+              "font": "10"
+            }
+          ]
+        }
+      ],
+      "dataSource": [
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/reading.png",
+              "title": "中文绘本",
+              "subtitle": "大师经典",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "经典中文绘本赏析",
+                  "container": {
+                    "url": "http://namibox.com/v/reading"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/fansshow.png",
+              "title": "盒粉秀",
+              "subtitle": "配音绘本",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "盒粉秀",
+                  "container": {
+                    "url": "http://namibox.com/v/fanshow"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/oxfordtree.png",
+              "title": "英文绘本",
+              "subtitle": "牛津阅读树",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "课外英语学习专栏",
+                  "container": {
+                    "url": "http://namibox.com/v/ereading"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/picbook.png",
+              "title": "连环画",
+              "subtitle": "小人书",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "中国经典连环画",
+                  "container": {
+                    "url": "http://namibox.com/v/picbook"
+                  }
+                }
+              }
+            }
+          ],
+          "sectiontitle": "阅读天地"
+        },
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/alpha.png",
+              "title": "英语启蒙视频",
+              "subtitle": "字母歌",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "英语启蒙学习视频",
+                  "container": {
+                    "url": "http://namibox.com/v/alpha"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/videobox.png",
+              "title": "精选视频",
+              "subtitle": "动画片",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "纳米盒儿童精选视频",
+                  "container": {
+                    "url": "http://namibox.com/v/video"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/outer/austory.png",
+              "title": "有声故事",
+              "subtitle": "睡前故事",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "有声故事读物精选",
+                  "container": {
+                    "url": "http://namibox.com/v/austory"
+                  }
+                }
+              }
+            }
+          ],
+          "sectiontitle": "影音盒子"
+        }
+      ],
+      "item": {
+        "EdgeInsets": "{0,10,10,10}",
+        "height":  "100"
+        ,
+        "interspacing": "10",
+        "linespacing": "10",
+        "width":  "80"
+        
+      }
+    }
+  },
+"tabBarItem": {
+"title": "课外",
+    "UIContainerType": "UIContainerTabBarItem",
+    "identify": "tabbaritemtwo",
+    "image": "outer.png",
+"selectedImage": "outer-focus.png",
+    "subViews": [
+      {
+        "UIContainerType": "UIContainerLabel",
+        "identify": "badgelabel",
+        "frame": "{{64,4},{30,14}}",
+        "text": "99+",
+        "textAlignment": "1",
+        "font": "11",
+        "backgroundColor": "#12c52b",
+        "textColor": "#ffffff",
+        "cornerRadius": "7",
+        "functionList": [
+          {
+            "functionname": "setUI:",
+            "type": "FT_ANIMATION",
+            "animType": "11",
+            "duration": "1.5",
+            "repeats": "-1",
+            "animationView": "self.view"
+          }
+        ]
+      }
+    ]
+  },
+  "container": {
+    "functionList": [
+      {
+        "functionname": "tabBarController:didSelectViewController:",
+        "type": "FT_ANIMATION",
+        "animationView": "windowContainer.view",
+        "animType": 0,
+        "animSubType": 3,
+        "duration": 0.6,
+        "repeats": 1
+      }
+    ],
+    "UIContainerType": "UIContainerView",
+    "identify": "navContainer"
+  }
+}

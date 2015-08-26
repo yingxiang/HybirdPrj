@@ -1,0 +1,110 @@
+{
+  "app_action": {
+  },
+  "imgupload": {
+  },
+  "closeview": {
+    "type": "FT_VIEWBACK",
+    "animated": false
+  },
+  "playaudio": {
+  },
+  "openview": {
+    "type": "FT_VIEWSKIP",
+    "identify": "webViewController",
+    "parmers": {
+      "container": {
+        "url": "parmer~url"
+      }
+    }
+  },
+  "context": {
+    "share": {
+      "type": "FT_SHOWACTIONSHEET",
+      "title": "分享到",
+      "canceltitle": "取消",
+      "animation": true,
+      "othertitles": [
+        {
+          "title": "分享到朋友圈",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "1",
+            "shareTitle": "测试分享朋友圈",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到微信好友",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "0",
+            "shareTitle": "测试分享微信好友",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享给QQ好友",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "3",
+            "shareTitle": "测试分享qq好友",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到QQ空间",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "4",
+            "shareTitle": "测试分享qq空间",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到新浪微博",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "2",
+            "shareTitle": "测试分享新浪微博",
+            "shareImage": "ic_action_friends.png",
+            "shareUrl": "http://www.baidu.com",
+            "shareContent": "内容"
+          }
+        }
+      ]
+    }
+  },
+  "regtoken": {
+  },
+  "querysys": {
+  },
+  "download": {
+  },
+  "playoperate": {
+  },
+  "loginstatus": {
+  },
+  "app_download": {
+  },
+  "user_config": {
+  },
+  "query_user_config": {
+  },
+  "view_photos": {
+  },
+  "notify": {
+  },
+  "clear_notify": {
+  },
+  "refreshview": {
+  }
+}

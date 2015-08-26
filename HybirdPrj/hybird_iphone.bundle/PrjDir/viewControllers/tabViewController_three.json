@@ -1,0 +1,410 @@
+ {
+    "class": "UINavigationController",
+    "identify": "tabViewController_three",
+     "navigationBar":{
+         "UIContainerType":"UIContainerNavgationbar",
+         "identify":"~/navigationBar"
+  },
+     "rootViewController": {
+        "class": "UIViewController",
+        "identify": "schoolViewController",
+        "title": "窗外世界",
+    "navigationItem": {
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/rightBarButtonItem"
+      }
+    },
+    "supportedInterfaceOrientations": "0",
+    "container": {
+      "UIContainerType": "UIContainerCollectionView",
+      "identify": "containertableView",
+      "backgroundColor": "#ffffff",
+      "parseCell": {
+        "container_cellIdentify.container_icon.image": "image",
+        "container_cellIdentify.container_title.text": "title",
+        "container_cellIdentify.container_subtitle.text": "subtitle",
+        "container_headIdentify.container_title.text": "sectiontitle"
+      },
+      "collectionHeadView": {
+        "UIContainerType": "UIContainerReusableView",
+        "identify": "collectionHeadView",
+        "frame": {
+          "x":  "0"
+          ,
+          "y":  "0"
+          ,
+          "width":  "superContainer.view.width"
+          ,
+          "height":  "/(superContainer.view.width)(2.4)"
+          
+        },
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerImageView",
+            "userInteractionEnabled": true,
+            "identify": "collecttionImage",
+            "image": "http://f.namibox.com/banner/u001332.jpg",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "top": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "tips",
+            "font": 14,
+            "text": "  纳米盒官方QQ粉丝群和微博开通啦！",
+            "textColor": "#ffffff",
+            "backgroundColor": "#00000080",
+            "layout": {
+              "left": {
+                "value": "0"
+              },
+              "right": {
+                "value": "0"
+              },
+              "height": {
+                "value": "31"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          }
+        ]
+      },
+      "heads": [
+        {
+          "UIContainerType": "UIContainerReusableView",
+          "identify": "headIdentify",
+          "size": "{1000,40}",
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerView",
+              "identify": "label",
+              "frame": {
+                "y":  "10"
+                ,
+                "height":  "20"
+                ,
+                "x":  "5"
+                ,
+                "width":  "4"
+                
+              },
+              "backgroundColor": "#333333"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "frame": {
+                "x":  "14"
+                ,
+                "width":  "-(superContainer.view.width)(24)"
+                ,
+                "y":  "0"
+                ,
+                "height": "superContainer.view.height"
+                
+              },
+              "text": "学习工具",
+              "font": 15
+            }
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "UIContainerType": "UIContainerCollectionCell",
+          "identify": "cellIdentify",
+          "selectionStyle": "0",
+          "functionList": [
+            {
+              "type": "FT_VIEWSKIP",
+              "identify": "dianduViewController",
+              "model": "0",
+              "animation": true,
+              "functionname": "didSelectCell"
+            }
+          ],
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerImageView",
+              "identify": "icon",
+              "layout": {
+                "centerX": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "10"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                },
+                "height": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                }
+              },
+              "contentMode": "0"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "text": "听磁带",
+              "textAlignment": "1",
+              "textColor": "#333333",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_icon.view.mas_bottom",
+                  "offset": "5"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "17"
+                }
+              },
+              "font": "14"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "subtitle",
+              "text": "小学全科",
+              "textColor": "#808080",
+              "textAlignment": "1",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_title.view.mas_bottom"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "13"
+                }
+              },
+              "font": "10"
+            }
+          ]
+        }
+      ],
+      "dataSource": [
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/diary.png",
+              "title": "成长圈",
+              "subtitle": "1.23万篇",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "成长圈",
+                  "container": {
+                    "url": "http://namibox.com/diary/diary_all"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/works.png",
+              "title": "作品秀",
+              "subtitle": "8639个",
+              "changeFunction": {
+                "parmers": {
+                  "title": "作品秀",
+                  "container": {
+                    "url": "http://namibox.com/diary/works_all"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/honour.png",
+              "title": "荣誉堂",
+              "subtitle": "2701项",
+              "changeFunction": {
+                "parmers": {
+                  "title": "荣誉堂",
+                  "container": {
+                    "url": "http://namibox.com/diary/honour_all"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            }
+          ],
+          "sectiontitle": "成长圈"
+        },
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/v/diary/custom/20150621/title.jpg",
+              "title": "父亲节快乐",
+              "subtitle": "老爸趣事大PK",
+              "changeFunction": {
+                "parmers": {
+                  "title": "纳米盒2015父亲节",
+                  "container": {
+                    "url": "http://namibox.com/diary/custom_all/20150621"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/v/diary/custom/20150601/title.jpg",
+              "title": "艺术小擂台",
+              "subtitle": "庆6.1集赞赢礼",
+              "changeFunction": {
+                "parmers": {
+                  "title": "纳米盒6.1艺术大比拼",
+                  "container": {
+                    "url": "http://namibox.com/diary/custom_all/20150601"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            }
+          ],
+          "sectiontitle": "时光机"
+        },
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/sns.png",
+              "title": "微社区",
+              "subtitle": "36.72万访",
+              "changeFunction": {
+                "parmers": {
+                  "title": "微社区",
+                  "container": {
+                    "url": "http://namibox.com/diary/sns_all"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/parent.png",
+              "title": "父母学校",
+              "subtitle": "98.88万阅",
+              "changeFunction": {
+                "parmers": {
+                  "title": "父母学堂",
+                  "container": {
+                    "url": "http://namibox.com/v/parent"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/sysinfo.png",
+              "title": "盒子公告",
+              "subtitle": "系统消息",
+              "changeFunction": {
+                "parmers": {
+                  "title": "纳米盒",
+                  "container": {
+                    "url": "http://namibox.com/v/push"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/shop.png",
+              "title": "微店",
+              "subtitle": "独具特色",
+              "changeFunction": {
+                "parmers": {
+                  "title": "纳米盒微店",
+                  "container": {
+                    "url": "http://namibox.com/ec"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            }
+          ],
+          "sectiontitle": "父母专栏"
+        }
+      ],
+      "item": {
+        "EdgeInsets": "{0,10,10,10}",
+        "height":  "100"
+        ,
+        "interspacing": "10",
+        "linespacing": "10",
+        "width": "80"
+        
+      }
+    }
+  },
+    "tabBarItem": {
+        "title": "世界",
+    "UIContainerType": "UIContainerTabBarItem",
+    "identify": "tabbaritemthree",
+    "image": "world.png",
+        "selectedImage": "world-focus.png",
+    "subViews": [
+      {
+        "UIContainerType": "UIContainerLabel",
+        "identify": "badgelabel",
+        "frame": "{{64,4},{8,8}}",
+        "textAlignment": "1",
+        "text": "",
+        "font": "11",
+        "backgroundColor": "0550fa",
+        "textColor": "#ffffff",
+        "cornerRadius": "4",
+        "functionList": [
+          {
+            "functionname": "setUI:",
+            "type": "FT_ANIMATION",
+            "animType": "10",
+            "duration": "1.5",
+            "repeats": "-1",
+            "animationView": "self.view"
+          }
+        ]
+      }
+    ]
+  },
+  "container": {
+    "functionList": [
+      {
+        "functionname": "tabBarController:didSelectViewController:",
+        "type": "FT_ANIMATION",
+        "animationView": "windowContainer.view",
+        "animType": 0,
+        "animSubType": 3,
+        "duration": 0.6,
+        "repeats": 1
+      }
+    ],
+    "UIContainerType": "UIContainerView",
+    "identify": "navContainer"
+  }
+}

@@ -1,0 +1,149 @@
+{
+    "class": "UINavigationController",
+    "identify": "loginViewController",
+        "navigationBar":{
+        "UIContainerType":"UIContainerNavgationbar",
+        "identify":"navigationBar",
+        "barStyle": "1"
+    },
+    "rootViewController": {
+        "class": "UIViewController",
+        "identify": "loginViewController",
+        "title": "登录纳米盒",
+    "supportedInterfaceOrientations": "0",
+    "navigationItem": {
+      "leftBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "leftBarButtonItem",
+        "image": "back_hover.png",
+        "tintColor": "#12c52b",
+        "functionList": [
+          {
+            "functionname": "UIControlEventTouchUpInside",
+            "type": "FT_VIEWBACK",
+            "animated": true
+          }
+        ]
+      },
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/rightBarButtonItem"
+      }
+    },
+    "container": {
+      "UIContainerType": "UIContainerScrollView",
+      "identify": "containerscrollView",
+      "keyboardDismissMode": "1",
+      "backgroundColor": "#ffffff",
+      "subViews": [
+        {
+          "UIContainerType": "UIContainerTextField",
+          "identify": "phone",
+          "borderWidth": "1",
+          "borderColor": "#80808080",
+          "placeholder": "手机号",
+          "layout": {
+            "left": {
+              "value": "10"
+            },
+            "width": {
+              "value": "superContainer.view.mas_width",
+              "offset": "-20"
+            },
+            "top": {
+              "value": "60"
+            },
+            "height": {
+              "value": "44"
+            }
+          }
+        },
+        {
+          "UIContainerType": "UIContainerTextField",
+          "identify": "password",
+          "borderWidth": "1",
+          "borderColor": "#80808080",
+          "placeholder": "密码",
+          "layout": {
+            "left": {
+              "value": "superContainer.container_phone.view.mas_left"
+            },
+            "right": {
+              "value": "superContainer.container_phone.view.mas_right"
+            },
+            "top": {
+              "value": "superContainer.container_phone.view.mas_bottom",
+              "offset": "10"
+            },
+            "height": {
+              "value": "superContainer.container_phone.view.mas_height"
+            }
+          }
+        },
+        {
+          "UIContainerType": "UIContainerButton",
+          "identify": "loginBtn",
+          "font": "14",
+          "UIControlStateNormal": {
+            "title": "登录",
+            "titleColor": "#ffffff"
+          },
+          "layout": {
+            "left": {
+              "value": "superContainer.container_phone.view.mas_left"
+            },
+            "right": {
+              "value": "superContainer.container_phone.view.mas_right"
+            },
+            "top": {
+              "value": "superContainer.container_password.view.mas_bottom",
+              "offset": "30"
+            },
+            "height": {
+              "value": "40"
+            }
+          },
+          "backgroundColor": "#3d77b4",
+          "cornerRadius": "3"
+        },
+        {
+          "UIContainerType": "UIContainerButton",
+          "identify": "registerBtn",
+          "font": "14",
+          "UIControlStateNormal": {
+            "title": "注册",
+            "titleColor": "#ffffff"
+          },
+          "layout": {
+            "left": {
+              "value": "superContainer.container_phone.view.mas_left"
+            },
+            "right": {
+              "value": "superContainer.container_phone.view.mas_right"
+            },
+            "top": {
+              "value": "superContainer.container_loginBtn.view.mas_bottom",
+              "offset": "20"
+            },
+            "height": {
+              "value": "superContainer.container_loginBtn.view.mas_height"
+            }
+          },
+          "backgroundColor": "#3d77b4",
+          "cornerRadius": "3"
+        }
+      ],
+      "functionList": [
+                       [{
+          "functionname": "UITapGesture",
+          "gesturetype":"UITapGesture",
+          "type": "FT_SYSTERM",
+          "target": "self.view",
+          "selector": "endEditing:",
+          "objectone": "1"
+                        }
+        ]
+      ]
+    }
+  }
+}

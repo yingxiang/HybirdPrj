@@ -1,0 +1,132 @@
+{
+  "class": "UIViewController",
+  "identify": "settingViewController",
+  "title": "设置",
+  "navigationItem": {
+    "leftBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "~/leftBarButtonItem"
+    }
+  },
+  "hidesBottomBarWhenPushed": true,
+  "supportedInterfaceOrientations": "0",
+  "container": {
+    "UIContainerType": "UIContainerTableView",
+    "identify": "containertableView",
+    "UITableViewStyle": "1",
+    "backgroundColor": "#ededec",
+    "separatorStyle": "1",
+    "tableHeaderView": {
+      "UIContainerType": "UIContainerView",
+      "identify": "headview",
+      "frame": {
+        "x": "0"
+        ,
+        "y":  "0"
+        ,
+        "width": "superContainer.view.width"
+        ,
+        "height":  "20"
+        
+      }
+    },
+    "cells": [
+      {
+        "UIContainerType": "UIContainerCell",
+        "identify": "settingcell",
+        "cellStyle": "1",
+        "height": "44",
+        "textLabel": {
+          "identify": "textLabel",
+          "UIContainerType": "UIContainerLabel",
+          "textColor": "#333333",
+          "font": "16"
+        },
+        "detailTextLabel": {
+          "identify": "detailTextLabel",
+          "UIContainerType": "UIContainerLabel",
+          "textColor": "#12c52b",
+          "font": "13"
+        },
+        "functionList": [
+          {
+            "type": "FT_SYSTERM",
+            "target": "self.superContainer.view",
+            "selector": "deselectRowAtIndexPath:animated:",
+            "objectone": "parmer~parmer1",
+            "objecttwo": true,
+            "functionname": "didSelectCell"
+          },
+          {
+            "type": "FT_SYSTERM",
+            "target": "self.superContainer.view",
+            "selector": "deselectRowAtIndexPath:animated:",
+            "objectone": "parmer~parmer1",
+            "objecttwo": true,
+            "functionname": "didSelectCell_complete"
+          }
+        ]
+      }
+    ],
+    "dataSource": [
+      {
+        "section": [
+          {
+            "title": "清除缓存",
+            "subtitle": "缓存大小：3.0M",
+            "identify": "111"
+          }
+        ]
+      },
+      {
+        "section": [
+          {
+            "title": "反馈建议",
+            "subtitle": "",
+            "identify": "webViewController"
+          },
+          {
+            "title": "去评分",
+            "subtitle": "",
+            "identify": "webViewController",
+                    "changeFunction":{
+                      "type":"FT_JUMPTOAPP",
+                        "url":"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?mt=8&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software&id=913503440"
+                    }
+          },
+          {
+            "title": "网络环境检测",
+            "subtitle": "",
+            "identify": "webViewController"
+          },
+          {
+            "title": "免责声明",
+            "subtitle": "",
+            "identify": "webViewController",
+            "parmers": {
+              "title": "小学生常用视频",
+              "container": {
+                "url": "http://namibox.com/v/stuvideo"
+              }
+            }
+          },
+          {
+            "title": "用户协议",
+            "subtitle": "",
+            "identify": "webViewController",
+            "parmers": {
+              "title": "趣味学习游戏",
+              "container": {
+                "url": "http://namibox.com/game"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "parseCell": {
+      "container_settingcell.container_textLabel.text": "title",
+      "container_settingcell.container_detailTextLabel.text": "subtitle"
+    }
+  }
+}

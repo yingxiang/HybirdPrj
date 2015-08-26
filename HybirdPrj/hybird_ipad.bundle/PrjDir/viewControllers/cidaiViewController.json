@@ -1,0 +1,290 @@
+{
+  "class": "UIViewController",
+  "identify": "cidaiViewController",
+  "title": "听磁带",
+  "navigationItem": {
+    "rightBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "rightBarButtonItem",
+      "UIControlStateNormal": {
+        "font": 15,
+        "titleColor": "#12c52b"
+      },
+      "title": "分享",
+      "functionList": [
+        {
+          "type": "FT_SHOWACTIONSHEET",
+          "title": "分享到",
+          "canceltitle": "取消",
+          "animation": true,
+          "functionname": "UIControlEventTouchUpInside",
+          "othertitles": [
+            {
+              "title": "分享到朋友圈",
+              "action": {
+                "type": "FT_SHARE",
+                "shareType": "1",
+                "shareTitle": "测试分享朋友圈",
+                "shareContent": "内容",
+                "shareUrl": "http://www.baidu.com",
+                "shareImage": "ic_action_friends.png"
+              }
+            },
+            {
+              "title": "分享到微信好友",
+              "action": {
+                "type": "FT_SHARE",
+                "shareType": "0",
+                "shareTitle": "测试分享微信好友",
+                "shareContent": "内容",
+                "shareUrl": "http://www.baidu.com",
+                "shareImage": "ic_action_friends.png"
+              }
+            },
+            {
+              "title": "分享给QQ好友",
+              "action": {
+                "type": "FT_SHARE",
+                "shareType": "3",
+                "shareTitle": "测试分享qq好友",
+                "shareContent": "内容",
+                "shareUrl": "http://www.baidu.com",
+                "shareImage": "ic_action_friends.png"
+              }
+            },
+            {
+              "title": "分享到QQ空间",
+              "action": {
+                "type": "FT_SHARE",
+                "shareType": "4",
+                "shareTitle": "测试分享qq空间",
+                "shareContent": "内容",
+                "shareUrl": "http://www.baidu.com",
+                "shareImage": "ic_action_friends.png"
+              }
+            },
+            {
+              "title": "分享到新浪微博",
+              "action": {
+                "type": "FT_SHARE",
+                "shareType": "2",
+                "shareTitle": "测试分享新浪微博",
+                "shareImage": "ic_action_friends.png",
+                "shareUrl": "http://www.baidu.com",
+                "shareContent": "内容"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "leftBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "~/leftBarButtonItem"
+    }
+  },
+  "hidesBottomBarWhenPushed": true,
+  "supportedInterfaceOrientations": "0",
+  "container": {
+    "UIContainerType": "UIContainerTableView",
+    "identify": "containertableView",
+    "backgroundColor": "#ededec",
+    "separatorStyle": "0",
+    "functionList": [
+      {
+        "functionname": "setUI:",
+        "type": "FT_REQUEST",
+        "method": "get",
+        "url": "http://namibox.com/api/app/tape/gradeList/cidai"
+      },
+      {
+        "functionname": "setUI:_block",
+        "type": "FT_PARSEDATA",
+        "respond": {
+          "container_imageHead.image": "banner_image.img",
+          "cell": {
+            "dataSource": "sections",
+            "container_cidaicell.container_icon.image": "item-icon",
+            "container_cidaicell.container_title.text": "item-itemname",
+            "container_cidaicell.container_subtitle.text": "item-subtitle",
+            "container_cidaicell.container_readcount.text": "item-readcount",
+            "container_headcell.container_title.text": "sectionname"
+          }
+        }
+      }
+    ],
+    "tableHeaderView": {
+      "UIContainerType": "UIContainerImageView",
+      "identify": "imageHead",
+      "backgroundColor": "#ededec",
+      "frame": {
+        "x": "0",
+        "y":  "0",
+        "width": "superContainer.view.width",
+        "height": "/(superContainer.view.width)(3)"
+      }
+    },
+    "heads": [
+      {
+        "UIContainerType": "UIContainerCell",
+        "identify": "headcell",
+        "height": "38",
+        "backgroundColor": "#ededec",
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerView",
+            "identify": "label",
+            "backgroundColor": "#12c52b",
+            "layout": {
+              "left": {
+                "value": "8"
+              },
+              "top": {
+                "value": "10"
+              },
+              "bottom": {
+                "value": "-10"
+              },
+              "width": {
+                "value": "4"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "title",
+            "font": 15,
+            "layout": {
+              "left": {
+                "value": "superContainer.container_label.view.mas_right",
+                "offset": "10"
+              },
+              "top": {
+                "value": "0"
+              },
+              "bottom": {
+                "value": "0"
+              },
+              "right": {
+                "value": "-10"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "cells": [
+      {
+        "UIContainerType": "UIContainerCell",
+        "identify": "cidaicell",
+        "height": "100",
+        "selectionStyle": "0",
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerImageView",
+            "identify": "icon",
+            "layout": {
+              "left": {
+                "value": "10"
+              },
+              "top": {
+                "value": "10"
+              },
+              "bottom": {
+                "value": "-10"
+              },
+              "width": {
+                "value": "80"
+              }
+            },
+            "backgroundColor": "#12c52b"
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "title",
+            "font": "15",
+            "textColor": "#333333",
+            "layout": {
+              "left": {
+                "value": "superContainer.container_icon.view.mas_right",
+                "offset": "10"
+              },
+              "top": {
+                "value": "10"
+              },
+              "right": {
+                "value": "-10"
+              },
+              "height": {
+                "value": "14"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "subtitle",
+            "font": "12",
+            "textColor": "#555555",
+            "numberOfLines": "4",
+            "verticalAlignment": 0,
+            "layout": {
+              "left": {
+                "value": "superContainer.container_title.view.mas_left"
+              },
+              "top": {
+                "value": "superContainer.container_title.view.mas_bottom",
+                "offset": "5"
+              },
+              "right": {
+                "value": "-10"
+              },
+              "bottom": {
+                "value": "-10"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerLabel",
+            "identify": "readcount",
+            "font": "10",
+            "textColor": "#000000",
+            "textAlignment": "2",
+            "layout": {
+              "height": {
+                "value": "15"
+              },
+              "width": {
+                "value": "120"
+              },
+              "right": {
+                "value": "-10"
+              },
+              "bottom": {
+                "value": "-5"
+              }
+            }
+          },
+          {
+            "UIContainerType": "UIContainerView",
+            "identify": "line",
+            "backgroundColor": "#eeeeee",
+            "layout": {
+              "height": {
+                "value": "1"
+              },
+              "left": {
+                "value": "5"
+              },
+              "right": {
+                "value": "-5"
+              },
+              "bottom": {
+                "value": "0"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

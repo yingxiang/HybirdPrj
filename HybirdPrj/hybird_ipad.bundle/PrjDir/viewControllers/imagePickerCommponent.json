@@ -1,0 +1,44 @@
+{
+  "class": "UIImagePickerController",
+  "identify": "imagePickerCommponent",
+    "navigationBar":{
+        "UIContainerType":"UIContainerNavgationbar",
+        "identify":"~/navigationBar"
+  },
+  "rootcontroller": {
+    "navigationItem": {
+      "leftBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/leftBarButtonItem"
+      },
+      "rightBarButtonItem": {
+          "UIContainerType": "UIContainerButtonItem"
+      }
+    }
+  },
+  "viewcontroller": {
+    "navigationItem": {
+      "leftBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/leftBarButtonItem"
+      },
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "rightBarButtonItem",
+        "useSysterm": true,
+        "UIControlStateNormal": {
+          "font": 15,
+          "titleColor": "#12c52b"
+        },
+        "title": "取消",
+        "functionList": [
+          {
+            "functionname": "UIControlEventTouchUpInside",
+            "type": "FT_VIEWROOTBACK",
+            "animated": true
+          }
+        ]
+      }
+    }
+  }
+}

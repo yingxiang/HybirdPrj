@@ -1,0 +1,235 @@
+{
+  "class": "UIViewController",
+  "identify": "webViewController",
+  "navigationItem": {
+    "leftBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "~/leftBarButtonItem"
+    },
+    "rightBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "~/rightBarButtonItem"
+    }
+  },
+  "hidesBottomBarWhenPushed": true,
+  "supportedInterfaceOrientations": "0",
+  "container": {
+    "UIContainerType": "UIContainerWebView",
+    "identify": "container",
+    "backgroundColor": "#ededec",
+    "url": "http://namibox.com/v/sclib/chinese",
+    "allowsBackForwardNavigationGestures": true,
+    "useNewWebView": true,
+    "subViews": [
+      {
+        "identify": "progressview",
+        "UIContainerType": "UIContainerProgress",
+        "alpha": "0",
+        "layout": {
+          "left": {
+            "value": "0"
+          },
+          "right": {
+            "value": "0"
+          },
+          "top": {
+            "value": "64"
+          },
+          "height": {
+            "value": "2"
+          }
+        },
+        "progressViewStyle": "0",
+        "progressTintColor": "#12c52b",
+         "trackTintColor":"#ffffff00"
+      },
+      {
+        "identify": "loadingview",
+        "UIContainerType": "UIConatinerActivityIndicatorView",
+        "hidesWhenStopped": true,
+        "activityIndicatorViewStyle": "0",
+        "color": "#333333",
+        "layout": {
+          "centerX": {
+            "value": "0"
+          },
+          "centerY": {
+            "value": "0"
+          },
+          "width": {
+            "value": "80"
+          },
+          "height": {
+            "value": "80"
+          }
+        }
+      }
+    ],
+    "functionList": [
+      {
+        "functionname": "webView:didReceiveResourceNumber:totalResources:",
+        "type": "FT_SYSTERM",
+        "target": "self.container_progressview.view",
+        "selector":"setProgress:animated:",
+        "objectone": "parmer~/(parmer1)(parmer2)",
+        "objecttwo":true
+      },
+      {
+        "functionname": "webViewDidStartLoad:",
+        "type": "FT_UPDATEVIEW",
+        "animation": {
+          "duration": "0.5"
+        },
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "1",
+            "progress":"0"
+          }
+        ]
+      },
+      {
+        "functionname": "webViewDidStartLoad:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "startAnimating"
+      },
+      {
+        "functionname": "webView:didStartProvisionalNavigation:",
+        "type": "FT_UPDATEVIEW",
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "1"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didStartProvisionalNavigation:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "startAnimating"
+      },
+      {
+        "functionname": "webViewDidFinishLoad:",
+        "type": "FT_UPDATEVIEW",
+        "animation": {
+          "duration": "0.5"
+        },
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webViewDidFinishLoad:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "stopAnimating"
+      },
+      {
+        "functionname": "webViewDidFinishLoad:_complete_complete",
+        "type": "FT_UPDATEVIEW",
+        "delay":"0.5",
+        "subViews": [
+          {
+            "identify": "progressview",
+            "progress": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFinishNavigation:",
+        "type": "FT_UPDATEVIEW",
+        "animation": {
+          "duration": "0.5"
+        },
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFinishNavigation:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "stopAnimating"
+      },
+      {
+        "functionname": "webView:didFinishNavigation:_complete_complete",
+        "type": "FT_UPDATEVIEW",
+      "delay":"0.5",
+        "subViews": [
+          {
+            "identify": "progressview",
+            "progress": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFailLoadWithError:",
+        "type": "FT_UPDATEVIEW",
+        "animation": {
+          "duration": "0.5"
+        },
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFailLoadWithError:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "stopAnimating"
+      },
+      {
+        "functionname": "webView:didFailLoadWithError:_complete_complete",
+        "type": "FT_UPDATEVIEW",
+      "delay":"0.5",
+        "subViews": [
+          {
+            "identify": "progressview",
+            "progress": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFailNavigation:withError:",
+        "type": "FT_UPDATEVIEW",
+        "animation": {
+          "duration": "0.5"
+        },
+        "subViews": [
+          {
+            "identify": "progressview",
+            "alpha": "0"
+          }
+        ]
+      },
+      {
+        "functionname": "webView:didFailNavigation:withError:_complete",
+        "type": "FT_SYSTERM",
+        "target": "self.container_loadingview.view",
+        "selector": "stopAnimating"
+      },
+      {
+        "functionname": "webView:didFailNavigation:withError:_complete_complete",
+        "type": "FT_UPDATEVIEW",
+      "delay":"0.5",
+        "subViews": [
+          {
+            "identify": "progressview",
+            "progress": "0"
+          }
+        ]
+      }
+    ]
+  }
+}

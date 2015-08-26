@@ -1,0 +1,13 @@
+{
+  "UIContainerType": "UIContainerButtonItem",
+  "identify": "leftBarButtonItem",
+  "image": "back_hover.png",
+  "tintColor": "#12c52b",
+  "functionList": [
+    {
+      "functionname": "UIControlEventTouchUpInside",
+      "type": "FT_VIEWBACK",
+      "animated": true
+    }
+  ]
+}

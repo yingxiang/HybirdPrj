@@ -1,0 +1,131 @@
+{
+    "UIContainerType": "UIContainerView",
+    "identify": "updateView",
+  "layout": {
+    "left": {
+      "value": "0"
+    },
+    "right": {
+      "value": "0"
+    },
+    "top": {
+      "value": "0"
+    },
+    "bottom": {
+      "value": "0"
+    }
+  },
+  "backgroundColor": "#00000050",
+  "subViews": [
+    {
+      "UIContainerType": "UIContainerToolbar",
+      "cornerRadius": "4",
+      "clipsToBounds": true,
+      "barStyle": "1",
+      "translucent": true,
+      "identify": "contentView",
+      "layout": {
+        "width": {
+          "value": "200"
+        },
+        "height": {
+          "value": "70"
+        },
+        "centerX": {
+          "value": "0"
+        },
+        "centerY": {
+          "value": "0"
+        }
+      },
+      "subViews": [
+        {
+          "UIContainerType": "UIContainerProgress",
+          "identify": "progress",
+          "progressTintColor": "#ffffff",
+          "cornerRadius": "2",
+          "trackTintColor": "#ffffff50",
+          "layout": {
+            "left": {
+              "value": "5"
+            },
+            "right": {
+              "value": "-5"
+            },
+            "top": {
+              "value": "25"
+            },
+            "height": {
+              "value": "4"
+            }
+          }
+        },
+        {
+          "UIContainerType": "UIContainerLabel",
+          "textColor": "#ffffff",
+          "identify": "label",
+          "text": "下载资源包...",
+          "font": "11",
+          "textAlignment": "1",
+          "layout": {
+            "left": {
+              "value": "0"
+            },
+            "right": {
+              "value": "0"
+            },
+            "top": {
+              "value": "superContainer.container_progress.view.mas_bottom",
+              "offset": "10"
+            },
+            "height": {
+              "value": "20"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "functionList": [
+                     {
+                     "functionname": "setUI:",
+                     "type": "FT_DOWNLOAD",
+      "url": "parmer~parmer1",
+      "filepath": "Library/"
+    },
+                     {
+                     "functionname": "setUI:_progress",
+                     "type": "FT_SYSTERM",
+      "target": "self.container_contentView.container_progress.view",
+      "selector":"setProgress:animated:",
+      "objectone": "parmer~/(parmer1)(parmer2)",
+      "objecttwo": true
+    },
+                     {
+      "functionname": "setUI:_block",
+      "type": "FT_REMOVEVIEW",
+      "animation": {
+        "duration": "0.2",
+        "alpha": "0"
+      }
+    },
+    {
+      "functionname": "setUI:_block_block_complete",
+      "type": "FT_RESTART"
+    },
+   {
+   "functionname": "setUI:_block_block",
+   "type": "FT_ANIMATION",
+    "animationView":"windowContainer.view",
+    "animType":4,
+   "animSubType":0,
+   "duration":1.0,
+   "repeats":1
+   },
+     {
+     "functionname": "setUI:_block_block_block",
+     "type": "FT_SHOWTIPS",
+     "msg":"parmer~parmer1"
+     }
+  ]
+}

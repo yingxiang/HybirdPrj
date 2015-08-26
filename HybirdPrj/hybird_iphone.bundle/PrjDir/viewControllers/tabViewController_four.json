@@ -1,0 +1,468 @@
+{
+    "class": "UINavigationController",
+    "identify": "tabViewController_four",
+    "navigationBar":{
+        "UIContainerType":"UIContainerNavgationbar",
+        "identify":"~/navigationBar"
+  },
+    "rootViewController": {
+        "class": "UIViewController",
+        "identify": "schoolViewController",
+        "title": "用户中心",
+    "supportedInterfaceOrientations": "0",
+    "navigationItem": {
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "~/rightBarButtonItem"
+      }
+    },
+    "container": {
+      "UIContainerType": "UIContainerCollectionView",
+      "identify": "containertableView",
+      "backgroundColor": "#ffffff",
+      "parseCell": {
+        "container_cellIdentify.container_icon.image": "image",
+        "container_cellIdentify.container_title.text": "title",
+        "container_cellIdentify.container_subtitle.text": "subtitle",
+        "container_headIdentify.container_title.text": "sectiontitle"
+      },
+      "collectionHeadView": {
+        "UIContainerType": "UIContainerReusableView",
+        "identify": "collectionHeadView",
+        "frame": {
+          "x":  "0"
+          ,
+          "y":  "0"
+          ,
+          "width": "superContainer.view.width"
+          ,
+          "height":  "160"
+          
+        },
+        "backgroundColor": "#3d77b4",
+        "subViews": [
+          {
+            "UIContainerType": "UIContainerButton",
+            "identify": "qiandaoBtn",
+            "font": 14,
+            "UIControlStateNormal": {
+              "title": "签到分享赢积分",
+              "titleColor": "#ffffff"
+            },
+            "backgroundColor": "#ffa500",
+            "layout": {
+              "bottom": {
+                "value": "-10"
+              },
+              "width": {
+                "value": "120"
+              },
+              "height": {
+                "value": "36"
+              },
+              "centerX": {
+                "value": "0"
+              }
+            },
+            "cornerRadius": "4"
+          },
+          {
+            "UIContainerType": "UIContainerButton",
+            "identify": "loginBtn",
+            "font": 16,
+            "UIControlStateNormal": {
+              "title": "点击登录纳米盒",
+              "titleColor": "#ffffff"
+            },
+            "layout": {
+              "left": {
+                "value": "superContainer.container_qiandaoBtn.view.mas_left"
+              },
+              "right": {
+                "value": "superContainer.container_qiandaoBtn.view.mas_right"
+              },
+              "height": {
+                "value": "superContainer.container_qiandaoBtn.view.mas_height"
+              },
+              "bottom": {
+                "value": "superContainer.container_qiandaoBtn.view.mas_top",
+                "offset": "0"
+              }
+            },
+            "functionList": [
+              {
+                "type": "FT_VIEWSKIP",
+                "identify": "loginViewController",
+                "model": "1",
+                "animation": true,
+                "functionname": "UIControlEventTouchUpInside"
+              }
+            ]
+          },
+          {
+            "UIContainerType": "UIContainerButton",
+            "identify": "touxiangBtn",
+            "font": 15,
+            "backgroundColor": "#ffa500",
+            "cornerRadius": "30",
+            "clipsToBounds": true,
+            "UIControlStateNormal": {
+            },
+            "layout": {
+              "top": {
+                "value": "10"
+              },
+              "centerX": {
+                "value": "0"
+              },
+              "height": {
+                "value": "60"
+              },
+              "width": {
+                "value": "60"
+              }
+            },
+            "functionList": [
+              {
+                "type": "FT_SHOWACTIONSHEET",
+                "functionname": "UIControlEventTouchUpInside",
+                "title": "选择头像",
+                "animation": true,
+                "canceltitle": "取消",
+                "othertitles": [
+                  {
+                    "title": "拍照",
+                    "action": {
+                      "type": "FT_VIEWSKIP",
+                      "identify": "imagePickerCommponent",
+                      "parmers": {
+                        "sourceType": "1"
+                      },
+                      "model": "1",
+                      "animation": true
+                    }
+                  },
+                  {
+                    "title": "相册",
+                    "action": {
+                      "type": "FT_VIEWSKIP",
+                      "identify": "imagePickerCommponent",
+                      "parmers": {
+                        "sourceType": "0"
+                      },
+                      "model": "1",
+                      "animation": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "FT_UPDATEVIEW",
+                "UIControlStateNormal": {
+                  "image": "parmer~parmer2"
+                },
+                "functionname": "imagePickerController:didFinishPickingMediaWithInfo:"
+              },
+              {
+                "type": "FT_VIEWROOTBACK",
+                "animation": true,
+                "functionname": "imagePickerController:didFinishPickingMediaWithInfo:_complete"
+              }
+            ]
+          }
+        ]
+      },
+      "heads": [
+        {
+          "UIContainerType": "UIContainerReusableView",
+          "identify": "headIdentify",
+          "size": "{1000,40}",
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerView",
+              "identify": "label",
+              "frame": {
+                "y":  "10"
+                ,
+                "height":  "20"
+                ,
+                "x":  "5"
+                ,
+                "width":  "4"
+                
+              },
+              "backgroundColor": "#333333"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "frame": {
+                "x":  "14"
+                ,
+                "width":  "-(superContainer.view.width)(24)"
+                ,
+                "y":  "0"
+                ,
+                "height":  "superContainer.view.height"
+                
+              },
+              "text": "学习工具",
+              "font": 15
+            }
+          ]
+        }
+      ],
+      "cells": [
+        {
+          "UIContainerType": "UIContainerCollectionCell",
+          "identify": "cellIdentify",
+          "selectionStyle": "0",
+          "functionList": [
+            {
+              "type": "FT_VIEWSKIP",
+              "identify": "dianduViewController",
+              "model": "0",
+              "animation": true,
+              "functionname": "didSelectCell"
+            }
+          ],
+          "subViews": [
+            {
+              "UIContainerType": "UIContainerImageView",
+              "identify": "icon",
+              "layout": {
+                "centerX": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "10"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                },
+                "height": {
+                  "value": "superContainer.view.mas_height",
+                  "offset": "-50"
+                }
+              },
+              "contentMode": "0"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "title",
+              "text": "听磁带",
+              "textAlignment": "1",
+              "textColor": "#333333",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_icon.view.mas_bottom",
+                  "offset": "5"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "17"
+                }
+              },
+              "font": "14"
+            },
+            {
+              "UIContainerType": "UIContainerLabel",
+              "identify": "subtitle",
+              "text": "小学全科",
+              "textColor": "#808080",
+              "textAlignment": "1",
+              "layout": {
+                "left": {
+                  "value": "0"
+                },
+                "top": {
+                  "value": "superContainer.container_title.view.mas_bottom"
+                },
+                "width": {
+                  "value": "superContainer.view.mas_width"
+                },
+                "height": {
+                  "value": "13"
+                }
+              },
+              "font": "10"
+            }
+          ]
+        }
+      ],
+      "dataSource": [
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/diary-me.png",
+              "title": "我的日记",
+              "subtitle": "成长足迹",
+              "changeFunction": {
+                "identify": "cidaiViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/works.png",
+              "title": "我的作品",
+              "subtitle": "艺术旅程",
+              "changeFunction": {
+                "identify": "cidaiViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/world/honour.png",
+              "title": "我的荣誉",
+              "subtitle": "获奖证书",
+              "changeFunction": {
+                "identify": "webViewController",
+                "parmers": {
+                  "title": "超级大辞典",
+                  "container": {
+                    "url": "http://namibox.com/dict/zidian"
+                  }
+                }
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/school/bug.png",
+              "title": "我的错题本",
+              "subtitle": "成功之母",
+              "changeFunction": {
+                "parmers": {
+                  "title": "超级大辞典",
+                  "container": {
+                    "url": "http://namibox.com/dict/zidian?kw=%E7%81%AB"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/school/report.png",
+              "title": "我的成绩单",
+              "subtitle": "温故知新",
+              "changeFunction": {
+                "parmers": {
+                  "title": "英汉字典",
+                  "container": {
+                    "url": "http://namibox.com/dict/yinghanhuyi"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/favorite.png",
+              "title": "我的收藏",
+              "subtitle": "收藏夹",
+              "changeFunction": {
+                "parmers": {
+                  "title": "纳米盒作文库",
+                  "container": {
+                    "url": "http://namibox.com/dict/article_search"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/share.png",
+              "title": "我的分享",
+              "subtitle": "无排名",
+              "changeFunction": {
+                "parmers": {
+                  "title": "错题本",
+                  "container": {
+                    "url": "http://namibox.com/diary/wrong_list"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            }
+          ],
+          "sectiontitle": "学习工具"
+        },
+        {
+          "section": [
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/person.png",
+              "title": "个人信息",
+              "subtitle": "头像昵称",
+              "changeFunction": {
+                "identify": "enViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/password.png",
+              "title": "修改密码",
+              "subtitle": "安全设置",
+              "changeFunction": {
+                "identify": "enViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/bill.png",
+              "title": "我的订单",
+              "subtitle": "微店",
+              "changeFunction": {
+                "identify": "enViewController"
+              }
+            },
+            {
+              "image": "http://r.namibox.com/tina/static/app/icon/v2/my/feedback.png",
+              "title": "我的反馈",
+              "subtitle": "意见箱",
+              "changeFunction": {
+                "parmers": {
+                  "title": "小学生常用视频",
+                  "container": {
+                    "url": "http://namibox.com/v/stuvideo"
+                  }
+                },
+                "identify": "webViewController"
+              }
+            }
+          ],
+          "sectiontitle": "我的纳米盒"
+        }
+      ],
+      "item": {
+        "EdgeInsets": "{0,10,10,10}",
+        "height": "100"
+        ,
+        "interspacing": "10",
+        "linespacing": "10",
+        "width": "80"
+      }
+    }
+  },
+    "tabBarItem": {
+        "title": "我",
+    "UIContainerType": "UIContainerTabBarItem",
+    "identify": "tabbaritemfour",
+    "image": "my.png",
+        "selectedImage": "my-focus.png",
+    "badgeValue": "new"
+  },
+  "container": {
+    "functionList": [
+      {
+        "functionname": "tabBarController:didSelectViewController:",
+        "type": "FT_ANIMATION",
+        "animationView": "windowContainer.view",
+        "animType": 0,
+        "animSubType": 3,
+        "duration": 0.6,
+        "repeats": 1
+      }
+    ],
+    "UIContainerType": "UIContainerView",
+    "identify": "navContainer"
+  }
+}

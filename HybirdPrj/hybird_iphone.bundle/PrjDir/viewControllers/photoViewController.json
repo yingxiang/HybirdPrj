@@ -1,0 +1,113 @@
+{
+  "class": "UIViewController",
+  "identify": "photoViewController",
+  "navigationItem": {
+    "leftBarButtonItem": {
+      "UIContainerType": "UIContainerButtonItem",
+      "identify": "~/leftBarButtonItem"
+    }
+  },
+  "hidesBottomBarWhenPushed": true,
+  "supportedInterfaceOrientations": "0",
+  "container": {
+    "UIContainerType": "UIContainerView",
+    "identify": "containerView",
+    "backgroundColor": "#ffffff",
+    "subViews": [
+      {
+        "UIContainerType": "UIContaineriCarousel",
+        "identify": "iCarousel",
+        "backgroundColor": "#808080",
+        "scrollEnabled": true,
+        "type": "0",
+        "bounces": true,
+        "bounceDistance": "0.5",
+        "pagingEnabled": true,
+        "cells": [
+          {
+            "UIContainerType": "UIContainerScrollView",
+            "identify": "scroll",
+            "maximumZoomScale": "3",
+            "frame": {
+              "x": "0",
+              "y": "0",
+              "width": "superContainer.view.width",
+              "height": "superContainer.view.height"
+            },
+            "subViews": [
+              {
+                "UIContainerType": "UIContainerImageView",
+                "identify": "zoomingView",
+                "contentMode": "1",
+                "frame": {
+                  "x": "0",
+                  "y": "0",
+                  "width": "superContainer.view.width",
+                  "height": "superContainer.view.height"
+                }
+              }
+            ]
+          }
+        ],
+        "parseCell": {
+            "dataSource": "parser~large_pic",
+            "container_scroll.container_zoomingView.image": ""
+        },
+        "layout": {
+          "left": {
+            "value": "0"
+          },
+          "right": {
+            "value": "0"
+          },
+          "top": {
+            "value": "0"
+          },
+          "bottom": {
+            "value": "0"
+          }
+        },
+        "functionList": [
+          {
+            "functionname": "carouselCurrentItemIndexDidChange:",
+            "type": "FT_UPDATEVIEW",
+            "container": "superContainer.container_label",
+            "text": "+(superContainer.container_iCarousel.view.currentItemIndex)(1)'/'superContainer.container_iCarousel.view.numberOfItems"
+          }
+        ]
+      },
+      {
+        "UIContainerType": "UIContainerLabel",
+        "identify": "label",
+        "text": "1/1",
+        "textColor": "#ffffff",
+        "font": "15",
+        "textAlignment": "1",
+        "layout": {
+          "left": {
+            "value": "0"
+          },
+          "right": {
+            "value": "0"
+          },
+          "top": {
+            "value": "30"
+          },
+          "height": {
+            "value": "30"
+          }
+        }
+      }
+    ],
+    "functionList": [
+      [
+        {
+          "functionname": "UITapGesture",
+          "gesturetype": "UITapGesture",
+          "type": "FT_VIEWBACK",
+          "animated": true
+        }
+      ]
+    ]
+  }
+}

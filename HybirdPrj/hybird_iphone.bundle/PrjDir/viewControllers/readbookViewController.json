@@ -1,0 +1,229 @@
+{
+  "class": "UINavigationController",
+  "identify": "readbookViewController",
+  "modalTransitionStyle": "1",
+  "navigationBar": {
+    "UIContainerType": "UIContainerNavgationbar",
+    "identify": "navigationBar",
+    "barStyle": "1"
+  },
+  "rootViewController": {
+    "class": "UIViewController",
+    "identify": "readbookViewController",
+    "navigationItem": {
+      "rightBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "rightBarButtonItem",
+        "UIControlStateNormal": {
+          "font": 15,
+          "titleColor": "#12c52b"
+        },
+        "title": "分享",
+        "functionList": [
+          {
+            "type": "FT_SHOWACTIONSHEET",
+            "title": "分享到",
+            "canceltitle": "取消",
+            "animation": true,
+            "functionname": "UIControlEventTouchUpInside",
+            "othertitles": [
+              {
+                "title": "分享到朋友圈",
+                "action": {
+                  "type": "FT_SHARE",
+                  "shareType": "1",
+                  "shareTitle": "测试分享朋友圈",
+                  "shareContent": "内容",
+                  "shareUrl": "http://www.baidu.com",
+                  "shareImage": "ic_action_friends.png"
+                }
+              },
+              {
+                "title": "分享到微信好友",
+                "action": {
+                  "type": "FT_SHARE",
+                  "shareType": "0",
+                  "shareTitle": "测试分享微信好友",
+                  "shareContent": "内容",
+                  "shareUrl": "http://www.baidu.com",
+                  "shareImage": "ic_action_friends.png"
+                }
+              },
+              {
+                "title": "分享给QQ好友",
+                "action": {
+                  "type": "FT_SHARE",
+                  "shareType": "3",
+                  "shareTitle": "测试分享qq好友",
+                  "shareContent": "内容",
+                  "shareUrl": "http://www.baidu.com",
+                  "shareImage": "ic_action_friends.png"
+                }
+              },
+              {
+                "title": "分享到QQ空间",
+                "action": {
+                  "type": "FT_SHARE",
+                  "shareType": "4",
+                  "shareTitle": "测试分享qq空间",
+                  "shareContent": "内容",
+                  "shareUrl": "http://www.baidu.com",
+                  "shareImage": "ic_action_friends.png"
+                }
+              },
+              {
+                "title": "分享到新浪微博",
+                "action": {
+                  "type": "FT_SHARE",
+                  "shareType": "2",
+                  "shareTitle": "测试分享新浪微博",
+                  "shareImage": "ic_action_friends.png",
+                  "shareUrl": "http://www.baidu.com",
+                  "shareContent": "内容"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "leftBarButtonItem": {
+        "UIContainerType": "UIContainerButtonItem",
+        "identify": "leftBarButtonItem",
+        "image": "back_hover.png",
+        "tintColor": "#12c52b",
+        "functionList": [
+          {
+            "functionname": "UIControlEventTouchUpInside",
+            "type": "FT_VIEWBACK",
+            "animated": false
+          },
+          {
+            "functionname": "UIControlEventTouchUpInside_complete",
+            "type": "FT_ANIMATION",
+            "animationView": "windowContainer.view",
+            "animType": 7,
+            "animSubType": 1,
+            "duration": 0.4,
+            "repeats": 1
+          }
+        ]
+      }
+    },
+    "container": {
+      "UIContainerType": "UIContainerView",
+      "identify": "container",
+      "backgroundColor": "#ededec",
+      "subViews": [
+        {
+          "identify": "imageView",
+          "UIContainerType": "UIContainerImageView",
+           "backgroundColor":"#ededec",
+          "contentMode":1,
+          "layout": {
+            "left": {
+              "value": "0"
+            },
+            "right": {
+              "value": "0"
+            },
+            "top": {
+              "value": "0"
+            },
+            "bottom": {
+              "value": "0"
+            }
+          },
+          "functionList": [
+            [
+              {
+                "functionname": "UISwipeGestureRight",
+                "gesturetype": "UISwipeGesture",
+                "direction": "《(1)(0)",
+                "type": "FT_UPDATEVIEW",
+                "image": "http://r.namibox.com/tina/static/d/reading/000033_我妈妈/slide0005_image001.jpg?20140828174922"
+              },
+              {
+                "functionname": "UISwipeGestureUp",
+                "gesturetype": "UISwipeGesture",
+                "direction": "《(1)(2)",
+                "type": "FT_UPDATEVIEW",
+                "image": "http://r.namibox.com/tina/static/d/reading/000033_我妈妈/slide0005_image001.jpg?20140828174922"
+              },
+              {
+                "functionname": "UISwipeGestureLeft",
+                "gesturetype": "UISwipeGesture",
+                "direction": "《(1)(1)",
+                "type": "FT_UPDATEVIEW",
+                "image": "http://r.namibox.com/tina/static/d/reading/000033_我妈妈/slide0005_image001.jpg?20140828174922"
+              },
+              {
+                "functionname": "UISwipeGestureDown",
+                "gesturetype": "UISwipeGesture",
+                "direction": "《(1)(3)",
+                "type": "FT_UPDATEVIEW",
+                "image": "http://r.namibox.com/tina/static/d/reading/000033_我妈妈/slide0005_image001.jpg?20140828174922"
+              },
+              {
+                "functionname": "UITapGesture",
+                "gesturetype": "UITapGesture",
+                "type": "FT_SYSTERM",
+                "target": "self.view.viewController.navigationController",
+                "selector": "setNavigationBarHidden:animated:",
+                "objectone": "!(self.view.viewController.navigationController.navigationBarHidden)",
+                "objecttwo": true
+              }
+            ],
+            {
+              "functionname": "UISwipeGestureRight_complete",
+              "type": "FT_ANIMATION",
+              "animationView": "self.view",
+              "animType": "6",
+              "animSubType": "0",
+              "duration": "0.8",
+              "repeats": "1"
+            },
+            {
+              "functionname": "UISwipeGestureDown_complete",
+              "type": "FT_ANIMATION",
+              "animationView": "self.view",
+              "animType": "6",
+              "animSubType": "0",
+              "duration": "0.8",
+              "repeats": "1"
+            },
+            {
+              "functionname": "UISwipeGestureLeft_complete",
+              "type": "FT_ANIMATION",
+              "animationView": "self.view",
+              "animType": "2",
+              "animSubType": "2",
+              "duration": "0.8",
+              "repeats": "1"
+            },
+            {
+              "functionname": "UISwipeGestureUp_complete",
+              "type": "FT_ANIMATION",
+              "animationView": "self.view",
+              "animType": "2",
+              "animSubType": "2",
+              "duration": "0.8",
+              "repeats": "1"
+            }
+          ]
+        }
+      ],
+      "functionList": [
+        {
+          "functionname": "setUI:",
+          "type": "FT_REQUEST",
+          "method": "get",
+          "url": "self.view.viewController.navigationController.jsonData.url"
+        }
+      ]
+    }
+  },
+  "container": {
+    "UIContainerType": "UIContainerView",
+    "identify": "containernav"
+  }
+}

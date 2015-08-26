@@ -1,0 +1,188 @@
+{
+  "app_action": {
+    "type": "FT_VIEWSKIP",
+    "identify": "readbookViewController",
+    "functionname": "app_action",
+      "ModelCenterFunction":true,
+      "delay":0.0,
+    "animated": false,
+    "model": 1,
+    "parmers": {
+      "url": "parmer~url"
+    }
+  },
+    "app_action_complete": {
+        "type": "FT_ANIMATION",
+        "animationView": "windowContainer.view",
+        "functionname": "app_action_complete",
+        "ModelCenterFunction":true,
+        "animType":7,
+        "animSubType":3,
+        "animCurve":3,
+        "duration": 0.4,
+        "repeats":1
+    },
+  "imgupload": {
+  },
+  "closeview": {
+    "type": "FT_VIEWBACK",
+      "ModelCenterFunction":true,
+    "animated": false
+  },
+  "playaudio": {
+    "type": "FT_PLAYAUDIO",
+      "ModelCenterFunction":true
+  },
+  "openview": {
+    "type": "FT_VIEWSKIP",
+    "identify": "webViewController",
+    "functionname":"openview",
+      "ModelCenterFunction":true,
+    "animated": true,
+    "parmers": {
+      "container": {
+        "url": "parmer~url"
+      }
+    }
+  },
+  "context": {
+    "share": {
+      "type": "FT_SHOWACTIONSHEET",
+      "title": "分享到",
+      "canceltitle": "取消",
+      "animation": true,
+        "ModelCenterFunction":true,
+      "othertitles": [
+        {
+          "title": "分享到朋友圈",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "1",
+            "shareTitle": "测试分享朋友圈",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到微信好友",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "0",
+            "shareTitle": "测试分享微信好友",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享给QQ好友",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "3",
+            "shareTitle": "测试分享qq好友",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到QQ空间",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "4",
+            "shareTitle": "测试分享qq空间",
+            "shareContent": "内容",
+            "shareUrl": "http://www.baidu.com",
+            "shareImage": "ic_action_friends.png"
+          }
+        },
+        {
+          "title": "分享到新浪微博",
+          "action": {
+            "type": "FT_SHARE",
+            "shareType": "2",
+            "shareTitle": "测试分享新浪微博",
+            "shareImage": "ic_action_friends.png",
+            "shareUrl": "http://www.baidu.com",
+            "shareContent": "内容"
+          }
+        }
+      ]
+    },
+    "setting": {
+      "functionname": "UIControlEventTouchUpInside_complete",
+      "type": "FT_VIEWSKIP",
+      "identify": "settingViewController",
+      "model": "0",
+        "ModelCenterFunction":true,
+      "animated": true
+    },
+    "sharetimeline": {
+      "type": "FT_SHARE",
+      "shareType": "1",
+        "ModelCenterFunction":true,
+      "shareTitle": "测试分享朋友圈",
+      "shareContent": "内容",
+      "shareUrl": "http://www.baidu.com",
+      "shareImage": "ic_action_friends.png",
+      "functionname": "UIControlEventTouchUpInside_complete"
+    },
+    "sharefriend": {
+      "type": "FT_SHARE",
+      "shareType": "0",
+        "ModelCenterFunction":true,
+      "shareTitle": "测试分享到好友",
+      "shareContent": "内容",
+      "shareUrl": "http://www.baidu.com",
+      "shareImage": "ic_action_friends.png",
+      "functionname": "UIControlEventTouchUpInside_complete"
+    }
+  },
+  "regtoken": {
+  },
+  "querysys": {
+  },
+  "download": {
+  },
+  "playoperate": {
+  },
+  "loginstatus": {
+  },
+  "app_download": {
+  },
+  "user_config": {
+    "New item - 1": ""
+  },
+  "query_user_config": {
+  },
+  "view_photos": {
+    "type": "FT_VIEWSKIP",
+    "identify": "photoViewController",
+    "animated": true,
+    "functionname": "view_photos",
+    "model": "1",
+    "ModelCenterFunction": true,
+    "parmers": {
+      "container": {
+        "subViews": [
+          {
+            "identify": "iCarousel",
+            "dataSource": "parmer~large_pic",
+            "currentItemIndex": "parmer~-(start_pos)(1)"
+          },
+          {
+            "identify": "label",
+            "text": "+(superContainer.container_iCarousel.view.currentItemIndex)(1)'/'superContainer.container_iCarousel.view.numberOfItems"
+          }
+        ]
+      }
+    }
+  },
+  "notify": {
+  },
+  "clear_notify": {
+  },
+  "refreshview": {
+  }
+}

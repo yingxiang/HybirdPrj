@@ -1,0 +1,122 @@
+{
+    "UIContainerType": "UIContainerWindow",
+    "identify": "statusWindow",
+    "windowLevel": "1",
+    "frame": {
+        "x": "/-(self.windowContainer.view.width)(160)(2)"
+        ,
+        "y":  "-(self.windowContainer.view.height)(120)"
+        ,
+        "width":  "160"
+        ,
+        "height":  "32"
+        
+    },
+    "hidden": true,
+    "cornerRadius": "4",
+    "clipsToBounds": true,
+    "subViews": [
+                 {
+                 "UIContainerType": "UIContainerView",
+                 "identify": "toolbar",
+                 "backgroundColor": "#333333e0",
+                 "frame": {
+                 "x":  "0"
+                 ,
+                 "y":  "0"
+                 ,
+                 "width":  "160"
+                 ,
+                 "height": "32"
+                 
+                 },
+                 "subViews": [
+                              {
+                              "UIContainerType": "UIContainerLabel",
+                              "identify": "label",
+                              "backgroundColor": "#00000000",
+                              "textColor": "#ffffff",
+                              "font": "13",
+                              "textAlignment": "1",
+                              "numberOfLines": "0",
+                              "text": "状态栏message",
+                              "layout": {
+                              "left": {
+                              "value": "5"
+                              },
+                              "right": {
+                              "value": "-5"
+                              },
+                              "top": {
+                              "value": "5"
+                              },
+                              "bottom": {
+                              "value": "-5"
+                              }
+                              }
+                              }
+                              ]
+                 }
+                 ],
+    "functionList": [
+                     {
+                     "functionname": "UIControlEventTouchUpInside",
+                     "type": "FT_UPDATEVIEW",
+                     "alpha": "1",
+                     "hidden": false
+                     },
+                     {
+                     "functionname": "UIControlEventTouchUpInside_complete",
+                     "type": "FT_UPDATEVIEW",
+                     "alpha": "0",
+                     "hidden": false,
+                     "animation": {
+                     "duration": "0.5"
+                     }
+                     },
+                     {
+                     "functionname": "UIControlEventTouchUpInside_complete_block",
+                     "type": "FT_UPDATEVIEW",
+                     "hidden": true
+                     },
+                     {
+                     "functionname": "show",
+                     "type": "FT_UPDATEVIEW",
+                     "alpha": "0",
+                     "hidden": false,
+                     "subViews": [
+                                  {
+                                  "identify": "toolbar",
+                                  "subViews": [
+                                               {
+                                               "identify": "label",
+                                               "text": "parmer~parmer1"
+                                               }
+                                               ]
+                                  }
+                                  ]
+                     },
+                     {
+                     "functionname": "show_complete",
+                     "type": "FT_UPDATEVIEW",
+                     "alpha": "1",
+                     "animation": {
+                     "duration": "0.5"
+                     }
+                     },
+                     {
+                     "functionname": "show_complete_block",
+                     "type": "FT_UPDATEVIEW",
+                     "delay": "1.0",
+                     "alpha": "0",
+                     "animation": {
+                     "duration": "0.5"
+                     }
+                     },
+                     {
+                     "functionname": "show_complete_block_block",
+                     "type": "FT_UPDATEVIEW",
+                     "hidden": true
+                     }
+                     ]
+}

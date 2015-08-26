@@ -1,0 +1,111 @@
+{
+    "UIContainerType": "UIContainerToolbar",
+    "identify": "toolbar",
+  "translucent": true,
+  "barStyle": "1",
+  "layout": {
+    "left": {
+      "value": "0"
+    },
+    "right": {
+      "value": "0"
+    },
+    "height": {
+      "value": "100"
+    },
+    "bottom": {
+      "value": "0"
+    }
+  },
+  "backgroundColor": "#00000050",
+  "subViews": [
+    {
+      "UIContainerType": "UIContainerLabel",
+      "textColor": "#ffffff",
+      "identify": "title",
+      "text": "",
+      "font": "13",
+      "textAlignment": "1",
+      "layout": {
+        "left": {
+          "value": "0"
+        },
+        "right": {
+          "value": "0"
+        },
+        "top": {
+          "value": "0"
+        },
+        "height": {
+          "value": "20"
+        }
+      }
+    },
+    {
+      "UIContainerType": "UIContainerProgress",
+      "identify": "progress",
+      "progressTintColor": "#12c52b",
+      "trackTintColor": "#ffffff",
+      "layout": {
+        "left": {
+          "value": "10"
+        },
+        "right": {
+          "value": "-10"
+        },
+        "top": {
+          "value": "superContainer.container_title.mas_bottom"
+        },
+        "height": {
+          "value": "6"
+        }
+      }
+    },
+    {
+      "UIContainerType": "UIContainerLabel",
+      "textColor": "#ffffff",
+      "identify": "start",
+      "text": "--:--",
+      "font": "11",
+      "textAlignment": "0",
+      "layout": {
+        "left": {
+          "value": "superContainer.container_progress.mas_left"
+        },
+        "width": {
+          "value": "60"
+        },
+        "top": {
+          "value": "superContainer.container_progress.mas_bottom"
+        },
+        "height": {
+          "value": "20"
+        }
+      }
+    },
+    {
+      "UIContainerType": "UIContainerLabel",
+      "textColor": "#ffffff",
+      "identify": "end",
+      "text": "--:--",
+      "font": "11",
+      "textAlignment": "2",
+      "layout": {
+        "width": {
+          "value": "60"
+        },
+        "right": {
+          "value": "superContainer.container_progress.mas_right"
+        },
+        "top": {
+          "value": "0"
+        },
+        "height": {
+          "value": "20"
+        }
+      }
+    }
+  ],
+  "functionList": [
+  ]
+}
