@@ -12,8 +12,10 @@ typedef void(^successBlock)(BOOL success);
 
 @interface NSObject (key)
 
-nonatomic_strong(NSString, *identify)
+nonatomic_strong(NSString       , *identify)
+nonatomic_copy  (Block_complete , block)
 
+#pragma mark - for properties (safe)
 - (id)getProperty:(NSString*)property;
 
 - (NSInteger)obj_integer:(successBlock)block;
@@ -37,12 +39,18 @@ nonatomic_strong(NSString, *identify)
 - (id)assignment:(id)obj :(NSDictionary*)data;
 
 
-#pragma mark - for Exception
+#pragma mark - for Exception (safe)
 
 - (id)objectForKey:(NSString*)aKey;
 
 - (id)objectForKeyedSubscript:(NSString*)aKey;
 
 - (void)setObject:(id)obj forKey:(NSString*)aKey;
+
+#pragma mark - for thread methodes (block)
+
+- (void)runmain:(id)arg selector:(Block_complete)block;
+
+- (void)runbackground:(id)arg selector:(Block_complete)block;
 
 @end

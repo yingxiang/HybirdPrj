@@ -408,6 +408,11 @@ nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
             [function addEntries:[command obj_copy]];
         }
         runFunction(function, self);
+        
+        if (responseCallback) {
+            id result = [self getValue:function[@"result"]];
+            responseCallback(result);
+        }
     }else{
         showException(dic.description);
     }

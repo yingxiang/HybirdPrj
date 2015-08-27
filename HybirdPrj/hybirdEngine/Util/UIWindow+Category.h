@@ -10,6 +10,6 @@
 
 @interface UIWindow (Category)
 
-- (void)setVSRootViewController:(UIViewController *)rootViewController;
+- (void)setHBRootViewController:(UIViewController *)rootViewController;
 
 @end

@@ -79,7 +79,7 @@ static void uncaughtExceptionHandler(NSException *exception) {
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//    showException(error.userInfo[NSLocalizedDescriptionKey]);
+    showException(error.userInfo[NSLocalizedDescriptionKey]);
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{

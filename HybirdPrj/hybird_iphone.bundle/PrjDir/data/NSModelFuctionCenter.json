@@ -140,10 +140,17 @@
     }
   },
   "regtoken": {
+    "type": "FT_SYSTERM",
+    "target": "self.Instance-RemoteNotificationEngine",
+    "selector": "updateToken:"
   },
   "querysys": {
   },
   "download": {
+    "type": "FT_DOWNLOAD",
+    "functionname": "download",
+    "ModelCenterFunction": true,
+    "filepath": "Documents/Audio"
   },
   "playoperate": {
   },
@@ -152,9 +159,28 @@
   "app_download": {
   },
   "user_config": {
-    "New item - 1": ""
+    "functionname": "user_config",
+    "type": "FT_SYSTERM",
+    "target": "self.Instance-NSModelDataCenter.dataList",
+    "selector": "addEntries:",
+    "objectone": "parmer~maps",
+    "ModelCenterFunction": true
+  },
+  "user_config_complete": {
+    "functionname": "user_config_complete",
+    "type": "FT_SYSTERM",
+    "target": "self.Instance-NSModelDataCenter",
+    "selector": "synchronizeData",
+    "ModelCenterFunction": true
   },
   "query_user_config": {
+    "functionname": "query_user_config",
+    "ModelCenterFunction": true,
+    "type": "FT_SYSTERM",
+    "target": "parmer~maps",
+    "selector": "replaceEntries:",
+    "objectone": "self.Instance-NSModelDataCenter.dataList",
+    "result": "parmer~maps"
   },
   "view_photos": {
     "type": "FT_VIEWSKIP",

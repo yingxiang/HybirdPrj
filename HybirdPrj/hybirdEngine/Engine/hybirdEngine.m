@@ -80,7 +80,29 @@ NSDictionary* readFile(NSString *filepath, NSString *filename);
 void download (NSDictionary *dic , UIContainerView *container){
     NSString *url = dic[@"url"];
     NSString *dirPath = NSHomeDirectory();
-    NSString *filePath = dic[@"filepath"];// PrjDir/viewControllers/XX.json
+    
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@", dirPath, dic[@"filepath"]];
+
+    NSString *fileName = [filePath stringByAppendingFormat:@"/%@",[url stringFromMD5]];
+
+    //reache 为YES，有也重新下载
+    BOOL recache = [dic[@"recache"] obj_bool:^(BOOL success) {
+        
+    }];
+    if (!recache && [[NSFileManager defaultManager] fileExistsAtPath:fileName]) {
+        //已有该文件就不下载
+        NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
+        NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
+        if (function) {
+            [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                if ([key hasPrefix:@"parmer"]) {
+                    [function setObject:[obj obj_copy] forKey:[key obj_copy]];
+                }
+            }];
+            runFunction(function, container);
+        }
+        return;
+    }
     
     [FTPEngine downloadFileURL:url progress:^(PROGRESS_TYPE progresstype, long long totalBytesRead, long long totalBytesExpectedToRead) {
         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_progress"];
@@ -94,10 +116,8 @@ void download (NSDictionary *dic , UIContainerView *container){
         if (success) {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             
-            NSString *fileName = [NSString stringWithFormat:@"%@/%@", dirPath, filePath];
-            
             if ([cachefile hasSuffix:@".zip"]) {
-                
+
                 NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_unzip"];
                 NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
                 if (function) {
@@ -118,7 +138,7 @@ void download (NSDictionary *dic , UIContainerView *container){
                         }
                     };
                     dispatch_async(global_queue, ^{
-                        BOOL result = [archive UnzipFileTo:fileName overWrite:YES];
+                        BOOL result = [archive UnzipFileTo:filePath overWrite:YES];
                         if (result) {
                             NSLog(@"archive success");
                         }
@@ -557,11 +577,11 @@ void removeview (NSDictionary *dic , UIContainerView *container){
  *  @param container container description
  */
 void systerm (NSDictionary *dic , UIContainerView *container){
+    dic = [dic assignment:dic :dic];
     id  target = [container getValue:dic[@"target"]];
     SEL selector = NSSelectorFromString(dic[@"selector"]);
     
     if ([target respondsToSelector:selector]) {
-        dic = [dic assignment:dic :dic];
         id objectOne = [container calculate:dic[@"objectone"]];
         id objectTwo = [container calculate:dic[@"objecttwo"]];
 //        NSLog(@"%@",objectOne);
@@ -824,9 +844,13 @@ void playaudio(NSDictionary *dic , UIContainerView *container){
             showBoolException(@"duration", dic[@"duration"])
         }
     }];
-    
+    NSTimeInterval begintime = [dic[@"begintime"] obj_float:^(BOOL success) {
+        if (!success) {
+            showBoolException(@"duration", dic[@"duration"])
+        }
+    }];
     __weak UIContainerView *weakContainer = container;
-    [[PlayerEngine shareInstance] playAudio:url startTime:0 endTime:duration repeats:1];
+    [[PlayerEngine shareInstance] playAudio:url startTime:begintime endTime:duration repeats:1];
     //download file progress or palying progress
     [PlayerEngine shareInstance].progressBlock = ^(PROGRESS_TYPE progresstype ,long long currentprogress, long long totalprogress) {
         NSString *functionname = [dic[@"functionname"] stringByAppendingString:@"_audioProgress"];
@@ -1005,10 +1029,11 @@ void obj_msgSend(id self, SEL op, ...){
 void alertException(NSString *title, NSString *msg){
     NSString *exception = [NSString stringWithFormat:@"%@\n%@",title,msg];
 #ifdef DEBUG
-    if (([UIViewControllerHelper shareInstance].isPresenting)) {
-        return;
-    }
-    [BaseAlertView alertWithTitle:@"" message:exception clickIndex:nil cancelButtonTitle:@"yes" otherButtonTitles:nil];
+    [[NSModelFuctionCenter shareInstance] showTips:exception];
+//    if (([UIViewControllerHelper shareInstance].isPresenting)) {
+//        return;
+//    }
+//    [BaseAlertView alertWithTitle:@"" message:exception clickIndex:nil cancelButtonTitle:@"yes" otherButtonTitles:nil];
 #else
     //记载错误日志，并上传错误日志
     

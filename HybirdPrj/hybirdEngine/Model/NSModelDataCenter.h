@@ -12,15 +12,13 @@ static NSString *const appVersionKey = @"appVersionKey";
 
 @interface NSModelDataCenter : NSModel
 
-nonatomic_strong(NSString, *baseUrl)
+nonatomic_weak  (NSMutableDictionary   , *dataList)
+nonatomic_weak  (NSMutableDictionary   , *localStringList)
+nonatomic_strong(NSString       , *baseUrl)
 
 DECLARE_AS_SINGLETON(NSModelDataCenter);
 
-- (NSString*)localStringForkey:(NSString*)aKey;
-
-- (id)dataForKey:(NSString*)aKey;
-
-- (void)synchronizeObject:(id)object forKey:(NSString*)aKey;
+- (void)synchronizeData;
 
 #pragma mark - systerm instance
 //仅在hybird遍历查找时使用

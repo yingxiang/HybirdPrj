@@ -10,8 +10,8 @@
 
 @implementation UIWindow (Category)
 
-- (void)setVSRootViewController:(UIViewController *)rootViewController{
-    [self setVSRootViewController:rootViewController];
+- (void)setHBRootViewController:(UIViewController *)rootViewController{
+    [self setHBRootViewController:rootViewController];
     if ([[UIApplication sharedApplication].delegate window] == self) {
         [[UIViewControllerHelper shareInstance] removeAllViewController];
         if ([rootViewController isKindOfClass:[UITabBarController class]]) {

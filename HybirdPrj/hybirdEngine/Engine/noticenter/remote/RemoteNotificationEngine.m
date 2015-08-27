@@ -50,9 +50,10 @@ DECLARE_SINGLETON(RemoteNotificationEngine)
 
 - (void)updateToken:(NSString*)token{
     if (token == nil) {
-        token = [[NSModelDataCenter shareInstance] dataForKey:@"token"];
+        token = [NSModelDataCenter shareInstance].dataList[@"token"];
     }else{
-        [[NSModelDataCenter shareInstance] synchronizeObject:token forKey:@"token"];
+        [[NSModelDataCenter shareInstance].dataList setObject:token forKey:@"token"];
+        [[NSModelDataCenter shareInstance] synchronizeData];
     }
     if (token) {
         [[UserAgent shareInstance] registerToken:token];

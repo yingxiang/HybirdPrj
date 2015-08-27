@@ -67,7 +67,7 @@
                      "type": "FT_UPDATEVIEW",
                      "alpha": "0",
                      "hidden": false,
-                     "subViews": [
+      "subViews": [
                                   {
                                   "identify": "toolbar",
                                   "subViews": [

@@ -9,9 +9,12 @@
 #import "NSObject+key.h"
 #import <objc/runtime.h>
 
-static const void *keyKey = &keyKey;
+static const void *keyKey       = &keyKey;
+static const void *blockKey     = &blockKey;
 
 @implementation NSObject (key)
+
+#pragma mark - category properties
 
 - (NSString *)identify {
     return objc_getAssociatedObject(self, keyKey);
@@ -21,6 +24,15 @@ static const void *keyKey = &keyKey;
     objc_setAssociatedObject(self, keyKey, identify, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (Block_complete)block{
+    return objc_getAssociatedObject(self, blockKey);
+}
+
+- (void)setBlock:(Block_complete)block{
+    objc_setAssociatedObject(self, blockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+#pragma mark - get properties (safe)
 - (id)getProperty:(NSString*)property{
     id value = nil;
 
@@ -177,6 +189,7 @@ static const void *keyKey = &keyKey;
     return object;
 }
 
+#pragma mark - exception (safe)
 //for Exception
 - (id)objectForKey:(NSString*)aKey{
     showException(aKey)
@@ -199,4 +212,28 @@ static const void *keyKey = &keyKey;
 //    _hybird_tips_(msg)
 }
 
+#pragma mark - thread block
+- (void)backgroundSelector:(id)arg{
+    if (self.block) {
+        self.block(YES,arg);
+        self.block = nil;
+    }
+}
+
+- (void)mainSelector:(id)arg{
+    if (self.block) {
+        self.block(YES,arg);
+        self.block = nil;
+    }
+}
+
+- (void)runmain:(id)arg selector:(Block_complete)block{
+    self.block = block;
+    [self performSelectorOnMainThread:@selector(mainSelector:) withObject:arg waitUntilDone:YES];
+}
+
+- (void)runbackground:(id)arg selector:(Block_complete)block{
+    self.block = block;
+    [self performSelectorInBackground:@selector(backgroundSelector:) withObject:arg];
+}
 @end

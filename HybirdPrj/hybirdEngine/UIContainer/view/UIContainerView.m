@@ -847,7 +847,7 @@ static int cal_progress = 0;
 
 //向上或平行遍历查找其他视图的属性
 - (id)getValue:(NSString*)map{
-    if (map != nil) {
+    if ([map isKindOfClass:[NSString class]]) {
         if ([map isPureFloat]) {
             return map;
         }
@@ -886,7 +886,7 @@ static int cal_progress = 0;
             return value;
         }
     }
-    return nil;
+    return map;
 }
 
 - (UIContainerView*)getContainer:(NSString*)map{

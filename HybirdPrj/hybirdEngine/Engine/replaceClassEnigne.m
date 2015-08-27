@@ -24,7 +24,7 @@ void replaceClassMethods(Class className,SEL newSEL,SEL origSEL){
 
 void replaceClass(){
     //UIWindow
-    replaceClassMethods([UIWindow class], NSSelectorFromString(@"setVSRootViewController:"), NSSelectorFromString(@"setRootViewController:"));
+    replaceClassMethods([UIWindow class], NSSelectorFromString(@"setHBRootViewController:"), NSSelectorFromString(@"setRootViewController:"));
     
     //UIViewController
     replaceClassMethods([UIViewController class],NSSelectorFromString(@"presentHBViewController:animated:completion:"), NSSelectorFromString(@"presentViewController:animated:completion:"));

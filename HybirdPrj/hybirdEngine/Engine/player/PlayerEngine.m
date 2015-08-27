@@ -97,7 +97,7 @@ DECLARE_SINGLETON(PlayerEngine)
 
 - (BOOL)playAudio:(NSString*)url startTime:(NSTimeInterval)startTime endTime:(NSTimeInterval)endTime repeats:(NSInteger)count{
     
-    if ([self.playUrl isEqualToString:url]) {
+    if ([self.playUrl isEqualToString:url] && self.player) {
         return NO;
     }
     [self reset];

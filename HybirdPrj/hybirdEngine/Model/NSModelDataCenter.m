@@ -15,40 +15,29 @@ DECLARE_SINGLETON(NSModelDataCenter);
 - (instancetype)init{
     self = [super init];
     if (self) {
-        NSDictionary *dic = readFile(_HYBIRD_PATH_DATA, @"NSLocalizedString");
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:readFile(_HYBIRD_PATH_DATA, @"NSLocalizedString")];
         [self setObject:dic forKey:@"NSLocalizedString"];
+        self.localStringList = dic;
         
-        NSDictionary *data = readFile(_HYBIRD_PATH_DATA, @"NSModelDataCenter");
+        NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:readFile(_HYBIRD_PATH_DATA, @"NSModelDataCenter")];
         [self setObject:data forKey:@"NSModelDataCenter"];
+        self.dataList = data;
     }
     return self;
 }
 
-- (NSString*)localStringForkey:(NSString*)aKey{
-    NSDictionary *dic = [self objectForKey:@"NSLocalizedString"];
-    return dic[aKey];
+- (void)synchronizeData{
+    [self.dataList writeToFile:[_HYBIRD_PATH_DATA stringByAppendingPathComponent:@"NSModelDataCenter"] atomically:YES];
 }
 
-- (id)dataForKey:(NSString*)aKey{
-    NSDictionary *dic = [self objectForKey:@"NSModelDataCenter"];
-    return dic[aKey];
-}
-
-- (void)synchronizeObject:(id)object forKey:(NSString*)aKey{
-    if (object && aKey) {
-        NSDictionary *dic = [self objectForKey:@"NSModelDataCenter"];
-        [dic setValue:object forKey:aKey];
-        [dic writeToFile:[_HYBIRD_PATH_DATA stringByAppendingPathComponent:@"NSModelDataCenter"] atomically:YES];
-    }
-}
 
 - (NSString*)baseUrl{
     if (!_baseUrl) {
-        BOOL isDebug = [[self dataForKey:@"environmentDebug"] obj_bool:nil];
+        BOOL isDebug = [self.dataList[@"environmentDebug"] obj_bool:nil];
         if (isDebug) {
-            _baseUrl = [self dataForKey:@"url_debug"];
+            _baseUrl = self.dataList[@"url_debug"];
         }
-        _baseUrl = [self dataForKey:@"url_release"];
+        _baseUrl = self.dataList[@"url_release"];
     }
     return _baseUrl;
 }

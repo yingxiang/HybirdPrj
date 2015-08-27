@@ -96,7 +96,6 @@
                      {
                      "functionname": "setUI:_progress",
                      "type": "FT_SYSTERM",
-                   "dispatch":"0",
       "target": "self.container_contentView.container_progress.view",
       "selector":"setProgress:animated:",
       "objectone": "parmer~/(parmer1)(parmer2)",

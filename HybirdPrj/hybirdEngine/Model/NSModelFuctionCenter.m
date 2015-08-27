@@ -31,15 +31,15 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
         [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
             NSString *tips = nil;
             if ([self currentTelephonyNet] == TELEPHONY_NET_2G) {
-                tips = [[NSModelDataCenter shareInstance] localStringForkey:@"STRING_2G"];
+                tips = [NSModelDataCenter shareInstance].localStringList[@"STRING_2G"];
             }else if ([self currentTelephonyNet] == TELEPHONY_NET_3G){
-                tips = [[NSModelDataCenter shareInstance] localStringForkey:@"STRING_3G"];
+                tips = [NSModelDataCenter shareInstance].localStringList[@"STRING_3G"];
             }else if ([self currentTelephonyNet] == TELEPHONY_NET_4G){
-                tips = [[NSModelDataCenter shareInstance] localStringForkey:@"STRING_4G"];
+                tips = [NSModelDataCenter shareInstance].localStringList[@"STRING_4G"];
             }else if ([self currentTelephonyNet] == TELEPHONY_NET_WIFI){
-                tips = [[NSModelDataCenter shareInstance] localStringForkey:@"STRING_WIFI"];
+                tips = [NSModelDataCenter shareInstance].localStringList[@"STRING_WIFI"];
             }else if ([self currentTelephonyNet] == TELEPHONY_NET_NONE){
-                tips = [[NSModelDataCenter shareInstance] localStringForkey:@"STRING_NONET"];
+                tips = [NSModelDataCenter shareInstance].localStringList[@"STRING_NONET"];
             }
             _hybird_tips_(tips)
         }];
@@ -95,11 +95,18 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
 
 - (void)showTips:(NSString*)tips{
     if (tips) {
-        NSMutableDictionary *function = [self.statusWindowContainer.functionList[@"show"] obj_copy];
-        if (function) {
-            [function setObject:tips forKey:@"parmer1"];
-            runFunction(function, self.statusWindowContainer);
-        }
+        [self runbackground:tips selector:^(BOOL success, id data) {
+            while (!self.statusWindowContainer.view.isHidden) {
+
+            }
+            NSMutableDictionary *function = [self.statusWindowContainer.functionList[@"show"] obj_copy];
+            if (function) {
+                [function setObject:tips forKey:@"parmer1"];
+                [self runmain:function selector:^(BOOL success, id data) {
+                    runFunction(data, self.statusWindowContainer);
+                }];
+            }
+        }];
     }
 }
 
@@ -115,7 +122,7 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
     //友盟
     NSString * UMENG_APPKEY  = _infoDictionary[@"UMENG_APPKEY"];
     if (UMENG_APPKEY) {
-        [MobClick setAppVersion:[[NSModelDataCenter shareInstance] dataForKey:appVersionKey]];
+        [MobClick setAppVersion:[NSModelDataCenter shareInstance].dataList[appVersionKey]];
         
         [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:(ReportPolicy) REALTIME channelId:nil];
         [MobClick checkUpdateWithDelegate:self selector:@selector(appUpdate:)];
