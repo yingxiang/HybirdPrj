@@ -136,8 +136,34 @@ static const void *blockKey     = &blockKey;
             [array addObject:[obj obj_copy]];
         }
         return array;
+    }else{
+        NSString *classname = NSStringFromClass([self class]);
+        if (![classname isEqualToString:@"NSObject"]) {
+            //自定义类
+            id object = [[NSClassFromString(classname) alloc] init];
+            
+            unsigned int propertyCount;
+            objc_property_t *pProperty = class_copyPropertyList([self class], &propertyCount);
+            for (int i = 0; i<propertyCount; i++) {
+                objc_property_t property = pProperty[i];
+                NSString *propertyname = [NSString stringWithUTF8String:property_getName(property)];
+                [object setValue:[[self valueForKey:propertyname] obj_copy] forKey:propertyname];
+            }
+            //查找父类属性
+            Class A = [[self class] superclass];
+            while (![NSStringFromClass(A) isEqualToString:@"NSObject"]) {
+                pProperty = class_copyPropertyList(A, &propertyCount);
+                for (int i = 0; i<propertyCount; i++) {
+                    objc_property_t property = pProperty[i];
+                    NSString *propertyname = [NSString stringWithUTF8String:property_getName(property)];
+                    [object setValue:[[self valueForKey:propertyname] obj_copy] forKey:propertyname];
+                }
+                A = [A superclass];
+            }
+            return object;
+        }
     }
-    return self;
+    return [self copy];
 }
 
 - (id)assignment:(id)object :(NSDictionary*)data{
