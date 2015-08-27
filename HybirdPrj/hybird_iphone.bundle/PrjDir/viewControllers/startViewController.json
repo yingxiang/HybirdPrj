@@ -10,8 +10,8 @@
     "backgroundImage": "tabbarBkg.png"
   },
   "viewControllers": [
-    "tabViewController_two",
     "tabViewController_one",
+    "tabViewController_two",
     "tabViewController_three",
     "tabViewController_four"
   ]

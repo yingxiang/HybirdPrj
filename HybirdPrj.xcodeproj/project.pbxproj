@@ -21,6 +21,7 @@
 		205AAF811B85B0BC00C06B16 /* UserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 205AAF801B85B0BC00C06B16 /* UserAgent.m */; };
 		2068BD721B71F847009051DA /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2068BD711B71F847009051DA /* WebKit.framework */; };
 		207397961B69FA200087158A /* UIActivityViewComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 207397951B69FA200087158A /* UIActivityViewComponent.m */; };
+		2098EEFC1B8F068900EBA8A8 /* NSURL+UrlDecoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 2098EEFB1B8F068900EBA8A8 /* NSURL+UrlDecoding.m */; };
 		20A4F05F1B6B5D380044D27A /* NSModelFuctionCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A4F05E1B6B5D380044D27A /* NSModelFuctionCenter.m */; };
 		20ACDBEC1B870A31007E1AA0 /* PlayerEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 20ACDBEB1B870A31007E1AA0 /* PlayerEngine.m */; };
 		20B8249A1B6072D00018E9B9 /* NSModelDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B824991B6072D00018E9B9 /* NSModelDataCenter.m */; };
@@ -117,6 +118,8 @@
 		2068BD711B71F847009051DA /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		207397941B69FA200087158A /* UIActivityViewComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActivityViewComponent.h; sourceTree = "<group>"; };
 		207397951B69FA200087158A /* UIActivityViewComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActivityViewComponent.m; sourceTree = "<group>"; };
+		2098EEFA1B8F068900EBA8A8 /* NSURL+UrlDecoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+UrlDecoding.h"; sourceTree = "<group>"; };
+		2098EEFB1B8F068900EBA8A8 /* NSURL+UrlDecoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+UrlDecoding.m"; sourceTree = "<group>"; };
 		20A4F05D1B6B5D380044D27A /* NSModelFuctionCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSModelFuctionCenter.h; sourceTree = "<group>"; };
 		20A4F05E1B6B5D380044D27A /* NSModelFuctionCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSModelFuctionCenter.m; sourceTree = "<group>"; };
 		20ACDBEA1B870A31007E1AA0 /* PlayerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerEngine.h; sourceTree = "<group>"; };
@@ -557,6 +560,8 @@
 				ACA828461B8835A500375AC1 /* NSTimer+block.m */,
 				204ACA591B8DAA75002CEDD4 /* UILabel+sizefit.h */,
 				204ACA5A1B8DAA75002CEDD4 /* UILabel+sizefit.m */,
+				2098EEFA1B8F068900EBA8A8 /* NSURL+UrlDecoding.h */,
+				2098EEFB1B8F068900EBA8A8 /* NSURL+UrlDecoding.m */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1020,6 +1025,7 @@
 				205AAF261B854E4500C06B16 /* FTPEngine.m in Sources */,
 				AC3DCA1E1B59E61B0060E193 /* UIContainerSlider.m in Sources */,
 				AC3DCA0F1B59E61B0060E193 /* UIContaineriCarousel.m in Sources */,
+				2098EEFC1B8F068900EBA8A8 /* NSURL+UrlDecoding.m in Sources */,
 				205AAF2E1B854EAA00C06B16 /* URLCache.m in Sources */,
 				205AAF7E1B855C7900C06B16 /* StartManage.m in Sources */,
 				AC3DCA181B59E61B0060E193 /* UIContainerCell.m in Sources */,

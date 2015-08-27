@@ -22,7 +22,7 @@
     NSString *cachefile = [NSTemporaryDirectory() stringByAppendingString:[fileManager displayNameAtPath:aUrl]];
     
     //下载附件
-    NSURL *url = [NSURL URLWithString:[aUrl URLString]];
+    NSURL *url = [NSURL URLWithString:aUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];

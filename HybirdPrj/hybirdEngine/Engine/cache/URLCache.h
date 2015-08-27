@@ -14,6 +14,6 @@ DECLARE_AS_SINGLETON(URLCache)
 
 - (void)cache;
 
-- (BOOL)webView:(UIWebView*)webView loadRequest:(NSURL*)url;
+- (BOOL)webView:(id)webView loadRequest:(NSURL*)url;
 
 @end

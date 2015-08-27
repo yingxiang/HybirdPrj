@@ -64,8 +64,6 @@ OBJC_EXPORT void replaceClass();
     //创建window
     [UIContainerWindow containerWindow];
     
-    //启动url缓存
-    [[URLCache shareInstance] cache];
     
     BOOL launch = [StartManage restartApplication];
     if (launch) {
@@ -87,6 +85,8 @@ OBJC_EXPORT void replaceClass();
     UIViewController *vc = [UIViewControllerHelper creatViewController:vcDic];
     if (vc) {
         [[application.delegate window] setRootViewController:vc];
+        //启动url缓存 ()
+        [[URLCache shareInstance] cache];
         return YES;
     }
     return NO;

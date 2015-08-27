@@ -16,7 +16,6 @@
     UIImage *image = nil;
     if ([path isKindOfClass:[NSString class]]) {
         if ([path isURLString]) {
-            path = [path URLString];
             
             NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
             if (response) {

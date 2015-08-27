@@ -234,9 +234,7 @@ void request (NSDictionary *dic , UIContainerView *container){
     if (![url isURLString]) {
         url = [container getValue:url];
     }
-    
-    url = [url URLString];
-    
+        
     if ([method isEqualToString:@"post"]) {
         [manager POST:url parameters:parmeters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
@@ -988,35 +986,40 @@ void run(NSDictionary *dic , UIContainerView *container){
  *  @param ...  parmers
  */
 void obj_msgSend(id self, SEL op, ...){
-    NSMethodSignature *signature = [self methodSignatureForSelector:op];
-    NSUInteger length = [signature numberOfArguments];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-    [invocation setSelector:op];
-    
-    va_list arg_ptr;
-    va_start(arg_ptr, op);
-    for (NSUInteger i = 2; i < length; ++i) {
-        id parameter = va_arg(arg_ptr, id);
-        NSString *type = [NSString stringWithUTF8String:[signature getArgumentTypeAtIndex:i]];
-        if ([[type lowercaseString] isEqualToString:@"f"]
-            ||[[type lowercaseString] isEqualToString:@"d"]) {
-            float Value = [parameter floatValue];
-            [invocation setArgument:&Value atIndex:i];
-        }else if ([[type lowercaseString] isEqualToString:@"b"]){
-            BOOL Value = [parameter boolValue];
-            [invocation setArgument:&Value atIndex:i];
-        }else if ([[type lowercaseString] isEqualToString:@"q"]
-                  ||[[type lowercaseString] isEqualToString:@"i"]){
-            NSInteger Value = [parameter integerValue];
-            [invocation setArgument:&Value atIndex:i];
-        }else{
-            if (![parameter isKindOfClass:[NSNull class]]) {
-                [invocation setArgument:&parameter atIndex:i];
+    if ([self respondsToSelector:op]) {
+        NSMethodSignature *signature = [self methodSignatureForSelector:op];
+        NSUInteger length = [signature numberOfArguments];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setSelector:op];
+        
+        va_list arg_ptr;
+        va_start(arg_ptr, op);
+        for (NSUInteger i = 2; i < length; ++i) {
+            id parameter = va_arg(arg_ptr, id);
+            NSString *type = [NSString stringWithUTF8String:[signature getArgumentTypeAtIndex:i]];
+            if ([[type lowercaseString] isEqualToString:@"f"]
+                ||[[type lowercaseString] isEqualToString:@"d"]) {
+                float Value = [parameter floatValue];
+                [invocation setArgument:&Value atIndex:i];
+            }else if ([[type lowercaseString] isEqualToString:@"b"]){
+                BOOL Value = [parameter boolValue];
+                [invocation setArgument:&Value atIndex:i];
+            }else if ([[type lowercaseString] isEqualToString:@"q"]
+                      ||[[type lowercaseString] isEqualToString:@"i"]){
+                NSInteger Value = [parameter integerValue];
+                [invocation setArgument:&Value atIndex:i];
+            }else{
+                if (![parameter isKindOfClass:[NSNull class]]) {
+                    [invocation setArgument:&parameter atIndex:i];
+                }
             }
         }
+        va_end(arg_ptr);
+        [invocation invokeWithTarget:self];
+    }else{
+        NSString *msg = [NSString stringWithFormat:@"%@ cannot respondselector:%@",self,NSStringFromSelector(op)];
+        showException(msg)
     }
-    va_end(arg_ptr);
-    [invocation invokeWithTarget:self];
 }
 
 

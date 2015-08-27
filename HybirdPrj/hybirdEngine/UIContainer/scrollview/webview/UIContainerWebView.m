@@ -267,7 +267,7 @@ nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
     if (_useNewWebView) {
         [data enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             if ([key isEqualToString:@"url"]){
-                NSURL * url = [NSURL URLWithString:[obj URLString]];
+                NSURL * url = [NSURL URLWithString:obj];
                 [self loadRequest:[NSURLRequest requestWithURL:url]];
             }else if ([key isEqualToString:@"allowsBackForwardNavigationGestures"]){
                 self.wkwebView.allowsBackForwardNavigationGestures = [obj obj_bool:nil];
@@ -340,7 +340,7 @@ nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
                     }
                 }];
             }else if ([key isEqualToString:@"url"]){
-                NSURL * url = [NSURL URLWithString:[obj URLString]];
+                NSURL * url = [NSURL URLWithString:obj];
                 [self loadRequest:[NSURLRequest requestWithURL:url]];
             }
         }];
@@ -540,7 +540,13 @@ nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
         [self.wkjavascriptBridge runJavscript];
         decisionHandler(WKNavigationActionPolicyCancel);
     }else{
+        if([[URLCache shareInstance] webView:self.wkwebView loadRequest:navigationAction.request.URL]){
+            decisionHandler(WKNavigationActionPolicyAllow);
+        }else{
+//            decisionHandler(WKNavigationActionPolicyCancel);
+        }
         decisionHandler(WKNavigationActionPolicyAllow);
+
     }
 }
 

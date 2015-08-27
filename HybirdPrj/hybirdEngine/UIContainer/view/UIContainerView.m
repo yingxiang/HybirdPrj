@@ -606,11 +606,14 @@ nonatomic_weak  (id  , actionTarget)
     
     if (self.isFirstLoad) {
         //避免第二次setUi导致死循环，因此只有在指定了function时才执行
-        NSMutableDictionary *function = [[self.functionList objectForKey:@"setUI:"] obj_copy];
-        if (function) {
-            runFunction(function, self);
-        }
-        self.isFirstLoad = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //延迟为了使得子类的视图初始化完成
+            NSMutableDictionary *function = [[self.functionList objectForKey:@"setUI:"] obj_copy];
+            if (function) {
+                runFunction(function, self);
+            }
+            self.isFirstLoad = NO;
+        });
     }
     return copydata;
 }
@@ -689,6 +692,8 @@ nonatomic_weak  (id  , actionTarget)
 - (void)addSubContainer:(UIContainerView *)view data:(NSDictionary*)dic{
     if (view.view && view.superContainer!=self) {
         view.superContainer = self;
+    }
+    if (view.view.superview!=self.view) {
         [self.view addSubview:view.view];
     }
     if (view.view.viewController == nil) {

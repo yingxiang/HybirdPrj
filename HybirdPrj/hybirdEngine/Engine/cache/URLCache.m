@@ -84,13 +84,15 @@ DECLARE_SINGLETON(URLCache)
 }
 
 #pragma mark - localcache
-- (BOOL)webView:(UIWebView*)webView loadRequest:(NSURL*)url{
+- (BOOL)webView:(id)webView loadRequest:(NSURL*)url{
     NSString *decodeUrl = [url.absoluteString URLDecodedString];
     NSString* filePath = self.appPageUrlDic[decodeUrl];
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
     {
-        NSData *data = [NSData dataWithContentsOfFile:filePath];
-        [webView loadData:data MIMEType:@"text/html" textEncodingName:nil baseURL:[NSURL URLWithString:filePath]];
+//        NSData *data = [NSData dataWithContentsOfFile:filePath];
+//        obj_msgSend(webView, @selector(loadData:MIMEType:textEncodingName:baseURL:),data,@"text/html",[NSNull null],[NSURL fileURLWithPath:filePath]);
+        NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        obj_msgSend(webView, @selector(loadHTMLString:baseURL:),string,[NSURL URLWithString:filePath]);
         return NO;
     }
     return YES;
