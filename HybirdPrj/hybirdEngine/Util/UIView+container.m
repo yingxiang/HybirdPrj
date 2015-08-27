@@ -32,7 +32,19 @@ static const void *viewControllerKey = &viewControllerKey;
 }
 
 - (UIViewController *)viewController {
-    return objc_getAssociatedObject(self, viewControllerKey);
+    UIViewController *vc = objc_getAssociatedObject(self, viewControllerKey);
+    if (!vc) {
+        UIResponder *nextResponder = [self nextResponder];
+        while (nextResponder) {
+            if ([nextResponder isKindOfClass:[UIViewController class]]) {
+                objc_setAssociatedObject(self, viewControllerKey, nextResponder, OBJC_ASSOCIATION_ASSIGN);
+                vc = (UIViewController*)nextResponder;
+                break;
+            }
+            nextResponder = [nextResponder nextResponder];
+        }
+    }
+    return vc;
 }
 
 - (void)setViewController:(UIViewController *)viewController{

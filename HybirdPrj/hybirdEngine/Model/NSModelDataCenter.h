@@ -12,9 +12,9 @@ static NSString *const appVersionKey = @"appVersionKey";
 
 @interface NSModelDataCenter : NSModel
 
-nonatomic_weak  (NSMutableDictionary   , *dataList)
-nonatomic_weak  (NSMutableDictionary   , *localStringList)
-nonatomic_strong(NSString       , *baseUrl)
+nonatomic_weak  (NSMutableDictionary, *dataList)
+nonatomic_weak  (NSMutableDictionary, *localStringList)
+nonatomic_strong(NSString           , *baseUrl)
 
 DECLARE_AS_SINGLETON(NSModelDataCenter);
 
