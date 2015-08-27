@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 
 static const void *keyKey       = &keyKey;
-static const void *blockKey     = &blockKey;
+static const void *blocksKey    = &blocksKey;
 
 @implementation NSObject (key)
 
@@ -24,12 +24,12 @@ static const void *blockKey     = &blockKey;
     objc_setAssociatedObject(self, keyKey, identify, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (Block_complete)block{
-    return objc_getAssociatedObject(self, blockKey);
+- (NSMutableDictionary*)blocks{
+    return objc_getAssociatedObject(self, blocksKey);
 }
 
-- (void)setBlock:(Block_complete)block{
-    objc_setAssociatedObject(self, blockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
+- (void)setBlocks:(NSMutableDictionary *)blocks{
+    objc_setAssociatedObject(self, blocksKey, blocks, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - get properties (safe)
@@ -136,34 +136,43 @@ static const void *blockKey     = &blockKey;
             [array addObject:[obj obj_copy]];
         }
         return array;
-    }else{
+    }else if([self isKindOfClass:[NSNumber class]]){
+        return self;
+    }else {
         NSString *classname = NSStringFromClass([self class]);
-        if (![classname isEqualToString:@"NSObject"]) {
+        if ([classname hasPrefix:@"__NSCF"] && ![classname isEqualToString:@"NSObject"]) {
             //自定义类
-            id object = [[NSClassFromString(classname) alloc] init];
-            
             unsigned int propertyCount;
             objc_property_t *pProperty = class_copyPropertyList([self class], &propertyCount);
-            for (int i = 0; i<propertyCount; i++) {
-                objc_property_t property = pProperty[i];
-                NSString *propertyname = [NSString stringWithUTF8String:property_getName(property)];
-                [object setValue:[[self valueForKey:propertyname] obj_copy] forKey:propertyname];
-            }
-            //查找父类属性
-            Class A = [[self class] superclass];
-            while (![NSStringFromClass(A) isEqualToString:@"NSObject"]) {
-                pProperty = class_copyPropertyList(A, &propertyCount);
+            if (propertyCount > 0) {
+                id object = [[NSClassFromString(classname) alloc] init];
+
                 for (int i = 0; i<propertyCount; i++) {
                     objc_property_t property = pProperty[i];
                     NSString *propertyname = [NSString stringWithUTF8String:property_getName(property)];
                     [object setValue:[[self valueForKey:propertyname] obj_copy] forKey:propertyname];
                 }
-                A = [A superclass];
+                //查找父类属性
+                Class A = [[self class] superclass];
+                if (A) {
+                    while (![NSStringFromClass(A) isEqualToString:@"NSObject"]) {
+                        pProperty = class_copyPropertyList(A, &propertyCount);
+                        for (int i = 0; i<propertyCount; i++) {
+                            objc_property_t property = pProperty[i];
+                            NSString *propertyname = [NSString stringWithUTF8String:property_getName(property)];
+                            [object setValue:[[self valueForKey:propertyname] obj_copy] forKey:propertyname];
+                        }
+                        A = [A superclass];
+                        if (!A) {
+                            break;
+                        }
+                    }
+                }
+                return object;
             }
-            return object;
         }
     }
-    return [self copy];
+    return self;
 }
 
 - (id)assignment:(id)object :(NSDictionary*)data{
@@ -239,27 +248,53 @@ static const void *blockKey     = &blockKey;
 }
 
 #pragma mark - thread block
-- (void)backgroundSelector:(id)arg{
-    if (self.block) {
-        self.block(YES,arg);
-        self.block = nil;
+- (void)backgroundSelector:(NSArray*)args{
+    NSString *key = [args firstObject];
+    Block_complete block = self.blocks[key];
+    if (block) {
+        if (args.count == 2) {
+            block(YES,[args lastObject]);
+        }else{
+            block(YES,nil);
+        }
+        [self.blocks removeObjectForKey:key];
     }
 }
 
-- (void)mainSelector:(id)arg{
-    if (self.block) {
-        self.block(YES,arg);
-        self.block = nil;
+- (void)mainSelector:(NSArray*)args{
+    NSString *key = [args firstObject];
+    Block_complete block = self.blocks[key];
+    if (block) {
+        if (args.count == 2) {
+            block(YES,[args lastObject]);
+        }else{
+            block(YES,nil);
+        }
+        [self.blocks removeObjectForKey:key];
     }
 }
 
 - (void)runmain:(id)arg selector:(Block_complete)block{
-    self.block = block;
-    [self performSelectorOnMainThread:@selector(mainSelector:) withObject:arg waitUntilDone:YES];
+    if (block) {
+        SEL selector = @selector(mainSelector:);
+        if (!self.blocks) {
+            self.blocks = [NSMutableDictionary dictionary];
+        }
+        NSString *key = [NSString stringWithFormat:@"%p",block];
+        [self.blocks setObject:block forKey:key];
+        [self performSelectorOnMainThread:selector withObject:@[key,arg] waitUntilDone:YES];
+    }
 }
 
 - (void)runbackground:(id)arg selector:(Block_complete)block{
-    self.block = block;
-    [self performSelectorInBackground:@selector(backgroundSelector:) withObject:arg];
+    if (block) {
+        SEL selector = @selector(backgroundSelector:);
+        if (!self.blocks) {
+            self.blocks = [NSMutableDictionary dictionary];
+        }
+        NSString *key = [NSString stringWithFormat:@"%p",block];
+        [self.blocks setObject:block forKey:key];
+        [self performSelectorInBackground:selector withObject:@[key,arg]];
+    }
 }
 @end

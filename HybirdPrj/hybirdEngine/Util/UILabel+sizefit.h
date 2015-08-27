@@ -10,6 +10,6 @@
 
 @interface UILabel (sizefit)
 
-nonatomic_assign(BOOL, autoSizefit)
+nonatomic_assign(CGFloat, autowidthfit)
 
 @end

@@ -23,6 +23,7 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
 - (instancetype)init{
     self = [super init];
     if (self) {
+        self.statusWindowContainer;
         NSDictionary *dic = readFile(_HYBIRD_PATH_DATA, @"NSModelFuctionCenter");
         if (dic) {
             [self.modelList addEntries:dic];

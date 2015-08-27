@@ -9,16 +9,16 @@
 #import "UILabel+sizefit.h"
 #import <objc/runtime.h>
 
-static const void *sizefitKey = &sizefitKey;
+static const void *autowidthfitKey = &autowidthfitKey;
 
 @implementation UILabel (sizefit)
 
-- (BOOL)autoSizefit {
-    return [objc_getAssociatedObject(self, sizefitKey) boolValue];
+- (CGFloat)autowidthfit{
+    return [objc_getAssociatedObject(self, autowidthfitKey) floatValue];
 }
 
-- (void)setAutoSizefit:(BOOL)autoSizefit{
-    objc_setAssociatedObject(self, sizefitKey, [NSNumber numberWithBool:autoSizefit], OBJC_ASSOCIATION_ASSIGN);
+- (void)setAutowidthfit:(CGFloat)autowidthfit{
+    objc_setAssociatedObject(self, autowidthfitKey, [NSNumber numberWithFloat:autowidthfit], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self relayoutIfNeeded];
 }
 
@@ -29,25 +29,38 @@ static const void *sizefitKey = &sizefitKey;
 
 - (void)relayoutIfNeeded{
     //自动布局自己
-    if (self.autoSizefit && self.text ) {
+    if (self.autowidthfit!=0 && self.text ) {
         if (self.frame.size.width != 0) {
+
             NSDictionary *fontAttributes = @{
                                              NSFontAttributeName:self.font
                                              };
             
-            CGRect titleRect = [self.text boundingRectWithSize:CGSizeMake(self.frame.size.width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin  attributes:fontAttributes context:nil];
+            CGRect titleRect = [self.text boundingRectWithSize:CGSizeMake(self.autowidthfit, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin  attributes:fontAttributes context:nil];
             //
             NSDictionary *layout = self.container.jsonData[@"layout"];
             if (layout) {
                 if (layout[@"height"]) {
                     [layout setValue:[NSNumber numberWithFloat:titleRect.size.height] forKey:@"height"];
+                    if (layout[@"width"]) {
+                        CGFloat width = self.autowidthfit;
+                        if (titleRect.size.width < self.autowidthfit) {
+                            width = ceilf(titleRect.size.width);
+                        }
+                        [layout setValue:[NSNumber numberWithFloat:titleRect.size.height] forKey:@"width"];
+                    }
                     [self.container setUI:layout];
-                }else if (layout[@"top"] && layout[@"bottom"]){
-                    
+                }else {
+                    //
+                    showException(@"UILabel sizefit must set layout height")
                 }
             }else{
                 //frame 布局
-                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, ceilf(titleRect.size.height));
+                CGFloat width = self.autowidthfit;
+                if (titleRect.size.width < self.autowidthfit) {
+                    width = ceilf(titleRect.size.width);
+                }
+                self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, width, ceilf(titleRect.size.height));
                 UIView *superView = self.superview;
                 while (superView) {
                     NSDictionary *layout = superView.container.jsonData[@"layout"];
@@ -55,7 +68,9 @@ static const void *sizefitKey = &sizefitKey;
                         [superView.container setUI:@{@"layout":layout}];
                     }else{
                         layout = superView.container.jsonData[@"frame"];
-                        [superView.container setUI:@{@"frame":layout}];
+                        if (layout) {
+                            [superView.container setUI:@{@"frame":layout}];
+                        }
                     }
                     superView = superView.superview;
                 }

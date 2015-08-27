@@ -12,8 +12,8 @@ typedef void(^successBlock)(BOOL success);
 
 @interface NSObject (key)
 
-nonatomic_strong(NSString       , *identify)
-nonatomic_copy  (Block_complete , block)
+nonatomic_strong         (NSString           , *identify)
+nonatomic_strong_readonly(NSMutableDictionary, *blocks)
 
 #pragma mark - for properties (safe)
 - (id)getProperty:(NSString*)property;

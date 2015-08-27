@@ -70,10 +70,10 @@ nonatomic_strong(UILabel, *label);
                     showIntegerException(key, obj);
                 }
             }];
-        }else if ([key isEqualToString:@"autoSizefit"]){
-            self.label.autoSizefit = [obj obj_bool:^(BOOL success) {
+        }else if ([key isEqualToString:@"autowidthfit"]){
+            self.label.autowidthfit = [obj obj_float:^(BOOL success) {
                 if (!success) {
-                    showBoolException(key, obj);
+                    showFloatException(key, obj);
                 }
             }];
         }

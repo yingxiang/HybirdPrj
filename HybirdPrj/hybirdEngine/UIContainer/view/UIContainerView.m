@@ -831,12 +831,24 @@ static int cal_progress = 0;
                 NSString *next = [value substringFromIndex:range.location+1];
                 for (int i = 0; i<next.length; i++) {
                     //运算符号
-                    [values addObject:[next substringWithRange:NSMakeRange(i, 1)]];
+                    NSString *operator = [next substringWithRange:NSMakeRange(i, 1)];
+                    if ([self isoperator:operator]) {
+                        [values addObject:operator];
+                    }else{
+                        //不是标准的运算表达式，放弃解析
+                        return map;
+                    }
                 }
             }else{
                 for (int i = 0; i<value.length; i++) {
                     //运算符号
-                    [values addObject:[value substringWithRange:NSMakeRange(i, 1)]];
+                    NSString *operator = [value substringWithRange:NSMakeRange(i, 1)];
+                    if ([self isoperator:operator]) {
+                        [values addObject:operator];
+                    }else{
+                        //不是标准的运算表达式，放弃解析
+                        return map;
+                    }
                 }
             }
         }
@@ -860,8 +872,7 @@ static int cal_progress = 0;
                 return map;
             }
             //super-identify.xx
-            UIContainerView *containView = self;
-            id value = containView;
+            id value = self;
             for (int i = 0; i<array.count; i++) {
                 NSString *property = array[i];
                 if ([property isEqualToString:@""]) {
@@ -869,15 +880,12 @@ static int cal_progress = 0;
                 }else if ([property isEqualToString:@"self"]) {
                     
                 }else if ([property isEqualToString:@"windowContainer"]) {
-                    containView = [UIContainerWindow containerWindow];
-                    value = containView;
+                    value = [UIContainerWindow containerWindow];
                 }else if ([property isEqualToString:@"superContainer"]) {
-                    containView = containView.superContainer;
-                    value = containView;
+                    value = [value superContainer];
                 }else if([property hasPrefix:@"container_"]){
                     NSString *key = [property substringFromIndex:10];
-                    containView = [containView.subViews objectForKey:key];
-                    value = containView;
+                    value = [[value subViews] objectForKey:key];
                 }else{
                     value = [value getProperty:property];
                 }
