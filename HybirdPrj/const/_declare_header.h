@@ -147,8 +147,6 @@ OBJC_EXPORT bool file_delete(NSString *dscPath);
 
 OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
 
-OBJC_EXPORT bool file_exit(NSString *dscPath);
-
 #define exception_title [NSString stringWithFormat:@"%s\nLine:%d",__PRETTY_FUNCTION__,__LINE__]
 
 #define showException(msg) alertException(exception_title,msg);
