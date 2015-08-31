@@ -27,7 +27,7 @@ nonatomic_strong(UIWindow, *window);
         }
         self.view = [[UIWindow alloc] initWithFrame:rect];
     }else{
-        self.view = [[UIWindow alloc] init];
+        self.view = _obj_alloc(UIWindow)
     }
 }
 
@@ -54,7 +54,7 @@ nonatomic_strong(UIWindow, *window);
         [[UIApplication sharedApplication].delegate setWindow:window];
         [window makeKeyAndVisible];
         
-        UIContainerView *windowContainer = [UIContainerHelper createViewContainerWithDic:@{@"identify":@"window_identify",@"type":@"delegateWindow",@"UIContainerType":@"UIContainerWindow",@"windowLevel":@"1"}];
+        UIContainerView *windowContainer = newContainer(@{@"identify":@"window_identify",@"type":@"delegateWindow",@"UIContainerType":@"UIContainerWindow",@"windowLevel":@"1"});
         window.strong_container = windowContainer;
     }
     return window.strong_container;
@@ -69,12 +69,10 @@ nonatomic_strong(UIWindow, *window);
                 break;
             case UIInterfaceOrientationLandscapeLeft:{
                 transform= CGAffineTransformMakeRotation(-M_PI/2);
-//                self.view.center = CGPointMake(self.view.center.y, self.view.center.x);
             }
                 break;
             case UIInterfaceOrientationLandscapeRight:{
                 transform= CGAffineTransformMakeRotation(M_PI/2);
-//                self.view.center = CGPointMake(self.view.center.y, self.view.center.x);
             }
                 break;
             case UIInterfaceOrientationPortrait:

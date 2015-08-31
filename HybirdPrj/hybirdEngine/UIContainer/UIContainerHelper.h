@@ -36,8 +36,6 @@
 
 @interface UIContainerHelper : NSObject
 
-DECLARE_AS_SINGLETON(UIContainerHelper);
-
-+ (id)createViewContainerWithDic:(NSDictionary*)aDic;
+id newContainer(NSDictionary * aDic);
 
 @end

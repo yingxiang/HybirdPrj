@@ -10,9 +10,11 @@
 
 @implementation UIContainerHelper
 
-DECLARE_SINGLETON(UIContainerHelper);
+id containerAlloc(NSString *className, NSDictionary *aDic){
+    return [[NSClassFromString(className) alloc] initWithDict:aDic];
+}
 
-+ (id)createViewContainerWithDic:(NSDictionary*)aDic{
+id newContainer(NSDictionary * aDic){
     NSString *_uiContainerTypeView = [aDic objectForKey:@"UIContainerType"];
     
     UIContainerView *container = nil;
@@ -20,15 +22,14 @@ DECLARE_SINGLETON(UIContainerHelper);
     @try {
         if ([aDic[@"identify"] hasPrefix:@"~/"]) {
             NSString *className = [aDic[@"identify"] substringFromIndex:2];
-            NSDictionary *vDic = readFile(_HYBIRD_PATH_VIEW, className);
+            NSDictionary *vDic = file_read(_HYBIRD_PATH_VIEW, className);
             _uiContainerTypeView = [vDic objectForKey:@"UIContainerType"];
-            container = [[NSClassFromString(_uiContainerTypeView) alloc] initWithDict:vDic];
-        
+            container = containerAlloc(_uiContainerTypeView,vDic);
         }else{
             if (!_uiContainerTypeView) {
                 showException(aDic.description);
             }
-            container = [[NSClassFromString(_uiContainerTypeView) alloc] initWithDict:aDic];
+            container = containerAlloc(_uiContainerTypeView,aDic);
         }
 
     }

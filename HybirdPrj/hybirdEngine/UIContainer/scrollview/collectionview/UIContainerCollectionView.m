@@ -116,7 +116,7 @@ nonatomic_strong(UIContainerView,     *collectionHeadView)
             }];
         }else if ([key isEqualToString:@"collectionHeadView"]){
             if (!self.collectionHeadView) {
-                self.collectionHeadView = [UIContainerHelper createViewContainerWithDic:obj];
+                self.collectionHeadView = newContainer(obj);
                 self.collectionHeadView.superContainer = self;
                 [self.collectionView reloadData];
             }
@@ -154,7 +154,7 @@ nonatomic_strong(UIContainerView,     *collectionHeadView)
         }else {
             [dic setObject:[NSString stringWithFormat:@"%@_%ld_%ld",dic[@"identify"],(long)indexPath.section,(long)indexPath.row] forKey:@"identify"];
         }
-        UIContainerCollectionCell *containerCell = [UIContainerHelper createViewContainerWithDic:dic];
+        UIContainerCollectionCell *containerCell = newContainer(dic);
         containerCell.superContainer = self;
         containerCell.cell = cell;
         [containerCell setUI:containerCell.jsonData];
@@ -308,7 +308,7 @@ nonatomic_strong(UIContainerView,     *collectionHeadView)
                     [dic addEntries:heads[0]];
                     [dic setObject:[NSString stringWithFormat:@"%@_%ld_%ld",dic[@"identify"],(long)indexPath.section,(long)indexPath.row] forKey:@"identify"];
                     
-                    UIContainerReusableView *reusableContainer = [UIContainerHelper createViewContainerWithDic:dic];
+                    UIContainerReusableView *reusableContainer = newContainer(dic);
                     reusableContainer.superContainer = self;
                     reusableContainer.view = reusableView;
                     reusableView.container = reusableContainer;
@@ -332,7 +332,7 @@ nonatomic_strong(UIContainerView,     *collectionHeadView)
                 [dic addEntries:foots[0]];
                 [dic setObject:[NSString stringWithFormat:@"%@_%ld_%ld",dic[@"identify"],(long)indexPath.section,(long)indexPath.row] forKey:@"identify"];
                 
-                UIContainerView *reusableContainer = [UIContainerHelper createViewContainerWithDic:dic];
+                UIContainerView *reusableContainer = newContainer(dic);
                 reusableContainer.superContainer = self;
                 reusableContainer.view = reusableView;
                 reusableView.container = reusableContainer;

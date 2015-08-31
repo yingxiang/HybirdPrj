@@ -24,7 +24,7 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
     self = [super init];
     if (self) {
         [self statusWindowContainer];
-        NSDictionary *dic = readFile(_HYBIRD_PATH_DATA, @"NSModelFuctionCenter");
+        NSDictionary *dic = file_read(_HYBIRD_PATH_DATA, @"NSModelFuctionCenter");
         if (dic) {
             [self.modelList addEntries:dic];
         }
@@ -54,7 +54,7 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
     UIInterfaceOrientation interfaceOrientation = [[UIViewControllerHelper shareInstance] getCurrentViewController].interfaceOrientation;
 
     if (!_statusWindowContainer) {
-        _statusWindowContainer = [UIContainerHelper createViewContainerWithDic:@{@"identify":@"~/statusWindow"}];
+        _statusWindowContainer = newContainer(@{@"identify":@"~/statusWindow"});
         [_statusWindowContainer setUI:_statusWindowContainer.jsonData];
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)) {
             _statusWindowContainer.view.center = CGPointMake(_statusWindowContainer.view.center.y, _statusWindowContainer.view.center.x);
@@ -143,9 +143,9 @@ DECLARE_SINGLETON(NSModelFuctionCenter);
             [BaseAlertView alertWithTitle:@"新版本更新" message:msg clickIndex:^(NSInteger index) {
                 if (index == 1) {
                     //启动下载更新
-                    NSMutableDictionary *dic = [readFile(_HYBIRD_PATH_VIEW, @"updateView") obj_copy];
+                    NSMutableDictionary *dic = [file_read(_HYBIRD_PATH_VIEW, @"updateView") obj_copy];
                     if (dic) {
-                        UIContainerView *container = [UIContainerHelper createViewContainerWithDic:dic];
+                        UIContainerView *container = newContainer(dic);
                         if (container) {
                             [[container.functionList objectForKey:@"setUI:"] setValue:url forKey:@"url"];
                             [[UIContainerWindow containerWindow] addSubContainer:container data:dic];

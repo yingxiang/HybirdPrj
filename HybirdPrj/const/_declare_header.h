@@ -136,7 +136,18 @@ OBJC_EXPORT void runFunction(NSDictionary *dic , UIContainerView * container);
 
 OBJC_EXPORT void alertException(NSString *title,NSString *msg);
 
-OBJC_EXPORT NSDictionary* readFile(NSString *path , NSString *filename);
+//file
+OBJC_EXPORT NSDictionary* file_read(NSString *path , NSString *filename);
+
+OBJC_EXPORT bool file_exit(NSString *dstPath);
+
+OBJC_EXPORT bool file_copy(NSString *srcPath,NSString *dstPath);
+
+OBJC_EXPORT bool file_delete(NSString *dscPath);
+
+OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
+
+OBJC_EXPORT bool file_exit(NSString *dscPath);
 
 #define exception_title [NSString stringWithFormat:@"%s\nLine:%d",__PRETTY_FUNCTION__,__LINE__]
 
@@ -149,6 +160,8 @@ OBJC_EXPORT NSDictionary* readFile(NSString *path , NSString *filename);
 #define showBoolException(key,obj) alertException(exception_title,[NSString stringWithFormat:@"%@ [%@ boolValue]",key,obj]);
 
 #define showDoubleException(key,obj) alertException(exception_title,[NSString stringWithFormat:@"%@ [%@ doubleValue]",key,obj]);
+
+
 
 #pragma mark - NSNotification
 

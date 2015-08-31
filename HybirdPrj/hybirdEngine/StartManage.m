@@ -26,33 +26,18 @@ OBJC_EXPORT void replaceClass();
     
     //判断设备（iphone/ipad）
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:_isIpad ?@"hybird_ipad.bundle" :@"hybird_iphone.bundle"];
-    NSError *error = nil;
     
-    if([[NSFileManager defaultManager] fileExistsAtPath:path]){
-        
-    }else {
-        NSLog(@"原始路径不存在");
+    if(!file_exit(path)){
         return NO;
     }
     
-    if ([[NSFileManager defaultManager] fileExistsAtPath:_HYBIRD_PATH_LIBRARY]) {
+    if (file_exit(_HYBIRD_PATH_LIBRARY)) {
 #ifdef COPY_ANYTIME
-        [[NSFileManager defaultManager] removeItemAtPath:_HYBIRD_PATH_LIBRARY error:nil];
-        
-        if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:_HYBIRD_PATH_LIBRARY error:&error]) {
-            NSLog(@"error --- >%@",error);
-            NSString *msg = [NSString stringWithFormat:@"%@",error];
-            showException( msg);
-            return NO;
-        }
+        if(file_delete(_HYBIRD_PATH_LIBRARY))
+            file_copy(path, _HYBIRD_PATH_LIBRARY);
 #endif
     }else{
-        if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:_HYBIRD_PATH_LIBRARY error:&error]) {
-            NSLog(@"error --- >%@",error);
-            NSString *msg = [NSString stringWithFormat:@"%@",error];
-            showException(msg);
-            return NO;
-        }
+        file_copy(path, _HYBIRD_PATH_LIBRARY);
     }
 
     //获取useragent
@@ -81,8 +66,8 @@ OBJC_EXPORT void replaceClass();
     //
     UIApplication *application = [UIApplication sharedApplication];
     
-    NSDictionary *vcDic =  readFile(_HYBIRD_START_PATH, nil);
-    UIViewController *vc = [UIViewControllerHelper creatViewController:vcDic];
+    NSDictionary *vcDic =  file_read(_HYBIRD_START_PATH, nil);
+    UIViewController *vc = newController(vcDic);
     if (vc) {
         [[application.delegate window] setRootViewController:vc];
         //启动url缓存 ()

@@ -32,7 +32,7 @@ static const void *pushCompleteKey = &pushCompleteKey;
     [super createController:json];
     self.delegate = self;
     if (json[@"rootViewController"]) {
-        UIViewController *common = [UIViewControllerHelper creatViewController:json[@"rootViewController"]];
+        UIViewController *common = newController(json[@"rootViewController"]);
         if (common) {
             self.viewControllers = @[common];
         }
@@ -51,7 +51,7 @@ static const void *pushCompleteKey = &pushCompleteKey;
         if ([key isEqualToString:@"navigationBar"]) {
             UIContainerView *navbar = self.navigationBar.container;
             if (!navbar) {
-                navbar = [UIContainerHelper createViewContainerWithDic:obj];
+                navbar = newContainer(obj);
                 navbar.view = self.navigationBar;
                 navbar.superContainer = self.container;
                 self.navigationBar.container = navbar;
@@ -66,7 +66,7 @@ static const void *pushCompleteKey = &pushCompleteKey;
         }else if ([key isEqualToString:@"toolbar"]){
             UIContainerView *toolbar = self.toolbar.strong_container;
             if (!toolbar) {
-                toolbar = [UIContainerHelper createViewContainerWithDic:obj];
+                toolbar = newContainer(obj);
                 toolbar.view = self.toolbar;
                 self.toolbar.strong_container = toolbar;
             }

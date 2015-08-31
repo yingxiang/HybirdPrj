@@ -25,7 +25,7 @@ nonatomic_weak(UIBarButtonItem, *buttonItem);
     }else if (dict[@"title"]){
         self.item = [[UIBarButtonItem alloc] initWithTitle:dict[@"title"] style:UIBarButtonItemStylePlain target:self action:@selector(eventTouchUpInside)];
     }else if(dict[@"customView"]){
-        UIContainerView *customView = [UIContainerHelper createViewContainerWithDic:dict[@"customView"]];
+        UIContainerView *customView = newContainer(dict[@"customView"]);
         customView.superContainer = self;
         self.item = [[UIBarButtonItem alloc] initWithCustomView:customView.view];
         [customView setUI:dict[@"customView"]];

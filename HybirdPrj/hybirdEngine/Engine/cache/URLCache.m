@@ -50,14 +50,14 @@ DECLARE_SINGLETON(URLCache)
 
 - (void)cache{
     //
-    if (![[NSFileManager defaultManager] fileExistsAtPath:_HYBIRD_PATH_WEB]) {
+    if (!file_exit(_HYBIRD_PATH_WEB)) {
         NSString *bundlepath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web.bundle"];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:bundlepath]) {
-            [[NSFileManager defaultManager] copyItemAtPath:bundlepath toPath:_HYBIRD_PATH_WEB error:nil];
+        if (file_exit(bundlepath)) {
+            file_copy(bundlepath, _HYBIRD_PATH_WEB);
         }
     }
     [self.appPageUrlDic removeAllObjects];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:_HYBIRD_PATH_WEB]) {
+    if (file_exit(_HYBIRD_PATH_WEB)) {
         //
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *pageDir = [_HYBIRD_PATH_WEB stringByAppendingPathComponent:@"release/app_page"];
@@ -87,7 +87,7 @@ DECLARE_SINGLETON(URLCache)
 - (BOOL)webView:(id)webView loadRequest:(NSURL*)url{
     NSString *decodeUrl = [url.absoluteString URLDecodedString];
     NSString* filePath = self.appPageUrlDic[decodeUrl];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath])
+    if (file_exit(filePath))
     {
 //        NSData *data = [NSData dataWithContentsOfFile:filePath];
 //        obj_msgSend(webView, @selector(loadData:MIMEType:textEncodingName:baseURL:),data,@"text/html",[NSNull null],[NSURL fileURLWithPath:filePath]);

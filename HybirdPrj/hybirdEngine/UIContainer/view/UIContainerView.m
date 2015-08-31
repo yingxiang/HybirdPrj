@@ -461,7 +461,7 @@ nonatomic_weak  (id  , actionTarget)
     NSMutableDictionary *copydata = [data obj_copy];
     if ([data[@"identify"] hasPrefix:@"~/"]) {
         NSString *className = [data[@"identify"] substringFromIndex:2];
-        NSDictionary *vDic = readFile(_HYBIRD_PATH_VIEW, className);
+        NSDictionary *vDic = file_read(_HYBIRD_PATH_VIEW, className);
         [copydata addEntries:vDic];
     }
     data = copydata;
@@ -472,7 +472,7 @@ nonatomic_weak  (id  , actionTarget)
             for (NSDictionary* dict in obj) {
                 UIContainerView *container = self.subViews[dict[@"identify"]];
                 if (!container) {
-                    container = [UIContainerHelper createViewContainerWithDic:dict];
+                    container = newContainer(dict);;
                 }
                 [self addSubContainer:container data:dict];
             }

@@ -164,7 +164,7 @@ nonatomic_strong(NSArray,             *dataSource);
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view{
     if (!view.container) {
         NSDictionary *dic= self.cells[0];
-        UIContainerView *containerCell = [UIContainerHelper createViewContainerWithDic:self.jsonData[@"cells"][0]];
+        UIContainerView *containerCell = newContainer(self.jsonData[@"cells"][0]);
         NSString *cellIdentify = [NSString stringWithFormat:@"%@_%ld",dic[@"identify"],(long)index];
         containerCell.identify = cellIdentify;
         containerCell.superContainer = self;

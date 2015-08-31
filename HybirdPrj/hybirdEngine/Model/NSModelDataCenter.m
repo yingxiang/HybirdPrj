@@ -15,11 +15,11 @@ DECLARE_SINGLETON(NSModelDataCenter);
 - (instancetype)init{
     self = [super init];
     if (self) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:readFile(_HYBIRD_PATH_DATA, @"NSLocalizedString")];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:file_read(_HYBIRD_PATH_DATA, @"NSLocalizedString")];
         [self setObject:dic forKey:@"NSLocalizedString"];
         self.localStringList = dic;
         
-        NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:readFile(_HYBIRD_PATH_DATA, @"NSModelDataCenter")];
+        NSMutableDictionary *data = [NSMutableDictionary dictionaryWithDictionary:file_read(_HYBIRD_PATH_DATA, @"NSModelDataCenter")];
         [self setObject:data forKey:@"NSModelDataCenter"];
         self.dataList = data;
     }

@@ -39,7 +39,7 @@
             for (NSDictionary* dict in obj) {
                 UIContainerView *container = self.subViews[dict[@"identify"]];
                 if (!container) {
-                    container = [UIContainerHelper createViewContainerWithDic:dict];
+                    container = newContainer(dict);
                 }
                 [self addSubContainer:container data:dict];
             }
@@ -78,7 +78,7 @@
     for (NSDictionary* dict in self.jsonData[@"subViews"]) {
         UIContainerView *container = self.subViews[dict[@"identify"]];
         if (!container) {
-            container = [UIContainerHelper createViewContainerWithDic:dict];
+            container = newContainer(dict);
         }
         [self addSubContainer:container data:dict];
     }

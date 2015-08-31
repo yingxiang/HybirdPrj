@@ -48,6 +48,6 @@ DECLARE_AS_SINGLETON(UIViewControllerHelper);
 
 #pragma mark - 
 
-+ (id)creatViewController:(NSDictionary*)dic;
+id newController(NSDictionary *dic);
 
 @end

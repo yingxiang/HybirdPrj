@@ -108,13 +108,13 @@ DECLARE_SINGLETON(UIViewControllerHelper);
     
     UIViewController *current = [_viewControllers lastObject];
 
-    NSDictionary *vcDic = readFile(_HYBIRD_PATH_VIEWCONTROLLER, className);
+    NSDictionary *vcDic = file_read(_HYBIRD_PATH_VIEWCONTROLLER, className);
     NSMutableDictionary *vcData = [NSMutableDictionary dictionaryWithDictionary:vcDic];
     if (dic) {
         [vcData addEntries:dic];
     }
 
-    UIViewController *controller = [UIViewControllerHelper creatViewController:vcData];
+    UIViewController *controller = newController(vcData);
 
     if (controller) {
         if ([current isKindOfClass:[UINavigationController class]]) {
@@ -174,7 +174,7 @@ DECLARE_SINGLETON(UIViewControllerHelper);
 }
 
 #pragma mark - 
-+ (id)creatViewController:(NSDictionary*)dic{
+id newController(NSDictionary *dic){
     UIViewController *vc = nil;
     
     NSString *classname = dic[@"class"];

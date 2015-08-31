@@ -133,11 +133,11 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
 
 - (void)createController:(NSDictionary*)json{
     if (json[@"container"]) {
-        self.container = [UIContainerHelper createViewContainerWithDic:json[@"container"]];
+        self.container = newContainer(json[@"container"]);
         self.container.view.viewController = self;
         self.isFirstLoad = YES;
     }else {
-        self.container = [UIContainerHelper createViewContainerWithDic:@{@"UIContainerType":@"UIContainerView",@"identify":@"navContainer"}];
+        self.container = newContainer(@{@"UIContainerType":@"UIContainerView",@"identify":@"navContainer"});
     }
     self.jsonData = [NSMutableDictionary dictionaryWithDictionary:json];
 
@@ -153,7 +153,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
         }else if ([key isEqualToString:@"tabBarItem"]) {
             UIContainerItem *tabBarItem = (UIContainerItem*)self.tabBarItem.container;
             if (!tabBarItem) {
-                tabBarItem = [UIContainerHelper createViewContainerWithDic:obj];
+                tabBarItem = newContainer(obj);
                 tabBarItem.item = self.tabBarItem;
                 tabBarItem.superContainer = self.container;
             }
@@ -173,7 +173,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             if (obj[@"leftBarButtonItem"]) {
                 UIContainerButtonItem *item = [self.container.subViews objectForKey:@"leftBarButtonItem"];
                 if (!item) {
-                    item = [UIContainerHelper createViewContainerWithDic:obj[@"leftBarButtonItem"]];
+                    item = newContainer(obj[@"leftBarButtonItem"]);
                     if (self.navigationItem.leftBarButtonItem && [obj[@"rightBarButtonItem"][@"useSysterm"] obj_bool:^(BOOL success) {
                         if (!success) {
                             showBoolException(key, obj);
@@ -189,7 +189,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             if (obj[@"rightBarButtonItem"]) {
                 UIContainerButtonItem *item = [self.container.subViews objectForKey:@"rightBarButtonItem"];
                 if (!item) {
-                    item = [UIContainerHelper createViewContainerWithDic:obj[@"rightBarButtonItem"]];
+                    item = newContainer(obj[@"rightBarButtonItem"]);
                     if (self.navigationItem.rightBarButtonItem && [obj[@"rightBarButtonItem"][@"useSysterm"] obj_bool:^(BOOL success) {
                         if (!success) {
                             showBoolException(key, obj);
@@ -205,7 +205,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             if (obj[@"rightBarButtonItems"]) {
                 NSMutableArray *array = [NSMutableArray array];
                 for (NSDictionary *dic in obj[@"rightBarButtonItems"]) {
-                    UIContainerItem *container = [UIContainerHelper createViewContainerWithDic:dic];
+                    UIContainerItem *container = newContainer(dic);
                     [container setUI:dic];
                     container.superContainer = self.container;
                     [array addObject:container.item];
@@ -215,7 +215,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             if (obj[@"leftBarButtonItems"]) {
                 NSMutableArray *array = [NSMutableArray array];
                 for (NSDictionary *dic in obj[@"leftBarButtonItems"]) {
-                    UIContainerItem *container = [UIContainerHelper createViewContainerWithDic:dic];
+                    UIContainerItem *container = newContainer(dic);
                     [container setUI:dic];
                     container.superContainer = self.container;
                     [array addObject:container.item];
@@ -225,7 +225,7 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             if (obj[@"titleView"]) {
                 UIContainerView *container = self.navigationItem.titleView.container;
                 if (!container) {
-                    container = [UIContainerHelper createViewContainerWithDic:obj[@"titleView"]];
+                    container = newContainer(obj[@"titleView"]);
                     container.superContainer = self.container;
                 }
                 [container setUI:obj[@"titleView"]];

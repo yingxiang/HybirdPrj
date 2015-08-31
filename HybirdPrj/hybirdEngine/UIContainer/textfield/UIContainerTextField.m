@@ -100,10 +100,10 @@ nonatomic_strong(UITextField, *textField);
                 }
             }];
         }else if ([key isEqualToString:@"leftView"]) {
-            UIContainerView *containView = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *containView = newContainer(obj);
             self.textField.leftView = containView.view;
         }else if ([key isEqualToString:@"rightView"]) {
-            UIContainerView *containView = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *containView = newContainer(obj);
             self.textField.rightView = containView.view;
         }else if ([key isEqualToString:@"leftViewMode"]) {
             self.textField.leftViewMode = [obj obj_integer:^(BOOL success) {

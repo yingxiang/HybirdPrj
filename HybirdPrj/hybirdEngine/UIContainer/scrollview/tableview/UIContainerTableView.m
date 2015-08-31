@@ -57,7 +57,7 @@ nonatomic_strong(NSArray,                 *dataSource)
             
             UIContainerView *container = self.tableView.tableHeaderView.container;
             if (!container) {
-                container = [UIContainerHelper createViewContainerWithDic:obj];
+                container = newContainer(obj);
                 container.superContainer = self;
             }else{
                 self.tableView.tableHeaderView = nil;
@@ -67,7 +67,7 @@ nonatomic_strong(NSArray,                 *dataSource)
         }else if ([key isEqualToString:@"tableFooterView"]){
             UIContainerView *container = self.tableView.tableHeaderView.container;
             if (!container) {
-                container = [UIContainerHelper createViewContainerWithDic:obj];
+                container = newContainer(obj);
                 container.superContainer = self;
             }else{
                 self.tableView.tableFooterView = nil;
@@ -137,7 +137,7 @@ nonatomic_strong(NSArray,                 *dataSource)
         NSString *cellIdentify = [NSString stringWithFormat:@"%@_%ld_%ld",dic[@"identify"],(long)indexPath.section,(long)indexPath.row];
         UIContainerCell *containerCell = [self.subViews objectForKey:cellIdentify];
         if (!containerCell) {
-            containerCell = [UIContainerHelper createViewContainerWithDic:dic];
+            containerCell = newContainer(dic);
             containerCell.identify = cellIdentify;
             containerCell.superContainer = self;
             [containerCell setUI:containerCell.jsonData];
@@ -179,7 +179,7 @@ nonatomic_strong(NSArray,                 *dataSource)
         NSString *identify = [NSString stringWithFormat:@"%@_%ld",dic[@"identify"],(long)section];
         UIContainerCell *containerCell = [self.subViews objectForKey:identify];
         if (!containerCell) {
-            containerCell = [UIContainerHelper createViewContainerWithDic:dic];
+            containerCell = newContainer(dic);
             containerCell.identify = identify;
             containerCell.superContainer = self;
             [containerCell setUI:containerCell.jsonData];
@@ -197,7 +197,7 @@ nonatomic_strong(NSArray,                 *dataSource)
         NSString *identify = [NSString stringWithFormat:@"%@_%ld",dic[@"identify"],(long)section];
         UIContainerCell *containerCell = [self.subViews objectForKey:identify];
         if (!containerCell) {
-            containerCell = [UIContainerHelper createViewContainerWithDic:dic];
+            containerCell = newContainer(dic);
             containerCell.identify = identify;
             containerCell.superContainer = self;
             [containerCell setUI:containerCell.jsonData];

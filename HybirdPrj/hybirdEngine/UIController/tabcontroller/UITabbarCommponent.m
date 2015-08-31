@@ -23,8 +23,8 @@
     [super createController:json];
     NSMutableArray *viewControllers = [NSMutableArray array];
     for (NSString *tabString in json[@"viewControllers"]) {
-        NSDictionary *tabDic = readFile(_HYBIRD_PATH_VIEWCONTROLLER, tabString);
-        UIViewController *vc = [UIViewControllerHelper creatViewController:tabDic];
+        NSDictionary *tabDic = file_read(_HYBIRD_PATH_VIEWCONTROLLER, tabString);
+        UIViewController *vc = newController(tabDic);
         if (vc) {
             [viewControllers addObject:vc];
         }
@@ -40,7 +40,7 @@
             
             UIContainerTabBar *container = (UIContainerTabBar*)self.tabBar.container;
             if (!container) {
-                container =  [UIContainerHelper createViewContainerWithDic:obj];
+                container =  newContainer(obj);
                 container.tabBar = self.tabBar;
                 container.superContainer = self.container;
                 self.tabBar.container = container;

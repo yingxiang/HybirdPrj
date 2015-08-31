@@ -76,7 +76,7 @@ nonatomic_strong(UIContainerView, *cameraOverlayContainer);
                 }];
             }else if ([key isEqualToString:@"cameraOverlayView"]){
                 if(!self.cameraOverlayContainer){
-                    self.cameraOverlayContainer = [UIContainerHelper createViewContainerWithDic:obj];
+                    self.cameraOverlayContainer = newContainer(obj);
                     self.cameraOverlayView = self.cameraOverlayContainer.view;
                 }
                 [self.cameraOverlayContainer setUI:obj];

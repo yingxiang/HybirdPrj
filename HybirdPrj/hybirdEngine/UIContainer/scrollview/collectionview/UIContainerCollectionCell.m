@@ -34,12 +34,12 @@
         obj = [self assignment:obj  :data];
         
         if ([key isEqualToString:@"backgroundView"]) {
-            UIContainerView *backgroundView = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *backgroundView = newContainer(obj);
             backgroundView.superContainer = self;
             self.cell.backgroundView = backgroundView.view;
             [backgroundView setUI:obj];
         }else if([key isEqualToString:@"selectedBackgroundView"]){
-            UIContainerView *selectedBackgroundView = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *selectedBackgroundView = newContainer(obj);
             selectedBackgroundView.superContainer = self;
             self.cell.selectedBackgroundView = selectedBackgroundView.view;
         }

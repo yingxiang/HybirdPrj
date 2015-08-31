@@ -49,12 +49,12 @@
         obj = [self assignment:obj :data];
         
         if ([key isEqualToString:@"backgroundView"]) {
-            UIContainerView *container = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *container = newContainer(obj);
             container.superContainer = self;
             [container setUI:obj];
             self.cell.backgroundView = container.view;
         }else if ([key isEqualToString:@"selectedBackgroundView"]){
-            UIContainerView *container = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *container = newContainer(obj);
             container.superContainer = self;
             [container setUI:obj];
             self.cell.selectedBackgroundView = container.view;
@@ -71,7 +71,7 @@
                 }
             }];
         }else if ([key isEqualToString:@"accessoryView"]){
-            UIContainerView *container = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *container = newContainer(obj);
             container.superContainer = self;
             [container setUI:obj];
             self.cell.accessoryView = container.view;
@@ -82,14 +82,14 @@
                 }
             }];
         }else if ([key isEqualToString:@"editingAccessoryView"]){
-            UIContainerView *container = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *container = newContainer(obj);
             container.superContainer = self;
             [container setUI:obj];
             self.cell.editingAccessoryView = container.view;
         }else if([key isEqualToString:@"imageView"]){
             UIContainerView *container = self.cell.imageView.container;
             if (!container) {
-                container = [UIContainerHelper createViewContainerWithDic:obj];
+                container = newContainer(obj);
                 container.view = self.cell.imageView;
                 container.superContainer = self;
             }
@@ -97,7 +97,7 @@
         }else if([key isEqualToString:@"textLabel"]){
             UIContainerView *container = self.cell.textLabel.container;
             if (!container) {
-                container = [UIContainerHelper createViewContainerWithDic:obj];
+                container = newContainer(obj);
                 container.view = self.cell.textLabel;
                 container.superContainer = self;
             }
@@ -105,13 +105,13 @@
         }else if([key isEqualToString:@"detailTextLabel"]){
             UIContainerView *container = self.cell.detailTextLabel.container;
             if (!container) {
-                container = [UIContainerHelper createViewContainerWithDic:obj];
+                container = newContainer(obj);
                 container.view = self.cell.detailTextLabel;
                 container.superContainer = self;
             }
             [container setUI:obj];
         }else if([key isEqualToString:@"contentView"]){
-            UIContainerView *container = [UIContainerHelper createViewContainerWithDic:obj];
+            UIContainerView *container = newContainer(obj);
             container.view = self.cell.contentView;
             container.superContainer = self;
             [container setUI:obj];

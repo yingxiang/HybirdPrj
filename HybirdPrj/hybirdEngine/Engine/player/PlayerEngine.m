@@ -29,10 +29,10 @@ DECLARE_SINGLETON(PlayerEngine)
 - (instancetype)init{
     self = [super init];
     if (self) {
-        if (![[NSFileManager defaultManager] fileExistsAtPath:AUDIO_PATH]) {
+        if (!file_exit(AUDIO_PATH)) {
             [[NSFileManager defaultManager] createDirectoryAtPath:AUDIO_PATH withIntermediateDirectories:NO attributes:nil error:nil];
         }
-        if (![[NSFileManager defaultManager] fileExistsAtPath:BOOK_PATH]) {
+        if (!file_exit(BOOK_PATH)) {
             [[NSFileManager defaultManager] createDirectoryAtPath:BOOK_PATH withIntermediateDirectories:NO attributes:nil error:nil];
         }
     }
@@ -114,7 +114,7 @@ DECLARE_SINGLETON(PlayerEngine)
     NSString *fileName  = [url stringFromMD5];
     NSString *filePath  = [AUDIO_PATH stringByAppendingPathComponent:fileName];
     //根据url地址寻找本地资源
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    if (file_exit(filePath)) {
         [self audioPlay:filePath];
         [self.player playAtTime:startTime];
     }else {
@@ -135,7 +135,7 @@ DECLARE_SINGLETON(PlayerEngine)
             }
         } complete:^(BOOL success, NSString *cachefilePath) {
             if (success) {
-                [[NSFileManager defaultManager] moveItemAtPath:cachefilePath toPath:filePath error:nil];
+                file_move(cachefilePath, filePath);
                 if (!self.player && self.delegateContainer) {
                     [self audioPlay:filePath];
                     [self.player playAtTime:startTime];

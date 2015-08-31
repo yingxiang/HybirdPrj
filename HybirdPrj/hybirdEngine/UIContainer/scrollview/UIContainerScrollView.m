@@ -239,8 +239,10 @@ nonatomic_strong(UIScrollView, *scrollView);
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     UIContainerView *container = self.subViews[@"zoomingView"];
     if (!container) {
-        container = [UIContainerHelper createViewContainerWithDic:self.jsonData[@"zoomingView"]];
-        container.superContainer = self;
+        if (self.jsonData[@"zoomingView"]) {
+            container = newContainer(self.jsonData[@"zoomingView"]);
+            container.superContainer = self;
+        }
     }
     return container.view;
 }

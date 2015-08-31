@@ -67,7 +67,7 @@ void runFunction(NSDictionary *dic, UIContainerView * container);
 
 void alertException(NSString *title, NSString *msg);
 
-NSDictionary* readFile(NSString *filepath, NSString *filename);
+NSDictionary* file_read(NSString *filepath, NSString *filename);
 
 #pragma mark - private methods
 
@@ -89,7 +89,7 @@ void download (NSDictionary *dic , UIContainerView *container){
     BOOL recache = [dic[@"recache"] obj_bool:^(BOOL success) {
         
     }];
-    if (!recache && [[NSFileManager defaultManager] fileExistsAtPath:fileName]) {
+    if (!recache && file_exit(fileName)) {
         //已有该文件就不下载
         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
         NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
@@ -114,7 +114,6 @@ void download (NSDictionary *dic , UIContainerView *container){
         }
     } complete:^(BOOL success, NSString *cachefile) {
         if (success) {
-            NSFileManager *fileManager = [NSFileManager defaultManager];
             
             if ([cachefile hasSuffix:@".zip"]) {
 
@@ -143,7 +142,7 @@ void download (NSDictionary *dic , UIContainerView *container){
                             NSLog(@"archive success");
                         }
                         [archive UnzipCloseFile];
-                        [fileManager removeItemAtPath:cachefile error:nil];
+                        file_delete(cachefile);
                         //解压完成回调
                         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
                         NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
@@ -159,7 +158,7 @@ void download (NSDictionary *dic , UIContainerView *container){
                         }
                     });
                 }else {
-                    [fileManager removeItemAtPath:cachefile error:nil];
+                    file_delete(cachefile);
                     //解压失败
                     NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_failed"];
                     NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
@@ -174,7 +173,7 @@ void download (NSDictionary *dic , UIContainerView *container){
                 }
             }else {
                 //不是zip，不需要解压，直接返回
-                [fileManager moveItemAtPath:cachefile toPath:fileName error:nil];
+                file_move(cachefile, fileName);
                 NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
                 NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
                 if (function) {
@@ -495,7 +494,7 @@ void addview (NSDictionary *dic , UIContainerView *container){
     superContainer.view.viewController = container.view.viewController;
     
     if (!subContainer) {
-        subContainer = [UIContainerHelper createViewContainerWithDic:dic[@"subView"]];
+        subContainer = newContainer(dic[@"subView"]);
     }
     [superContainer addSubContainer:subContainer data:subContainer.jsonData];
     if (dic[@"animation"]) {
@@ -1092,13 +1091,15 @@ void runFunction(NSDictionary *dic , UIContainerView * container){
     }
 }
 
+#pragma mark - NSFile methods
+
 /**
  *  assign readjsonFile to dic
  *
  *  @param filepath
  *  @param filename
  */
-NSDictionary* readFile(NSString *filepath , NSString *filename){
+NSDictionary* file_read(NSString *filepath , NSString *filename){
     if (filepath) {
         if (filename) {
             if ([filename hasSuffix:@".json"]) {
@@ -1112,7 +1113,7 @@ NSDictionary* readFile(NSString *filepath , NSString *filename){
             NSError *error = nil;
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
             if (error) {
-                showException(error.description);
+                showException(error.localizedDescription);
             }else {
                 return dic;
             }
@@ -1121,4 +1122,41 @@ NSDictionary* readFile(NSString *filepath , NSString *filename){
         }
     }
     return nil;
+}
+
+bool file_exit(NSString *dscPath){
+    bool exit = [[NSFileManager defaultManager] fileExistsAtPath:dscPath];
+//    if (!exit) {
+//        showException(dscPath)
+//    }
+    return exit;
+}
+
+bool file_copy(NSString *srcPath,NSString *dstPath){
+    NSError *error = nil;
+    BOOL result = [[NSFileManager defaultManager] copyItemAtPath:srcPath toPath:dstPath error:&error];
+    if (error) {
+        showException(error.localizedDescription)
+    }
+    return result;
+}
+
+bool file_delete(NSString *dscPath){
+    NSError *error = nil;
+    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:dscPath error:&error];
+    if (error) {
+        showException(error.localizedDescription)
+    }
+    return result;
+}
+
+bool file_move(NSString *srcPath,NSString *dstPath){
+    NSError *error = nil;
+//    BOOL result = [[NSFileManager defaultManager] moveItemAtURL:[NSURL URLWithString:srcPath] toURL:[NSURL URLWithString:dstPath] error:&error];
+
+    BOOL result = [[NSFileManager defaultManager] moveItemAtPath:srcPath toPath:dstPath error:&error];
+    if (error) {
+        showException(error.localizedDescription)
+    }
+    return result;
 }

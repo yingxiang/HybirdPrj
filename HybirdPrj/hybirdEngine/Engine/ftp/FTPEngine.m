@@ -51,13 +51,10 @@
 
 + (void)uploadFileURL:(NSString *)aUrl filePath:(NSString *)aFilePath fileName:(NSString *)aFileName progress:(Block_progress)progressBlock complete:(Block_complete)completeBlock{
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
     //检查本地文件是否已存在
     NSString *fileName = [NSString stringWithFormat:@"%@/%@", aFilePath, aFileName];
     
-    if (![fileManager fileExistsAtPath:fileName]) {
-        showException(fileName);
-    }else{
+    if (file_exit(fileName)) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         
         AFHTTPRequestOperation *operation = [manager POST:aUrl parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
