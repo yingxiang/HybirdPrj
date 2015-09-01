@@ -8,124 +8,51 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
-		</dict>
-		<key>Pods-AFNetworking.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
-		<key>Pods-Masonry.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-		<key>Pods-RegexKitLite-NoWarning.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
-		</dict>
-		<key>Pods-SDWebImage.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
-		</dict>
-		<key>Pods-WebViewJavascriptBridge.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>Pods-Weibo-Weibo.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
-		</dict>
-		<key>Pods-ZipArchive.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
-		<key>Pods-iCarousel.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>RegexKitLite-NoWarning.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>WebViewJavascriptBridge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>Weibo-Weibo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>ZipArchive.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>iCarousel.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04709A06F183457583036338</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1291A9255EDA234954955471</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>234C2EB88D1A348CEDBC8396239D5028</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2AA9A8D86EE72CB9B9D3EA72</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -140,47 +67,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5049C578E2E3A288EDC4AEE4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>516FA10B0A0A7DBB0D76BECF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5B16375F1B45FA490B13695CFBA5B25F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>604DB16EA43A593D2FACC63F9904C37B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6680B78DC19F98D9F9B3CC38</key>
+		<key>6072C6BD2741514BBD87A1384E0721B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>727CB063B3EC6170C605210F62B48051</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C07985F41F69C57C908C7BCC</key>
+		<key>9B172D51B108FB43136F89B799BDCC4B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D7A38967292791932A09661ED7B93A18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB080628E7F5D76E895AC4DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -191,11 +93,6 @@
 			<true/>
 		</dict>
 		<key>F1062B6321FAD2345247C46C9055CFD0</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE1E331EF0CF57E5B345A8FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

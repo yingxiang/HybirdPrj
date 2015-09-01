@@ -2,17 +2,17 @@ platform :ios, '7.0'
 
 pod 'AFNetworking', '~> 2.5.4'
 
-pod 'Masonry', '~> 0.6.1'
+pod 'Masonry', '~> 0.6.2'
 
-pod 'SDWebImage', '~> 3.7.2'
+pod 'SDWebImage', '~> 3.7.3'
 
 pod 'RegexKitLite-NoWarning', '~> 1.1.0'
 
 pod 'ZipArchive', '~> 1.4.0'
 
-pod 'iCarousel', '~>1.8.1'
+pod 'iCarousel', '~>1.8.2'
 
-pod 'UMengAnalytics-NO-IDFA', '~>3.5.9'
+pod 'UMengAnalytics-NO-IDFA', '~>3.5.11'
 
 pod 'WebViewJavascriptBridge', '~>4.1.4'
 
