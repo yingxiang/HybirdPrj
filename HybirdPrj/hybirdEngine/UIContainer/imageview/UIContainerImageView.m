@@ -35,7 +35,7 @@ nonatomic_strong(UIImageView, *imageView);
         if ([key isEqualToString:@"image"]) {
             __block UIActivityIndicatorView *progress = (UIActivityIndicatorView*)[self.imageView viewWithTag:97];
             if (!progress) {
-                progress = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+                progress = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
                 [progress startAnimating];
                 [self.imageView addSubview:progress];
                 progress.center = self.imageView.center;

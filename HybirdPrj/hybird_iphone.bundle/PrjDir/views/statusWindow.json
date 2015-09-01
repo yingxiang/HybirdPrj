@@ -90,7 +90,7 @@
                      {
                      "functionname": "show_complete_block",
                      "type": "FT_UPDATEVIEW",
-                     "delay": "1.0",
+                     "delay": "1.5",
                      "alpha": "0",
                      "animation": {
                      "duration": "0.5"
