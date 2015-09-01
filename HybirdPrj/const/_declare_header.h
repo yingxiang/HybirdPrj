@@ -129,24 +129,6 @@ return singletonInstance; \
 
 #define _hybird_tips_(_msg) [[NSModelFuctionCenter shareInstance] showTips:_msg];
 
-OBJC_EXPORT void obj_msgSend(id self, SEL op, ...);
-
-@class UIContainerView;
-OBJC_EXPORT void runFunction(NSDictionary *dic , UIContainerView * container);
-
-OBJC_EXPORT void alertException(NSString *title,NSString *msg);
-
-//file
-OBJC_EXPORT NSDictionary* file_read(NSString *path , NSString *filename);
-
-OBJC_EXPORT bool file_exit(NSString *dstPath);
-
-OBJC_EXPORT bool file_copy(NSString *srcPath,NSString *dstPath);
-
-OBJC_EXPORT bool file_delete(NSString *dscPath);
-
-OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
-
 #define exception_title [NSString stringWithFormat:@"%s\nLine:%d",__PRETTY_FUNCTION__,__LINE__]
 
 #define showException(msg) alertException(exception_title,msg);
@@ -159,7 +141,27 @@ OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
 
 #define showDoubleException(key,obj) alertException(exception_title,[NSString stringWithFormat:@"%@ [%@ doubleValue]",key,obj]);
 
+#pragma mark - extern methods
 
+OBJC_EXPORT void obj_msgSend(id self, SEL op, ...);
+
+@class UIContainerView;
+OBJC_EXPORT void runFunction(NSDictionary *dic , UIContainerView * container);
+
+OBJC_EXPORT void alertException(NSString *title,NSString *msg);
+
+//file
+OBJC_EXPORT NSDictionary* file_read(NSString *path , NSString *filename);
+
+OBJC_EXPORT bool file_exist(NSString *dstPath);
+
+OBJC_EXPORT bool file_copy(NSString *srcPath,NSString *dstPath);
+
+OBJC_EXPORT bool file_delete(NSString *dscPath);
+
+OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
+
+OBJC_EXPORT bool file_createDirectory(NSString *dstPath);
 
 #pragma mark - NSNotification
 
@@ -167,7 +169,7 @@ OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
 
 #define _hybird_post_notification_(_postname,_object) [[NSNotificationCenter defaultCenter] postNotificationName:_postname object:_object];
 
-#pragma mark -block
+#pragma mark -block declare
 
 typedef void(^Block)(void);
 
@@ -176,7 +178,8 @@ typedef enum {
     PROGRESS_TYPE_UPLOAD,       //上传进度
     PROGRESS_TYPE_DOWNLOAD,     //下载进度
     PROGRESS_TYPE_PLAYAUDIO,    //播放进度
-    PROGRESS_TYPE_RECORDER,      //录音进度
+    PROGRESS_TYPE_RECORDER,     //录音进度
+    PROGRESS_TYPE_UNZIP,        //解压
 }PROGRESS_TYPE;
 //progresstype (downloadprogress、playaudioprogress、recoderprogres...)
 typedef void(^Block_progress)(PROGRESS_TYPE progresstype, long long currentprogress,long long totalprogress);

@@ -27,11 +27,11 @@ OBJC_EXPORT void replaceClass();
     //判断设备（iphone/ipad）
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:_isIpad ?@"hybird_ipad.bundle" :@"hybird_iphone.bundle"];
     
-    if(!file_exit(path)){
+    if(!file_exist(path)){
         return NO;
     }
     
-    if (file_exit(_HYBIRD_PATH_LIBRARY)) {
+    if (file_exist(_HYBIRD_PATH_LIBRARY)) {
 #ifdef COPY_ANYTIME
         if(file_delete(_HYBIRD_PATH_LIBRARY))
             file_copy(path, _HYBIRD_PATH_LIBRARY);
@@ -67,12 +67,14 @@ OBJC_EXPORT void replaceClass();
     UIApplication *application = [UIApplication sharedApplication];
     
     NSDictionary *vcDic =  file_read(_HYBIRD_START_PATH, nil);
-    UIViewController *vc = newController(vcDic);
-    if (vc) {
-        [[application.delegate window] setRootViewController:vc];
+    if (vcDic) {
         //启动url缓存 ()
         [[URLCache shareInstance] cache];
-        return YES;
+        UIViewController *vc = newController(vcDic);
+        if (vc) {
+            [[application.delegate window] setRootViewController:vc];
+            return YES;
+        }
     }
     return NO;
 }

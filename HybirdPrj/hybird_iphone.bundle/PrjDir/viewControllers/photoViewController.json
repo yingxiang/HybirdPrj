@@ -8,6 +8,7 @@
     }
   },
   "hidesBottomBarWhenPushed": true,
+    "UIStatusBarStyle":1,
   "supportedInterfaceOrientations": "0",
   "container": {
     "UIContainerType": "UIContainerView",
@@ -17,7 +18,7 @@
       {
         "UIContainerType": "UIContaineriCarousel",
         "identify": "iCarousel",
-        "backgroundColor": "#808080",
+        "backgroundColor": "#000000ec",
         "scrollEnabled": true,
         "type": "0",
         "bounces": true,

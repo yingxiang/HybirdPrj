@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Elephant. All rights reserved.
 //
 
-#import "FTPEngine.h"
+#import "fileEngine.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ShareEngine.h"
 #import "CALayer+animation.h"
@@ -67,9 +67,29 @@ void runFunction(NSDictionary *dic, UIContainerView * container);
 
 void alertException(NSString *title, NSString *msg);
 
-NSDictionary* file_read(NSString *filepath, NSString *filename);
-
 #pragma mark - private methods
+
+void unarchivezip (NSString *srcPath,NSString *dstPath,Block_progress progress,Block_complete complete){
+    ZipArchive *archive = [[ZipArchive alloc] init];
+    if([archive UnzipOpenFile:srcPath]){
+        if (progress) {
+            archive.progressBlock = ^(int percentage, int filesProcessed, unsigned long numFiles){
+                progress(PROGRESS_TYPE_UNZIP,filesProcessed,numFiles);
+            };
+        }
+        dispatch_async(global_queue, ^{
+            BOOL result = [archive UnzipFileTo:dstPath overWrite:YES];
+            [archive UnzipCloseFile];
+            file_delete(srcPath);
+            if (result) {
+                NSLog(@"archive success");
+            }
+            complete(result,nil);
+        });
+    }else{
+        complete(NO,nil);
+    }
+}
 
 /**
  *  下载
@@ -89,7 +109,7 @@ void download (NSDictionary *dic , UIContainerView *container){
     BOOL recache = [dic[@"recache"] obj_bool:^(BOOL success) {
         
     }];
-    if (!recache && file_exit(fileName)) {
+    if (!recache && file_exist(fileName)) {
         //已有该文件就不下载
         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
         NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
@@ -104,46 +124,38 @@ void download (NSDictionary *dic , UIContainerView *container){
         return;
     }
     
-    [FTPEngine downloadFileURL:url progress:^(PROGRESS_TYPE progresstype, long long totalBytesRead, long long totalBytesExpectedToRead) {
+    downloadFile(url, ^(PROGRESS_TYPE progresstype, long long currentprogress, long long totalprogress) {
         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_progress"];
         NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
         if (function) {
-            [function setObject:[NSNumber numberWithFloat:totalBytesRead] forKey:@"parmer1"];
-            [function setObject:[NSNumber numberWithFloat:totalBytesExpectedToRead] forKey:@"parmer2"];
+            [function setObject:[NSNumber numberWithFloat:currentprogress] forKey:@"parmer1"];
+            [function setObject:[NSNumber numberWithFloat:totalprogress] forKey:@"parmer2"];
             runFunction(function, container);
         }
-    } complete:^(BOOL success, NSString *cachefile) {
+
+    }, ^(BOOL success, NSString *cachefile) {
         if (success) {
             
             if ([cachefile hasSuffix:@".zip"]) {
-
+                
                 NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_unzip"];
                 NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
                 if (function) {
                     runFunction(function, container);
                 }
                 
-                ZipArchive *archive = [[ZipArchive alloc] init];
-                if([archive UnzipOpenFile:cachefile]){
-                    archive.progressBlock = ^(int percentage, int filesProcessed, unsigned long numFiles){
-                        NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_progress"];
-                        NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
-                        if (function) {
-                            [function setObject:[NSNumber numberWithFloat:filesProcessed] forKey:@"parmer1"];
-                            [function setObject:[NSNumber numberWithFloat:numFiles] forKey:@"parmer2"];
-                            dispatch_async(main_queue, ^{
-                                runFunction(function, container);
-                            });
-                        }
-                    };
-                    dispatch_async(global_queue, ^{
-                        BOOL result = [archive UnzipFileTo:filePath overWrite:YES];
-                        if (result) {
-                            NSLog(@"archive success");
-                        }
-                        [archive UnzipCloseFile];
-                        file_delete(cachefile);
-                        //解压完成回调
+                unarchivezip(cachefile, filePath, ^(PROGRESS_TYPE progresstype, long long currentprogress, long long totalprogress) {
+                    NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_progress"];
+                    NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
+                    if (function) {
+                        [function setObject:[NSNumber numberWithFloat:currentprogress] forKey:@"parmer1"];
+                        [function setObject:[NSNumber numberWithFloat:totalprogress] forKey:@"parmer2"];
+                        dispatch_async(main_queue, ^{
+                            runFunction(function, container);
+                        });
+                    }
+                }, ^(BOOL success, id data) {
+                    if (success) {
                         NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_block"];
                         NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
                         if (function) {
@@ -156,21 +168,21 @@ void download (NSDictionary *dic , UIContainerView *container){
                                 runFunction(function, container);
                             });
                         }
-                    });
-                }else {
-                    file_delete(cachefile);
-                    //解压失败
-                    NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_failed"];
-                    NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
-                    if (function) {
-                        [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                            if ([key hasPrefix:@"parmer"]) {
-                                [function setObject:[obj obj_copy] forKey:[key obj_copy]];
-                            }
-                        }];
-                        runFunction(function, container);
+                    }else{
+                        file_delete(cachefile);
+                        //解压失败
+                        NSString *functionName = [dic[@"functionname"] stringByAppendingString:@"_failed"];
+                        NSMutableDictionary *function = [[container.functionList objectForKey:functionName] obj_copy];
+                        if (function) {
+                            [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                                if ([key hasPrefix:@"parmer"]) {
+                                    [function setObject:[obj obj_copy] forKey:[key obj_copy]];
+                                }
+                            }];
+                            runFunction(function, container);
+                        }
                     }
-                }
+                });
             }else {
                 //不是zip，不需要解压，直接返回
                 file_move(cachefile, fileName);
@@ -198,7 +210,7 @@ void download (NSDictionary *dic , UIContainerView *container){
                 runFunction(function, container);
             }
         }
-    }];
+    });
 }
 
 
@@ -1089,74 +1101,4 @@ void runFunction(NSDictionary *dic , UIContainerView * container){
     }else{
         run(dic, container);
     }
-}
-
-#pragma mark - NSFile methods
-
-/**
- *  assign readjsonFile to dic
- *
- *  @param filepath
- *  @param filename
- */
-NSDictionary* file_read(NSString *filepath , NSString *filename){
-    if (filepath) {
-        if (filename) {
-            if ([filename hasSuffix:@".json"]) {
-                filepath = [filepath stringByAppendingPathComponent:filename];
-            }else{
-                filepath = [[filepath stringByAppendingPathComponent:filename] stringByAppendingString:@".json"];
-            }
-        }
-        NSData *data = [NSData dataWithContentsOfFile:filepath];
-        if (data) {
-            NSError *error = nil;
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-            if (error) {
-                showException(error.localizedDescription);
-            }else {
-                return dic;
-            }
-        }else {
-            showException(filename);
-        }
-    }
-    return nil;
-}
-
-bool file_exit(NSString *dscPath){
-    bool exit = [[NSFileManager defaultManager] fileExistsAtPath:dscPath];
-//    if (!exit) {
-//        showException(dscPath)
-//    }
-    return exit;
-}
-
-bool file_copy(NSString *srcPath,NSString *dstPath){
-    NSError *error = nil;
-    BOOL result = [[NSFileManager defaultManager] copyItemAtPath:srcPath toPath:dstPath error:&error];
-    if (error) {
-        showException(error.localizedDescription)
-    }
-    return result;
-}
-
-bool file_delete(NSString *dscPath){
-    NSError *error = nil;
-    BOOL result = [[NSFileManager defaultManager] removeItemAtPath:dscPath error:&error];
-    if (error) {
-        showException(error.localizedDescription)
-    }
-    return result;
-}
-
-bool file_move(NSString *srcPath,NSString *dstPath){
-    NSError *error = nil;
-//    BOOL result = [[NSFileManager defaultManager] moveItemAtURL:[NSURL URLWithString:srcPath] toURL:[NSURL URLWithString:dstPath] error:&error];
-
-    BOOL result = [[NSFileManager defaultManager] moveItemAtPath:srcPath toPath:dstPath error:&error];
-    if (error) {
-        showException(error.localizedDescription)
-    }
-    return result;
 }

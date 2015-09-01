@@ -9,6 +9,7 @@
 #import "URLCache.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import "NSString+TPCategory.h"
+#import "UIImage+MultiFormat.h"
 
 #define _HYBIRD_PATH_WEB    [NSHomeDirectory() stringByAppendingPathComponent:@"Library/web.bundle"]
 
@@ -27,20 +28,20 @@ DECLARE_SINGLETON(URLCache)
     self = [super init];
     if (self) {
         self.mimetypeDic = @{@"js"     :@"application/x-javascript",
-                              @"jpg"    :@"image/jpeg",
-                              @"jpeg"   :@"image/jpeg",
-                              @"png"    :@"image/png",
-                              @"zip"    :@"application/zip",
-                              @"gif"    :@"image/gif",
-                              @"3gp"    :@"video/3gpp",
-                              @"mp3"    :@"audio/x-mpeg",
-                              @"mp4"    :@"video/mp4",
-                              @"mpeg"   :@"video/mpeg",
-                              @"mpg"    :@"video/mpeg",
-                              @"mpg4"   :@"video/mp4",
-                              @"txt"    :@"text/plain",
-                              @"css"    :@"text/css",
-                              @"html"   :@"text/html"};
+                             @"jpg"    :@"image/jpeg",
+                             @"jpeg"   :@"image/jpeg",
+                             @"png"    :@"image/png",
+                             @"zip"    :@"application/zip",
+                             @"gif"    :@"image/gif",
+                             @"3gp"    :@"video/3gpp",
+                             @"mp3"    :@"audio/x-mpeg",
+                             @"mp4"    :@"video/mp4",
+                             @"mpeg"   :@"video/mpeg",
+                             @"mpg"    :@"video/mpeg",
+                             @"mpg4"   :@"video/mp4",
+                             @"txt"    :@"text/plain",
+                             @"css"    :@"text/css",
+                             @"html"   :@"text/html"};
         self.appPageUrlDic = [NSMutableDictionary dictionary];
         [self setMemoryCapacity:1024*1024*30];
         [NSURLCache setSharedURLCache:self];
@@ -50,14 +51,14 @@ DECLARE_SINGLETON(URLCache)
 
 - (void)cache{
     //
-    if (!file_exit(_HYBIRD_PATH_WEB)) {
+    if (!file_exist(_HYBIRD_PATH_WEB)) {
         NSString *bundlepath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web.bundle"];
-        if (file_exit(bundlepath)) {
+        if (file_exist(bundlepath)) {
             file_copy(bundlepath, _HYBIRD_PATH_WEB);
         }
     }
     [self.appPageUrlDic removeAllObjects];
-    if (file_exit(_HYBIRD_PATH_WEB)) {
+    if (file_exist(_HYBIRD_PATH_WEB)) {
         //
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSString *pageDir = [_HYBIRD_PATH_WEB stringByAppendingPathComponent:@"release/app_page"];
@@ -87,12 +88,14 @@ DECLARE_SINGLETON(URLCache)
 - (BOOL)webView:(id)webView loadRequest:(NSURL*)url{
     NSString *decodeUrl = [url.absoluteString URLDecodedString];
     NSString* filePath = self.appPageUrlDic[decodeUrl];
-    if (file_exit(filePath))
+    if (file_exist(filePath))
     {
-//        NSData *data = [NSData dataWithContentsOfFile:filePath];
-//        obj_msgSend(webView, @selector(loadData:MIMEType:textEncodingName:baseURL:),data,@"text/html",[NSNull null],[NSURL fileURLWithPath:filePath]);
-        NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-        obj_msgSend(webView, @selector(loadHTMLString:baseURL:),string,[NSURL URLWithString:filePath]);
+        NSData *data = [NSData dataWithContentsOfFile:filePath];
+        NSString *mimeType = [self mimeTypeWithFilePath:filePath];
+
+        obj_msgSend(webView, @selector(loadData:MIMEType:textEncodingName:baseURL:),data,mimeType,[NSNull null],[NSURL URLWithString:filePath]);
+//        NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//        obj_msgSend(webView, @selector(loadHTMLString:baseURL:),string,[NSURL URLWithString:filePath]);
         return NO;
     }
     return YES;
@@ -153,9 +156,37 @@ DECLARE_SINGLETON(URLCache)
         
         NSCachedURLResponse *cacheResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
         return cacheResponse;
+    }else {
+//        NSString *mimeType = [self mimeTypeWithFilePath:[[url.absoluteString componentsSeparatedByString:@"?"] firstObject]];
+//
+//        if ([mimeType hasPrefix:@"image/"]) {
+//            NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:url];
+//            NSLog(@"find key :%@",key);
+//            UIImage *image = [[SDWebImageManager sharedManager].imageCache imageFromMemoryCacheForKey:key];
+//            if (image) {
+//                NSData *data = UIImageJPEGRepresentation(image, 1);
+//                NSURLResponse *response = [[NSURLResponse alloc] initWithURL:url MIMEType:mimeType expectedContentLength:[data length] textEncodingName:nil];
+//                
+//                NSCachedURLResponse *cacheResponse = [[NSCachedURLResponse alloc] initWithResponse:response data:data];
+//                return cacheResponse;
+//            }
+//        }
     }
     return nil;
 }
+
+//- (void)storeCachedResponse:(NSCachedURLResponse *)cachedResponse forRequest:(NSURLRequest *)request{
+//    [super storeCachedResponse:cachedResponse forRequest:request];
+//    NSString *mimeType = [self mimeTypeWithFilePath:[[request.URL.absoluteString componentsSeparatedByString:@"?"] firstObject]];
+//    if ([mimeType hasPrefix:@"image/"]) {
+//        NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:request.URL];
+//        UIImage *image = [[SDWebImageManager sharedManager].imageCache imageFromMemoryCacheForKey:key];
+//        if (!image) {
+//            NSLog(@"store key :%@",key);
+//            [[SDWebImageManager sharedManager].imageCache storeImage:image recalculateFromImage:YES imageData:cachedResponse.data forKey:key toDisk:YES];
+//        }
+//    }
+//}
 
 /**
  *  根据url查询本地Cache中是否存在相应的资源
@@ -188,10 +219,10 @@ DECLARE_SINGLETON(URLCache)
     {
         mimeType = [_mimetypeDic objectForKey:extension];
     }
-    if(!mimeType)
-    {
-        mimeType = @"image/png";
-    }
+//    if(!mimeType)
+//    {
+//        mimeType = @"image/png";
+//    }
     return mimeType;
 }
 

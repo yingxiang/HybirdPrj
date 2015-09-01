@@ -47,7 +47,7 @@ void replaceClass(){
 
     replaceInstanceMethods([UIViewController class], NSSelectorFromString(@"commpontviewDidDisappear:"), NSSelectorFromString(@"viewDidDisappear:"));
     
-    replaceInstanceMethods([UIViewController class], NSSelectorFromString(@"commpontpreferredStatusBarStyle:"), NSSelectorFromString(@"preferredStatusBarStyle:"));
+//    replaceInstanceMethods([UIViewController class], NSSelectorFromString(@"commpontpreferredStatusBarStyle:"), NSSelectorFromString(@"preferredStatusBarStyle:"));
     
     replaceInstanceMethods([UILabel class], NSSelectorFromString(@"setfitText:"), NSSelectorFromString(@"setText:"));
     

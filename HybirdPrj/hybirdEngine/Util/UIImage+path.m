@@ -17,17 +17,12 @@
     if ([path isKindOfClass:[NSString class]]) {
         if ([path isURLString]) {
             
-            NSCachedURLResponse *response = [[NSURLCache sharedURLCache] cachedResponseForRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
-            if (response) {
-                block([UIImage imageWithData:response.data]);
-            }else {            
-                [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:path] options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                    if (error) {
-                        showException(path);
-                    }
-                    block(image);
-                }];
-            }
+            [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:path] options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+                if (error) {
+                    showException(path);
+                }
+                block(image);
+            }];
         }else{
             image = [UIImage imageWithContentsOfFile:[_HYBIRD_PATH_IMAGE stringByAppendingPathComponent:path]];
 

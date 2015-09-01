@@ -8,7 +8,7 @@
 
 #import "PlayerEngine.h"
 #import "NSString+TPCategory.h"
-#import "FTPEngine.h"
+#import "fileEngine.h"
 
 @interface PlayerEngine ()<AVAudioPlayerDelegate>
 
@@ -29,12 +29,8 @@ DECLARE_SINGLETON(PlayerEngine)
 - (instancetype)init{
     self = [super init];
     if (self) {
-        if (!file_exit(AUDIO_PATH)) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:AUDIO_PATH withIntermediateDirectories:NO attributes:nil error:nil];
-        }
-        if (!file_exit(BOOK_PATH)) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:BOOK_PATH withIntermediateDirectories:NO attributes:nil error:nil];
-        }
+        file_createDirectory(AUDIO_PATH);
+        file_createDirectory(BOOK_PATH);
     }
     return self;
 }
@@ -114,14 +110,14 @@ DECLARE_SINGLETON(PlayerEngine)
     NSString *fileName  = [url stringFromMD5];
     NSString *filePath  = [AUDIO_PATH stringByAppendingPathComponent:fileName];
     //根据url地址寻找本地资源
-    if (file_exit(filePath)) {
+    if (file_exist(filePath)) {
         [self audioPlay:filePath];
         [self.player playAtTime:startTime];
     }else {
         //边下边播
         NSString *cachefile = [NSTemporaryDirectory() stringByAppendingString:[[NSFileManager defaultManager] displayNameAtPath:url]];
         
-        [FTPEngine downloadFileURL:url progress:^(PROGRESS_TYPE progresstype, long long currentprogress, long long totalprogress) {
+        downloadFile(url, ^(PROGRESS_TYPE progresstype, long long currentprogress, long long totalprogress) {
             if (self.progressBlock) {
                 //下载更新
                 self.progressBlock(progresstype,currentprogress,totalprogress);
@@ -133,7 +129,7 @@ DECLARE_SINGLETON(PlayerEngine)
                     [self.player playAtTime:startTime];
                 }
             }
-        } complete:^(BOOL success, NSString *cachefilePath) {
+        }, ^(BOOL success, NSString *cachefilePath) {
             if (success) {
                 file_move(cachefilePath, filePath);
                 if (!self.player && self.delegateContainer) {
@@ -141,7 +137,7 @@ DECLARE_SINGLETON(PlayerEngine)
                     [self.player playAtTime:startTime];
                 }
             }
-        }];
+        });
     }
     return NO;
 }

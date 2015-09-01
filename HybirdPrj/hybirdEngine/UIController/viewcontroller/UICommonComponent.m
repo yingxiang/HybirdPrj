@@ -273,6 +273,9 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
             [self.navigationController setNavigationBarHidden:self.navBarHidden animated:YES];
         }
     }
+    if (self.jsonData[@"UIStatusBarStyle"]) {
+        [self setNeedsStatusBarAppearanceUpdate];
+    }
 }
 
 - (void)commpontviewWillDisappear:(BOOL)animated{
@@ -340,6 +343,18 @@ static const void *isFirstLoadKey = &isFirstLoadKey;
     }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    if (self.jsonData[@"UIStatusBarStyle"]) {
+        
+        NSString *obj = self.jsonData[@"UIStatusBarStyle"];
+        return [obj obj_integer:^(BOOL success) {
+            if (!success) {
+                showIntegerException(@"UIStatusBarStyle", obj);
+            }
+        }];
+    }
+    return UIStatusBarStyleDefault;
+}
 //状态栏
 - (UIStatusBarStyle)commpontpreferredStatusBarStyle{
     if (self.jsonData[@"UIStatusBarStyle"]) {

@@ -24,9 +24,7 @@ DECLARE_SINGLETON(RecorderEngine)
 - (instancetype)init{
     self = [super init];
     if (self) {
-        if (!file_exit(RECORDER_PATH)) {
-            [[NSFileManager defaultManager] createDirectoryAtPath:RECORDER_PATH withIntermediateDirectories:NO attributes:nil error:nil];
-        }
+        file_createDirectory(RECORDER_PATH);
     }
     return self;
 }
