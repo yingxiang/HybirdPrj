@@ -53,6 +53,7 @@ void replaceClass(){
     
     replaceClassMethods([NSURL class], NSSelectorFromString(@"ENCODEURLWithString:"), NSSelectorFromString(@"URLWithString:"));
 
+    replaceInstanceMethods([UIWebView class], NSSelectorFromString(@"setHBDelegate:"), NSSelectorFromString(@"setDelegate:"));
 }
 
 

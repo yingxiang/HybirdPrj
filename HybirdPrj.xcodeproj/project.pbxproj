@@ -80,6 +80,7 @@
 		AC3DCA641B5A1CD40060E193 /* AlignmentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3DCA5B1B5A1CD40060E193 /* AlignmentLabel.m */; };
 		AC3DCA651B5A1CD40060E193 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC3DCA5E1B5A1CD40060E193 /* FXBlurView.m */; };
 		ACA828471B8835A500375AC1 /* NSTimer+block.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA828461B8835A500375AC1 /* NSTimer+block.m */; };
+		ACD4F6B81B97066100F6EACC /* UIWebView+progress.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD4F6B71B97066100F6EACC /* UIWebView+progress.m */; };
 		ACE58C311B7CD6D200CEA4F8 /* hybirdEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE58C301B7CD6D200CEA4F8 /* hybirdEngine.m */; };
 		ACE60F741B759B2900C42699 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE60F731B759B2900C42699 /* CoreTelephony.framework */; };
 		ACE6388E1B7FFB5100306FAB /* UIContainerTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE6388D1B7FFB5100306FAB /* UIContainerTabBarItem.m */; };
@@ -236,6 +237,8 @@
 		AC3DCA5E1B5A1CD40060E193 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		ACA828451B8835A500375AC1 /* NSTimer+block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+block.h"; sourceTree = "<group>"; };
 		ACA828461B8835A500375AC1 /* NSTimer+block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+block.m"; sourceTree = "<group>"; };
+		ACD4F6B61B97066100F6EACC /* UIWebView+progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+progress.h"; sourceTree = "<group>"; };
+		ACD4F6B71B97066100F6EACC /* UIWebView+progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+progress.m"; sourceTree = "<group>"; };
 		ACE58C301B7CD6D200CEA4F8 /* hybirdEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hybirdEngine.m; sourceTree = "<group>"; };
 		ACE60F731B759B2900C42699 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		ACE6388C1B7FFB5100306FAB /* UIContainerTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIContainerTabBarItem.h; sourceTree = "<group>"; };
@@ -544,6 +547,8 @@
 				AC0E2A9A1B55551D00D2E011 /* NSObject+key.m */,
 				200DC6E81B8B1CAC00F0FA8A /* NSDictionary+addEntries.h */,
 				200DC6E91B8B1CAC00F0FA8A /* NSDictionary+addEntries.m */,
+				ACD4F6B61B97066100F6EACC /* UIWebView+progress.h */,
+				ACD4F6B71B97066100F6EACC /* UIWebView+progress.m */,
 				AC0E2A9B1B55551D00D2E011 /* NSString+TPCategory.h */,
 				AC0E2A9C1B55551D00D2E011 /* NSString+TPCategory.m */,
 				AC0E2A9D1B55551D00D2E011 /* UIBarItem+container.h */,
@@ -1030,6 +1035,7 @@
 				205AAF7E1B855C7900C06B16 /* StartManage.m in Sources */,
 				AC3DCA181B59E61B0060E193 /* UIContainerCell.m in Sources */,
 				AC3DCA641B5A1CD40060E193 /* AlignmentLabel.m in Sources */,
+				ACD4F6B81B97066100F6EACC /* UIWebView+progress.m in Sources */,
 				AC3DCA361B59E6BC0060E193 /* UITabbarCommponent.m in Sources */,
 				AC3DCA1A1B59E61B0060E193 /* UIContainerTextView.m in Sources */,
 				2033A9461B79D81A007A6EC2 /* UIConatinerActivityIndicatorView.m in Sources */,

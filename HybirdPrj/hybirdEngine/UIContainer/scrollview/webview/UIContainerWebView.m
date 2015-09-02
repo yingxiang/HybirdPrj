@@ -12,6 +12,7 @@
 #import "NSString+TPCategory.h"
 #import <WebKit/WebKit.h>
 #import "URLCache.h"
+#import "UIWebView+progress.h"
 
 #pragma mark - ios8 webview
 
@@ -145,59 +146,16 @@ nonatomic_weak    (WKWebView,             *webView)
 
 @end
 
-#pragma mark - ios7 webview
-#pragma mark - UIWebViewProgress
-
-@protocol UIWebViewProgressDelegate <NSObject>
-
-@optional
-- (void) webView:(UIWebView*)webView didReceiveResourceNumber:(int)resourceNumber totalResources:(int)totalResources;
-
-@end
-
-@interface UIWebViewProgress : UIWebView
-
-nonatomic_assign(int, resourceCount)
-nonatomic_assign(int, resourceCompletedCount)
-nonatomic_weak(id<UIWebViewProgressDelegate>, progressDelegate)
-
-@end
-
-@implementation UIWebViewProgress
-
--(id)webView:(id)view identifierForInitialRequest:(id)initialRequest fromDataSource:(id)dataSource
-{
-    return [NSNumber numberWithInt:self.resourceCount++];
-}
-
-- (void)webView:(id)view resource:(id)resource didFailLoadingWithError:(id)error fromDataSource:(id)dataSource {
-    self.resourceCompletedCount++;
-    if ([self.progressDelegate respondsToSelector:@selector(webView:didReceiveResourceNumber:totalResources:)]) {
-        [self.progressDelegate webView:self didReceiveResourceNumber:self.resourceCompletedCount totalResources:self.resourceCount];
-    }
-}
-
--(void)webView:(id)view resource:(id)resource didFinishLoadingFromDataSource:(id)dataSource
-{
-    self.resourceCompletedCount++;
-    if ([self.progressDelegate respondsToSelector:@selector(webView:didReceiveResourceNumber:totalResources:)]) {
-        [self.progressDelegate webView:self didReceiveResourceNumber:self.resourceCompletedCount totalResources:self.resourceCount];
-    }
-}
-
-
-@end
-
 #pragma mark -
 
-@interface UIContainerWebView()<UIWebViewDelegate,UIWebViewProgressDelegate,WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
+@interface UIContainerWebView()<UIWebViewProgressDelegate,WKNavigationDelegate,WKUIDelegate,WKScriptMessageHandler>
 
-nonatomic_strong(UIWebViewProgress,       *webView)
+nonatomic_strong(UIWebView              , *webView)
 nonatomic_strong(WebViewJavascriptBridge, *javascriptBridge)
 
-nonatomic_assign(BOOL,                    useNewWebView)
-nonatomic_strong(WKWebView,               *wkwebView)
-nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
+nonatomic_assign(BOOL                   , useNewWebView)
+nonatomic_strong(WKWebView              , *wkwebView)
+nonatomic_strong(WKJSBridge             , *wkjavascriptBridge)
 
 @end
 
@@ -234,14 +192,13 @@ nonatomic_strong(WKJSBridge,              *wkjavascriptBridge)
         }];
         [self.wkwebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
     }else{
-        self.view = _obj_alloc(UIWebViewProgress)
-        self.webView.delegate = self;
-        self.webView.progressDelegate = self;
+        self.view = _obj_alloc(UIWebView)
         __weak __typeof(self)weakSelf = self;
         self.javascriptBridge = [WebViewJavascriptBridge bridgeForWebView:_webView webViewDelegate:self handler:^(id data, WVJBResponseCallback responseCallback) {
             NSLog(@"ObjC received message from JS: %@", data);
             [weakSelf receiveCommand:data handler:responseCallback];
         }];
+        self.webView.progressDelegate = self;
     }
 }
 
