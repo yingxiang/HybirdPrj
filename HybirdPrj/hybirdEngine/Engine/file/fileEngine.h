@@ -23,8 +23,24 @@ void downloadFile(NSString *aUrl,Block_progress progressBlock,Block_complete com
 /**
  *  上传文件
  *
- *
+ *  @param aUrl          上传地址
+ *  @param aFilePath     本地文件地址
+ *  @param aFileName     <#aFileName description#>
+ *  @param progressBlock <#progressBlock description#>
+ *  @param completeBlock <#completeBlock description#>
  */
 void uploadFile(NSString *aUrl,NSString *aFilePath,NSString *aFileName,Block_progress progressBlock,Block_complete completeBlock);
+
+NSDictionary* file_read(NSString *filepath , NSString *filename);
+
+bool file_exist(NSString *dscPath);
+
+bool file_copy(NSString *srcPath,NSString *dstPath);
+
+bool file_delete(NSString *dscPath);
+
+bool file_move(NSString *srcPath,NSString *dstPath);
+
+bool file_createDirectory(NSString *dstPath);
 
 @end

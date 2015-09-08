@@ -141,37 +141,9 @@ return singletonInstance; \
 
 #define showDoubleException(key,obj) alertException(exception_title,[NSString stringWithFormat:@"%@ [%@ doubleValue]",key,obj]);
 
-#pragma mark - extern methods
-
-OBJC_EXPORT void obj_msgSend(id self, SEL op, ...);
-
-@class UIContainerView;
-OBJC_EXPORT void runFunction(NSDictionary *dic , UIContainerView * container);
-
-OBJC_EXPORT void alertException(NSString *title,NSString *msg);
-
-//file
-OBJC_EXPORT NSDictionary* file_read(NSString *path , NSString *filename);
-
-OBJC_EXPORT bool file_exist(NSString *dstPath);
-
-OBJC_EXPORT bool file_copy(NSString *srcPath,NSString *dstPath);
-
-OBJC_EXPORT bool file_delete(NSString *dscPath);
-
-OBJC_EXPORT bool file_move(NSString *srcPath,NSString *dstPath);
-
-OBJC_EXPORT bool file_createDirectory(NSString *dstPath);
-
-#pragma mark - NSNotification
-
-#define _NSNotification_MotionShake @"UIEventSubtypeMotionShake"
-
-#define _hybird_post_notification_(_postname,_object) [[NSNotificationCenter defaultCenter] postNotificationName:_postname object:_object];
-
 #pragma mark -block declare
 
-typedef void(^Block)(void);
+typedef void(^Block_void)(void);
 
 typedef enum {
     PROGRESS_TYPE_DEFAULT,
@@ -186,6 +158,17 @@ typedef void(^Block_progress)(PROGRESS_TYPE progresstype, long long currentprogr
 
 typedef void(^Block_complete)(BOOL success, id data);
 
+//不支持嵌套switch
+#define stringSwitch(string) stringSwitch_set(string);
+#define caseString(string) if(stringEqual(string))
+#define caseDefault() if(stringDefault())
+
+#pragma mark - NSNotification
+
+#define _NSNotification_MotionShake @"UIEventSubtypeMotionShake"
+
+#define _hybird_post_notification_(_postname,_object) [[NSNotificationCenter defaultCenter] postNotificationName:_postname object:_object];
+
 #pragma mark - headers
 
 #import "NSObject+key.h"
@@ -199,5 +182,6 @@ typedef void(^Block_complete)(BOOL success, id data);
 #import "NSModelFuctionCenter.h"
 #import "UIContainerHelper.h"
 #import "UIViewControllerHelper.h"
+#import "hybirdEngine.h"
 
 #endif

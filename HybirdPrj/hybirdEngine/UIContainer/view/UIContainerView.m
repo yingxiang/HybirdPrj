@@ -733,59 +733,90 @@ static int cal_progress = 0;
     if (i >= values.count) {
         return nil;
     }
-    id value = [self getValue:values[i]];
+    __block id value = [self getValue:values[i]];
     cal_progress = i;
     if ([self isoperator:value]) {
         //取值计算
         id objectone = [self getvalue:cal_progress+1 values:values];
         id objecttwo = [self getvalue:cal_progress+1 values:values];
-        if ([value isEqualToString:@"+"]) {
-            value = [NSNumber numberWithFloat:[objectone floatValue]+[objecttwo floatValue]];
-        }else if ([value isEqualToString:@"-"]){
-            value = [NSNumber numberWithFloat:[objectone floatValue]-[objecttwo floatValue]];
-        }else if ([value isEqualToString:@"*"]){
-            value = [NSNumber numberWithFloat:[objectone floatValue]*[objecttwo floatValue]];
-        }else if ([value isEqualToString:@"/"]){
-            value = [NSNumber numberWithFloat:([objectone floatValue]/[objecttwo floatValue])];
-        }else if ([value isEqualToString:@"="]){
-            if (objectone!=nil) {
-                if ([objectone isKindOfClass:[NSString class]]) {
-                    value = [NSNumber numberWithBool:[objectone isEqualToString:objecttwo]];
-                }else if([objectone isKindOfClass:[NSNumber class]]){
-                    value = [NSNumber numberWithBool:([objectone floatValue]==[objecttwo floatValue])];
+        
+        stringSwitch(value){
+            caseString(@"+"){
+                value = [NSNumber numberWithFloat:[objectone floatValue]+[objecttwo floatValue]];
+            }
+            
+            caseString(@"-"){
+                value = [NSNumber numberWithFloat:[objectone floatValue]-[objecttwo floatValue]];
+            };
+            
+            caseString(@"*"){
+                value = [NSNumber numberWithFloat:[objectone floatValue]*[objecttwo floatValue]];
+            }
+            
+            caseString(@"/"){
+                value = [NSNumber numberWithFloat:([objectone floatValue]/[objecttwo floatValue])];
+            }
+            
+            caseString(@"="){
+                if (objectone!=nil) {
+                    if ([objectone isKindOfClass:[NSString class]]) {
+                        value = [NSNumber numberWithBool:[objectone isEqualToString:objecttwo]];
+                    }else if([objectone isKindOfClass:[NSNumber class]]){
+                        value = [NSNumber numberWithBool:([objectone floatValue]==[objecttwo floatValue])];
+                    }else {
+                        value = [NSNumber numberWithBool:(objectone == objecttwo)];
+                    }
                 }else {
-                    value = [NSNumber numberWithBool:(objectone == objecttwo)];
-                }
-            }else {
-                if ([objecttwo isKindOfClass:[NSString class]]) {
-                    value = [NSNumber numberWithBool:[objectone isEqualToString:objecttwo]];
-                }else if([objecttwo isKindOfClass:[NSNumber class]]){
-                    value = [NSNumber numberWithBool:([objectone floatValue]==[objecttwo floatValue])];
-                }else {
-                    value = [NSNumber numberWithBool:(objectone == objecttwo)];
+                    if ([objecttwo isKindOfClass:[NSString class]]) {
+                        value = [NSNumber numberWithBool:[objectone isEqualToString:objecttwo]];
+                    }else if([objecttwo isKindOfClass:[NSNumber class]]){
+                        value = [NSNumber numberWithBool:([objectone floatValue]==[objecttwo floatValue])];
+                    }else {
+                        value = [NSNumber numberWithBool:(objectone == objecttwo)];
+                    }
                 }
             }
-        }else if ([value isEqualToString:@"%"]){
-            value = [NSNumber numberWithInteger:([objectone integerValue]%[objecttwo integerValue])];
-        }else if ([value isEqualToString:@"&"]){
-            value = [NSNumber numberWithInteger:([objectone integerValue]&[objecttwo integerValue])];
-        }else if ([value isEqualToString:@"|"]){
-            value = [NSNumber numberWithInteger:([objectone integerValue]|[objecttwo integerValue])];
-        }else if ([value isEqualToString:@"#"]){
-            value = [NSNumber numberWithInteger:([objectone floatValue]||[objecttwo floatValue])];
-        }else if ([value isEqualToString:@"~"]){
-            value = [NSNumber numberWithInteger:([objectone floatValue]&&[objecttwo floatValue])];
-        }else if ([value isEqualToString:@">"]){
-            value = [NSNumber numberWithBool:([objectone floatValue]>[objecttwo floatValue])];
-        }else if ([value isEqualToString:@"<"]){
-            value = [NSNumber numberWithBool:([objectone floatValue]<[objecttwo floatValue])];
-        }else if ([value isEqualToString:@"《"]){
-            value = [NSNumber numberWithInteger:([objectone integerValue]<<[objecttwo integerValue])];
-        }else if ([value isEqualToString:@"》"]){
-            value = [NSNumber numberWithInteger:([objectone integerValue]>>[objecttwo integerValue])];
-        }else if ([value isEqualToString:@"!"]){
-            value = [NSNumber numberWithBool:![objectone boolValue]];
-        }
+            
+            caseString(@"%"){
+                value = [NSNumber numberWithInteger:([objectone integerValue]%[objecttwo integerValue])];
+            }
+            
+            caseString(@"&"){
+                value = [NSNumber numberWithInteger:([objectone integerValue]&[objecttwo integerValue])];
+            }
+            
+            caseString(@"|"){
+                value = [NSNumber numberWithInteger:([objectone integerValue]|[objecttwo integerValue])];
+            }
+            
+            caseString(@"#"){
+                value = [NSNumber numberWithInteger:([objectone floatValue]||[objecttwo floatValue])];
+            }
+            
+            caseString(@"~"){
+                value = [NSNumber numberWithInteger:([objectone floatValue]&&[objecttwo floatValue])];
+            }
+            
+            caseString(@">"){
+                value = [NSNumber numberWithBool:([objectone floatValue]>[objecttwo floatValue])];
+            }
+            
+            caseString(@"<"){
+                value = [NSNumber numberWithBool:([objectone floatValue]<[objecttwo floatValue])];
+            }
+            
+            caseString(@"《"){
+                value = [NSNumber numberWithInteger:([objectone integerValue]<<[objecttwo integerValue])];
+            }
+            
+            caseString(@"》"){
+                value = [NSNumber numberWithInteger:([objectone integerValue]>>[objecttwo integerValue])];
+            }
+            
+            caseString(@"!"){
+                value = [NSNumber numberWithBool:![objectone boolValue]];
+            }
+        };
     }
     return value;
 }
@@ -880,6 +911,7 @@ static int cal_progress = 0;
             id value = self;
             for (int i = 0; i<array.count; i++) {
                 NSString *property = array[i];
+                
                 if ([property isEqualToString:@""]) {
                     return map;
                 }else if ([property isEqualToString:@"self"]) {
@@ -936,6 +968,7 @@ static int cal_progress = 0;
 }
 
 #pragma mark - 用户事件
+//override ifneeded
 - (void)reload{
     
 }

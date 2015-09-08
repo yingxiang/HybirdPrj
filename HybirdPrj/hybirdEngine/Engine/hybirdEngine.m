@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 Elephant. All rights reserved.
 //
 
-#import "fileEngine.h"
+#import "hybirdEngine.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ShareEngine.h"
 #import "CALayer+animation.h"
@@ -58,14 +58,6 @@ static NSString *const FT_RESTART          = @"FT_RESTART";
 static NSString *const FT_SHOWTIPS         = @"FT_SHOWTIPS";
 //播放语音
 static NSString *const FT_PLAYAUDIO        = @"FT_PLAYAUDIO";
-
-#pragma mark - public declare
-
-void obj_msgSend(id self, SEL op, ...);
-
-void runFunction(NSDictionary *dic, UIContainerView * container);
-
-void alertException(NSString *title, NSString *msg);
 
 #pragma mark - private methods
 
@@ -888,74 +880,120 @@ void playaudio(NSDictionary *dic , UIContainerView *container){
  *  @param container uicontainer
  */
 void run(NSDictionary *dic , UIContainerView *container){
-    NSString *functionType = dic[@"type"];
+    __block NSString *functionType = dic[@"type"];
     
     if (functionType) {
         @try {
-            if ([functionType isEqualToString:FT_DOWNLOAD]) {
-                //下载
-                download(dic, container);
-            }else if ([functionType isEqualToString:FT_REQUEST]) {
-                //请求
-                request(dic, container);
-            }else if ([functionType isEqualToString:FT_PARSEDATA]) {
-                //数据解析
-                parsedata(dic, container);
-            }else if ([functionType isEqualToString:FT_VIEWSKIP]){
-                //页面跳转
-                viewskip(dic, container);
-            }else if ([functionType isEqualToString:FT_VIEWBACK]){
-                //返回上一级页面
-                viewback(dic, container);
-            }else if ([functionType isEqualToString:FT_VIEWBACKROOT]){
-                //返回到根页面
-                viewroot(dic, container);
-            }else if ([functionType isEqualToString:FT_VIEWROOTBACK]){
-                //返回到根页面的上一级页面
-                viewrootback(dic, container);
-            }else if ([functionType isEqualToString:FT_VIEWBACKTO]){
-                //返回到指定页面
-                viewto(dic, container);
-            }else if ([functionType isEqualToString:FT_ADDVIEW]){
-                //添加视图
-                addview(dic, container);
-            }else if ([functionType isEqualToString:FT_REMOVEVIEW]){
-                //移除视图
-                removeview(dic, container);
-            }else if ([functionType isEqualToString:FT_SYSTERM]){
-                //执行系统方法
-                systerm(dic, container);
-            }else if ([functionType isEqualToString:FT_SHOWALERT]){
-                //弹出警告框
-                alert(dic, container);
-            }else if ([functionType isEqualToString:FT_SHOWACTIONSHEET]){
-                //弹出选择框
-                actionsheet(dic, container);
-            }else if ([functionType isEqualToString:FT_JUMPTOAPP]){
-                //跳转到外部应用
-                openurl(dic, container);
-            }else if ([functionType isEqualToString:FT_UPDATEVIEW]){
-                //更新视图
-                updateview(dic, container);
-            }else if ([functionType isEqualToString:FT_JSCOMMOND]){
-                //向js发送指令
-                jscommond(dic, container);
-            }else if ([functionType isEqualToString:FT_SHARE]){
-                //分享
-                share(dic, container);
-            }else if ([functionType isEqualToString:FT_ANIMATION]){
-                //动画
-                animation(dic, container);
-            }else if ([functionType isEqualToString:FT_RESTART]){
-                //重启
-                restart();
-            }else if ([functionType isEqualToString:FT_SHOWTIPS]){
-                //show tips
-                showtips(dic, container);
-            }else if ([functionType isEqualToString:FT_PLAYAUDIO]){
-                //paly audio
-                playaudio(dic, container);
-            }
+            stringSwitch(functionType){
+               caseString(FT_DOWNLOAD){
+                   //下载
+                   download(dic, container);
+               };
+               
+                caseString(FT_REQUEST){
+                    //请求
+                    request(dic, container);
+                };
+                
+                caseString(FT_PARSEDATA){
+                    //数据解析
+                    parsedata(dic, container);
+                };
+                
+                caseString(FT_VIEWSKIP){
+                    //页面跳转
+                    viewskip(dic, container);
+                };
+                
+                caseString(FT_VIEWBACK){
+                    //返回上一级页面
+                    viewback(dic, container);
+                };
+                
+                caseString(FT_VIEWBACKROOT){
+                    //返回到根页面
+                    viewroot(dic, container);
+                };
+                
+                caseString(FT_VIEWROOTBACK){
+                    //返回到根页面的上一级页面
+                    viewrootback(dic, container);
+                };
+                
+                caseString(FT_VIEWBACKTO){
+                    //返回到指定页面
+                    viewto(dic, container);
+                };
+                
+                caseString(FT_ADDVIEW){
+                    //添加视图
+                    addview(dic, container);
+                };
+                
+                caseString(FT_REMOVEVIEW){
+                    //移除视图
+                    removeview(dic, container);
+                };
+                
+                caseString(FT_SYSTERM){
+                    //执行系统方法
+                    systerm(dic, container);
+                };
+                
+                caseString(FT_SHOWALERT){
+                    //弹出警告框
+                    alert(dic, container);
+                };
+                
+                caseString(FT_SHOWACTIONSHEET){
+                    //弹出选择框
+                    actionsheet(dic, container);
+                };
+                
+                caseString(FT_JUMPTOAPP){
+                    //跳转到外部应用
+                    openurl(dic, container);
+                };
+                
+                caseString(FT_UPDATEVIEW){
+                    //更新视图
+                    updateview(dic, container);
+                };
+                
+                caseString(FT_JSCOMMOND){
+                    //向js发送指令
+                    jscommond(dic, container);
+                };
+                
+                caseString(FT_SHARE){
+                    //分享
+                    share(dic, container);
+                };
+                
+                caseString(FT_ANIMATION){
+                    //动画
+                    animation(dic, container);
+                };
+                
+                caseString(FT_RESTART){
+                    //重启
+                    restart();
+                };
+                
+                caseString(FT_SHOWTIPS){
+                    //show tips
+                    showtips(dic, container);
+                };
+                
+                caseString(FT_PLAYAUDIO){
+                    //paly audio
+                    playaudio(dic, container);
+                };
+                
+                caseDefault(){
+                    showException(@"找不到方法");
+                };
+            };
         }
         @catch (NSException *exception) {
             
@@ -1101,4 +1139,30 @@ void runFunction(NSDictionary *dic , UIContainerView * container){
     }else{
         run(dic, container);
     }
+}
+
+#pragma mark - string switch
+
+static NSString *aString;
+
+void stringSwitch_set(NSString *string){
+    aString = string;
+}
+
+BOOL stringEqual(NSString *string){
+    //    if (!aString) {
+    //        NSString *msg = [NSString stringWithFormat:@"%s must in stringSwitch block",__FUNCTION__];
+    //        NSLog(msg,nil);
+    //    }
+    BOOL result = [string isEqualToString:aString];
+    if (result) {
+        aString = nil;
+    }
+    return result;
+}
+
+BOOL stringDefault(){
+    BOOL result = (aString!=nil);
+    aString = nil;
+    return result;
 }

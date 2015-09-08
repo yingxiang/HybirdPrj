@@ -10,7 +10,7 @@
 
 @interface NSTimer (block)
 
-nonatomic_copy(Block, block)
+nonatomic_copy(Block_void, block)
 
 + (NSTimer*)scheduledTimerWithTimeInterval:(NSTimeInterval)ti block:(void (^)(void))block repeats:(BOOL)yesOrNo;
 

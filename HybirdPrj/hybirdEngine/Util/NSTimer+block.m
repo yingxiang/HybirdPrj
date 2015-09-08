@@ -13,11 +13,11 @@ static const void *blockKey = &blockKey;
 @implementation NSTimer (block)
 @dynamic block;
 
-- (Block)block{
+- (Block_void)block{
     return objc_getAssociatedObject(self, blockKey);
 }
 
-- (void)setBlock:(Block)block{
+- (void)setBlock:(Block_void)block{
     objc_setAssociatedObject(self, blockKey, block, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 

@@ -237,6 +237,7 @@
 		AC3DCA5E1B5A1CD40060E193 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
 		ACA828451B8835A500375AC1 /* NSTimer+block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+block.h"; sourceTree = "<group>"; };
 		ACA828461B8835A500375AC1 /* NSTimer+block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+block.m"; sourceTree = "<group>"; };
+		ACBC21501B9D712C004BE161 /* hybirdEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hybirdEngine.h; sourceTree = "<group>"; };
 		ACD4F6B61B97066100F6EACC /* UIWebView+progress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+progress.h"; sourceTree = "<group>"; };
 		ACD4F6B71B97066100F6EACC /* UIWebView+progress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+progress.m"; sourceTree = "<group>"; };
 		ACE58C301B7CD6D200CEA4F8 /* hybirdEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = hybirdEngine.m; sourceTree = "<group>"; };
@@ -806,6 +807,7 @@
 				205AAF1A1B854E4500C06B16 /* pay */,
 				205AAF1D1B854E4500C06B16 /* recoder */,
 				205AAF231B854E4500C06B16 /* share */,
+				ACBC21501B9D712C004BE161 /* hybirdEngine.h */,
 				ACE58C301B7CD6D200CEA4F8 /* hybirdEngine.m */,
 				20C4B90C1B815C8A00DD7C5C /* replaceClassEnigne.m */,
 			);
@@ -902,6 +904,7 @@
 				TargetAttributes = {
 					20E6D3311B339AFD0023F2FA = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = J4Z3N8ZKB3;
 					};
 				};
 			};
@@ -1156,6 +1159,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: feifei huang (CPJDGWWUQ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: feifei huang (CPJDGWWUQ7)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "HybirdPrj/const/Hybird-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1185,6 +1189,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: feifei huang (CPJDGWWUQ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: feifei huang (CPJDGWWUQ7)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "HybirdPrj/const/Hybird-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

@@ -7,7 +7,6 @@
 //
 
 #import <objc/runtime.h>
-#import <AVFoundation/AVFoundation.h>
 
 //替换对象方法
 void replaceInstanceMethods(Class className,SEL newSEL,SEL origSEL){
